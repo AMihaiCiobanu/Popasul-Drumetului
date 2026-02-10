@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Popasul Drumețului | Tradiție și Gust în Câmpulung Moldovenesc</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header class="header">
+        <nav class="nav container">
+            <div class="logo">
+                <span class="logo-text">Popasul <span>Drumețului</span></span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#about" data-i18n="nav.about">Despre Noi</a></li>
+                <li><a href="#menu" data-i18n="nav.menu">Meniu</a></li>
+                <li><a href="#gallery" data-i18n="nav.gallery">Galerie</a></li>
+                <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+            </ul>
+            <div class="header-actions">
+                <div class="lang-switcher">
+                    <button class="lang-btn active" data-lang="ro">RO</button>
+                    <div class="lang-dropdown">
+                        <button data-lang="ro">RO</button>
+                        <button data-lang="en">EN</button>
+                        <button data-lang="fr">FR</button>
+                        <button data-lang="pl">PL</button>
+                        <button data-lang="ua">UA</button>
+                    </div>
+                </div>
+                <a href="tel:+40754358065" class="btn-reserv" data-i18n="nav.reservations">Rezervări</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-overlay"></div>
+            <div class="hero-content container">
+                <span class="hero-subtitle" data-i18n="hero.subtitle">Bun venit la Câmpulung Moldovenesc</span>
+                <h1 class="hero-title" data-i18n="hero.title">Gustul Autentic al <br><span>Bucovinei</span></h1>
+                <p class="hero-desc" data-i18n="hero.desc">Descoperă tradiția culinară românească într-un ambient
+                    modern, unde lemnul și
+                    ospitalitatea se întâlnesc.</p>
+                <div class="hero-btns">
+                    <a href="#menu" class="btn btn-primary" data-i18n="hero.btn_menu">Vezi Meniul</a>
+                    <a href="#gallery" class="btn btn-secondary" data-i18n="hero.btn_gallery">Explorează Localul</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about">
+            <div class="container grid">
+                <div class="about-img">
+                    <img src="images/exterior.jpeg" alt="Restaurant exterior" class="floating">
+                </div>
+                <div class="about-text">
+                    <span class="section-tag" data-i18n="about.tag">Povestea Noastră</span>
+                    <h2 class="section-title" data-i18n="about.title">La Popas în Inima <span>Bucovinei</span></h2>
+                    <p data-i18n="about.p1">La Popasul Drumețului, tradiția se împletește cu rafinamentul contemporan.
+                        Situat într-un cadru
+                        natural spectacol, restaurantul nostru oferă o evadare culinară autentică.</p>
+                    <p data-i18n="about.p2">Fiecare preparat este gătit cu ingrediente proaspete, locale, după rețete
+                        transmise din generație
+                        în generație, dar prezentate într-o formă modernă care să încânte toate simțurile.</p>
+                    <div class="about-features">
+                        <div class="feature">
+                            <span class="feature-icon">🥘</span>
+                            <p data-i18n="about.f1">Tradițional Românesc</p>
+                        </div>
+                        <div class="feature">
+                            <span class="feature-icon">🔥</span>
+                            <p data-i18n="about.f_pizza">Cuptor pe Lemne</p>
+                        </div>
+                        <div class="feature">
+                            <span class="feature-icon">🍷</span>
+                            <p data-i18n="about.f3">Vinuri Alese</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="menu" class="menu">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag" data-i18n="menu.tag">Meniul Nostru</span>
+                    <h2 class="section-title" data-i18n="menu.title">Arome Care Te <span>Încântă</span></h2>
+                </div>
+
+                <div class="menu-tabs">
+                    <button class="tab-btn active" data-target="tradition"
+                        data-i18n="menu.tab_tradition">Tradițional</button>
+                    <button class="tab-btn" data-target="italian" data-i18n="menu.tab_italian">Italian</button>
+                    <button class="tab-btn" data-target="grill" data-i18n="menu.tab_grill">Grătar & Burgeri</button>
+                    <button class="tab-btn" data-target="dessert" data-i18n="menu.tab_dessert">Desert</button>
+                    <button class="tab-btn" data-target="drinks" data-i18n="menu.tab_drinks">Băuturi</button>
+                </div>
+
+                <div class="menu-grid active" id="tradition">
+                    <!-- Menu items will be injected here by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <section id="gallery" class="gallery">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag" data-i18n="gallery.tag">Galerie</span>
+                    <h2 class="section-title" data-i18n="gallery.title">Momente de <span>Neuitat</span></h2>
+                </div>
+                <div class="gallery-grid">
+                    <div class="gallery-item"><img src="images/mese4.jpeg" alt="Recepție - Intrare"></div>
+                    <div class="gallery-item"><img src="images/interior-2.jpg" alt="Bar - Meniu Băuturi"></div>
+                    <div class="gallery-item large"><img src="images/bar.jpeg" alt="Sală - Mese Comunale"></div>
+                    <div class="gallery-item"><img src="images/bar1.jpeg" alt="Lângă Fereastră - Mese Rotunde"></div>
+                    <div class="gallery-item"><img src="images/mese1.jpeg" alt="Sală Principală - Măsuțe"></div>
+                    <div class="gallery-item"><img src="images/mese2.jpeg" alt="Recepție - Detaliu Lemn"></div>
+                    <div class="gallery-item large"><img src="images/mese3.jpeg" alt="Birou - Fereastră Panoramică">
+                    </div>
+                    <div class="gallery-item"><img src="images/papanasi.jpg" alt="Mâncare - Pește și Sos"></div>
+                    <div class="gallery-item"><img src="images/micdejun.jpg" alt="Mic Dejun - Brânzeturi"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="services">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title" data-i18n="services.title">Serviciile <span>Noastre</span></h2>
+                </div>
+                <div class="services-grid">
+                    <div class="service-item">
+                        <span class="service-icon">♿</span>
+                        <h3 data-i18n="services.s1_title">Accessible</h3>
+                        <p data-i18n="services.s1_desc">Spațiu adaptat pentru persoane cu mobilitate redusă</p>
+                    </div>
+                    <div class="service-item">
+                        <span class="service-icon">❄️</span>
+                        <h3 data-i18n="services.s2_title">Aer condiționat</h3>
+                        <p data-i18n="services.s2_desc">Temperatura ideală în toate anotimpurile</p>
+                    </div>
+                    <div class="service-item">
+                        <span class="service-icon">🅿️</span>
+                        <h3 data-i18n="services.s3_title">Parcare</h3>
+                        <p data-i18n="services.s3_desc">Parcare proprie pentru clienți</p>
+                    </div>
+                    <div class="service-item">
+                        <span class="service-icon">📡</span>
+                        <h3 data-i18n="services.s4_title">WiFi Gratuit</h3>
+                        <p data-i18n="services.s4_desc">Conexiune internet rapidă și sigură</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="payment" class="payment">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title" data-i18n="payment.title">Opțiuni de <span>Plată</span></h2>
+                </div>
+                <div class="payment-grid">
+                    <div class="payment-item">
+                        <span class="payment-icon">💳</span>
+                        <h3 data-i18n="payment.p1_title">Contactless</h3>
+                        <p data-i18n="payment.p1_desc">Plată contactless sigură</p>
+                    </div>
+                    <div class="payment-item">
+                        <span class="payment-icon">💳</span>
+                        <h3 data-i18n="payment.p2_title">Mastercard</h3>
+                        <p data-i18n="payment.p2_desc">Acceptă cărți Mastercard</p>
+                    </div>
+                    <div class="payment-item">
+                        <span class="payment-icon">💳</span>
+                        <h3 data-i18n="payment.p3_title">VISA</h3>
+                        <p data-i18n="payment.p3_desc">Acceptă cărți VISA</p>
+                    </div>
+                    <div class="payment-item">
+                        <span class="payment-icon">💳</span>
+                        <h3 data-i18n="payment.p4_title">Debit Card</h3>
+                        <p data-i18n="payment.p4_desc">Acceptă cărți de debit</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="reviews" class="reviews">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag" data-i18n="reviews.tag">Recenzii</span>
+                    <h2 class="section-title" data-i18n="reviews.title">Ce Spun <span>Clienții</span> Noștri</h2>
+                </div>
+                <div class="reviews-grid">
+                    <div class="review-card">
+                        <div class="review-stars">★★★★★</div>
+                        <p class="review-text" data-i18n="reviews.r1_text">"Foarte bună mâncarea la popasul drumețului
+                            🫶🏼 Fetele foarte amabile și
+                            drăguțe ! ❤️"</p>
+                        <h4 class="review-author" data-i18n="reviews.r1_author">Georgiana G.</h4>
+                        <span class="review-source">Google Maps</span>
+                    </div>
+                    <div class="review-card">
+                        <div class="review-stars">★★★★★</div>
+                        <p class="review-text" data-i18n="reviews.r2_text">"O experiență foarte plăcută! Am mâncat o
+                            ciorbă gustoasă, bine
+                            condimentată, și un crispy excelent. Servirea a fost rapidă."</p>
+                        <h4 class="review-author" data-i18n="reviews.r2_author">Alina P.</h4>
+                        <span class="review-source">Google Maps</span>
+                    </div>
+                    <div class="review-card">
+                        <div class="review-stars">★★★★★</div>
+                        <p class="review-text" data-i18n="reviews.r3_text">"Restaurantul este spațios, servirea promptă,
+                            mâncare diversificată și
+                            preturi decente. Recomand!"</p>
+                        <h4 class="review-author" data-i18n="reviews.r3_author">Ionut C.</h4>
+                        <span class="review-source">Google Maps</span>
+                    </div>
+                </div>
+                <div class="reviews-cta">
+                    <a href="https://www.google.com/maps/place/Popasul+Drume%C8%9Bului/@47.5133203,25.6263568,17z/data=!4m8!3m7!1s0x4735bb8b3d4010d5:0xd950800a023422be!8m2!3d47.5133203!4d25.6263568!9m1!1b1!16s%2Fg%2F11fhyp4znk!5m1!1e1"
+                        target="_blank" class="btn btn-secondary" data-i18n="reviews.cta">Vezi Toate Recenziile</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <div class="container grid">
+                <div class="contact-info">
+                    <span class="section-tag" data-i18n="contact.tag">Contact</span>
+                    <h2 class="section-title" data-i18n="contact.title">Te Așteptăm cu <span>Drag</span></h2>
+                    <div class="info-list">
+                        <div class="info-item">
+                            <strong data-i18n="contact.address_label">Adresă:</strong>
+                            <p data-i18n="contact.address">Calea Bucovinei Nr 335C, Câmpulung Moldovenesc, România</p>
+                        </div>
+                        <div class="info-item">
+                            <strong data-i18n="contact.phone_label">Telefon:</strong>
+                            <p><a href="tel:+40754358065">+40 754 358 065</a></p>
+                        </div>
+                        <div class="info-item">
+                            <strong data-i18n="contact.program_label">Program:</strong>
+                            <p data-i18n="contact.program">Zilnic: 07:30 - 00:30</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-map">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2698.8115598539074!2d25.62416811562919!3d47.51332027917812!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4735bb8b3d4010d5%3A0xd950800a023422be!2sPopasul%20Drume%C8%9Bului!5e0!3m2!1sro!2sro!4v1739042261274!5m2!1sro!2sro"
+                        width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p data-i18n="footer.rights">&copy; 2026 Popasul Drumețului. Toate drepturile rezervate.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,619 @@
+window.addEventListener('scroll', () => {
+    const header = document.querySelector('.header');
+    if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+    } else {
+        header.classList.remove('scrolled');
+    }
+});
+
+// Smooth Scroll
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+});
+
+// Reveal animations on scroll
+const observerOptions = {
+    threshold: 0.1
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('reveal');
+        }
+    });
+}, observerOptions);
+
+document.querySelectorAll('section').forEach(section => {
+    observer.observe(section);
+});
+
+// Translations
+const translations = {
+    ro: {
+        "nav.home": "Acasă",
+        "nav.about": "Despre Noi",
+        "nav.menu": "Meniu",
+        "nav.gallery": "Galerie",
+        "nav.contact": "Contact",
+        "nav.reservations": "Rezervări",
+        "hero.subtitle": "Bun venit la Câmpulung Moldovenesc",
+        "hero.title": "Gustul Autentic al <br><span>Bucovinei</span>",
+        "hero.desc": "Descoperă tradiția culinară românească într-un ambient modern, unde lemnul și ospitalitatea se întâlnesc.",
+        "hero.btn_menu": "Vezi Meniul",
+        "hero.btn_gallery": "Explorează Localul",
+        "about.tag": "Povestea Noastră",
+        "about.title": "O Popas în Inima <span>Bucovinei</span>",
+        "about.p1": "La Popasul Drumețului, tradiția se împletește cu rafinamentul contemporan. Situat într-un cadru natural spectacol, restaurantul nostru oferă o evadare culinară autentică.",
+        "about.p2": "Fiecare preparat este gătit cu ingrediente proaspete, locale, după rețete transmise din generație în generație, dar prezentate într-o formă modernă care să încânte toate simțurile.",
+        "about.f1": "Tradițional Românesc",
+        "about.f_pizza": "Cuptor pe Lemne",
+        "about.f3": "Vinuri Alese",
+        "menu.tag": "Meniul Nostru",
+        "menu.title": "Arome Care Te <span>Încântă</span>",
+        "reviews.tag": "Recenzii",
+        "reviews.title": "Ce Spun <span>Clienții</span> Noștri",
+        "reviews.cta": "Vezi Toate Recenziile",
+        "contact.title": "Te Așteptăm cu <span>Drag</span>",
+        "reviews.r1_text": '"Foarte bună mâncarea la popasul drumețului 🫶🏼 Fetele foarte amabile și drăguțe ! ❤️"',
+        "reviews.r1_author": "Georgiana G.",
+        "reviews.r2_text": '"O experiență foarte plăcută! Am mâncat o ciorbă gustoasă, bine condimentată, și un crispy excelent. Servirea a fost rapidă."',
+        "reviews.r2_author": "Alina P.",
+        "reviews.r3_text": '"Restaurantul este spațios, servirea promptă, mâncare diversificată și preturi decente. Recomand!"',
+        "reviews.r3_author": "Ionut C.",
+        "menu.tab_tradition": "Tradițional",
+        "menu.tab_italian": "Italian",
+        "menu.tab_grill": "Grătar & Burgeri",
+        "gallery.tag": "Galerie",
+        "gallery.title": "Momente de <span>Neuitat</span>",
+        "contact.address_label": "Adresă:",
+        "contact.address": "Calea Bucovinei Nr 335C, Câmpulung Moldovenesc, România",
+        "contact.phone_label": "Telefon:",
+        "contact.program_label": "Program:",
+        "contact.program": "Zilnic: 07:30 - 00:30",
+        "footer.rights": "&copy; 2026 Popasul Drumețului. Toate drepturile rezervate.",
+        "services.title": "Serviciile <span>Noastre</span>",
+        "services.s1_title": "Accessible",
+        "services.s1_desc": "Spațiu adaptat pentru persoane cu mobilitate redusă",
+        "services.s2_title": "Aer condiționat",
+        "services.s2_desc": "Temperatura ideală în toate anotimpurile",
+        "services.s3_title": "Parcare",
+        "services.s3_desc": "Parcare proprie pentru clienți",
+        "services.s4_title": "WiFi Gratuit",
+        "services.s4_desc": "Conexiune internet rapidă și sigură",
+        "payment.title": "Opțiuni de <span>Plată</span>",
+        "payment.p1_title": "Contactless",
+        "payment.p1_desc": "Plată contactless sigură",
+        "payment.p2_title": "Mastercard",
+        "payment.p2_desc": "Acceptă cărți Mastercard",
+        "payment.p3_title": "VISA",
+        "payment.p3_desc": "Acceptă cărți VISA",
+        "payment.p4_title": "Debit Card",
+        "payment.p4_desc": "Acceptă cărți de debit"
+    },
+    en: {
+        "nav.home": "Home",
+        "nav.about": "About Us",
+        "nav.menu": "Menu",
+        "nav.gallery": "Gallery",
+        "nav.contact": "Contact",
+        "nav.reservations": "Reservations",
+        "hero.subtitle": "Welcome to Câmpulung Moldovenesc",
+        "hero.title": "Authentic Taste of <br><span>Bucovina</span>",
+        "hero.desc": "Discover traditional Romanian cuisine in a modern setting, where wood and hospitality meet.",
+        "hero.btn_menu": "View Menu",
+        "hero.btn_gallery": "Explore Venue",
+        "about.tag": "Our Story",
+        "about.title": "A Break in the Heart of <span>Bucovina</span>",
+        "about.p1": "At Popasul Drumețului, tradition intertwines with contemporary refinement. Located in a spectacular natural setting, our restaurant offers an authentic culinary escape.",
+        "about.p2": "Each dish is cooked with fresh, local ingredients, following recipes passed down through generations, but presented in a modern way to delight all senses.",
+        "about.f1": "Traditional Romanian",
+        "about.f_pizza": "Wood-fired Oven",
+        "about.f3": "Selected Wines",
+        "menu.tag": "Our Menu",
+        "menu.title": "Flavors That <span>Delight</span> You",
+        "reviews.tag": "Reviews",
+        "reviews.title": "What Our <span>Customers</span> Say",
+        "reviews.cta": "See All Reviews",
+        "contact.title": "We Are <span>Waiting</span> For You",
+        "reviews.r1_text": '"The food is very good at Popasul Drumețului 🫶🏼 The girls are very kind and sweet! ❤️"',
+        "reviews.r1_author": "Georgiana G.",
+        "reviews.r2_text": '"A very pleasant experience! I ate a tasty, well-seasoned soup, and an excellent crispy. The service was fast."',
+        "reviews.r2_author": "Alina P.",
+        "reviews.r3_text": '"The restaurant is spacious, the service prompt, diversified food and decent prices. I recommend!"',
+        "reviews.r3_author": "Ionut C.",
+        "menu.tab_tradition": "Traditional",
+        "menu.tab_italian": "Italian",
+        "menu.tab_grill": "Grill & Burgers",
+        "gallery.tag": "Gallery",
+        "gallery.title": "Unforgettable <span>Moments</span>",
+        "contact.address_label": "Address:",
+        "contact.address": "335C Bucovina Way, Câmpulung Moldovenesc, Romania",
+        "contact.phone_label": "Phone:",
+        "contact.program_label": "Opening Hours:",
+        "contact.program": "Daily: 07:30 - 00:30",
+        "footer.rights": "&copy; 2026 Popasul Drumețului. All rights reserved.",
+        "services.title": "Our <span>Services</span>",
+        "services.s1_title": "Accessible",
+        "services.s1_desc": "Space adapted for people with reduced mobility",
+        "services.s2_title": "Air conditioning",
+        "services.s2_desc": "Ideal temperature in all seasons",
+        "services.s3_title": "Self parking",
+        "services.s3_desc": "Own parking for customers",
+        "services.s4_title": "Free WiFi",
+        "services.s4_desc": "Fast and secure internet connection",
+        "payment.title": "Payment <span>Options</span>",
+        "payment.p1_title": "Contactless payment",
+        "payment.p1_desc": "Secure contactless payment",
+        "payment.p2_title": "Mastercard",
+        "payment.p2_desc": "Accept Mastercard cards",
+        "payment.p3_title": "VISA",
+        "payment.p3_desc": "Accept VISA cards",
+        "payment.p4_title": "Debit Card",
+        "payment.p4_desc": "Accept debit cards"
+    },
+    fr: {
+        "nav.home": "Accueil",
+        "nav.about": "À propos",
+        "nav.menu": "Menu",
+        "nav.gallery": "Galerie",
+        "nav.contact": "Contact",
+        "nav.reservations": "Réservations",
+        "hero.subtitle": "Bienvenue à Câmpulung Moldovenesc",
+        "hero.title": "Le Goût Authentique de <br><span>Bucovine</span>",
+        "hero.desc": "Découvrez la cuisine roumaine traditionnelle dans un cadre moderne, où le bois et l'hospitalité se rencontrent.",
+        "hero.btn_menu": "Voir le Menu",
+        "hero.btn_gallery": "Explorer le Lieu",
+        "about.tag": "Notre Histoire",
+        "about.title": "Une Pause au Cœur de <span>Bucovine</span>",
+        "about.p1": "Au Popasul Drumețului, la tradition se mêle au raffinement contemporain. Situé dans un cadre naturel spectaculaire, notre restaurant offre une escapade culinaire authentique.",
+        "about.p2": "Chaque plat est préparé avec des ingrédients locaux et frais, selon des recettes transmises de génération en génération, présentées de manière moderne pour ravir tous les sens.",
+        "about.f1": "Tradition Roumaine",
+        "about.f_pizza": "Four à Bois",
+        "about.f3": "Vins Sélectionnés",
+        "menu.tag": "Notre Menu",
+        "menu.title": "Des Saveurs qui <span>Vous Enchantent</span>",
+        "reviews.tag": "Avis",
+        "reviews.title": "Ce que disent nos <span>Clients</span>",
+        "reviews.cta": "Voir Tous les Avis",
+        "contact.title": "Nous Vous <span>Attendons</span>",
+        "reviews.r1_text": '"La nourriture est très bonne au Popasul Drumețului 🫶🏼 Les filles sont très sympathiques et adorables ! ❤️"',
+        "reviews.r1_author": "Georgiana G.",
+        "reviews.r2_text": '"Une expérience très agréable ! Jai dégusté une soupe savoureuse, bien assaisonnée, et un crispy excellent.Le service était rapide."',
+        "reviews.r2_author": "Alina P.",
+        "reviews.r3_text": '"Le restaurant est spacieux, le service réactif, la nourriture variée et les prix raisonnables. Je recommande !"',
+        "reviews.r3_author": "Ionut C.",
+        "menu.tab_tradition": "Traditionnel",
+        "menu.tab_italian": "Italien",
+        "menu.tab_grill": "Grill & Burgers",
+        "gallery.tag": "Galerie",
+        "gallery.title": "Moments <span>Inoubliables</span>",
+        "contact.address_label": "Adresse:",
+        "contact.address": "Calea Bucovinei Nr 335C, Câmpulung Moldovenesc, Roumanie",
+        "contact.phone_label": "Téléphone:",
+        "contact.program_label": "Horaires:",
+        "contact.program": "Tous les jours : 07:30 - 00:30",
+        "footer.rights": "&copy; 2026 Popasul Drumețului. Tous droits réservés.",
+        "services.title": "Nos <span>Services</span>",
+        "services.s1_title": "Accessible",
+        "services.s1_desc": "Espace adapté aux personnes à mobilité réduite",
+        "services.s2_title": "Climatisation",
+        "services.s2_desc": "Température idéale en toutes saisons",
+        "services.s3_title": "Parking",
+        "services.s3_desc": "Parking privé pour les clients",
+        "services.s4_title": "WiFi Gratuit",
+        "services.s4_desc": "Connexion internet rapide et sécurisée",
+        "payment.title": "Options de <span>Paiement</span>",
+        "payment.p1_title": "Paiement sans contact",
+        "payment.p1_desc": "Paiement sans contact sécurisé",
+        "payment.p2_title": "Mastercard",
+        "payment.p2_desc": "Accepte les cartes Mastercard",
+        "payment.p3_title": "VISA",
+        "payment.p3_desc": "Accepte les cartes VISA",
+        "payment.p4_title": "Carte de Débit",
+        "payment.p4_desc": "Accepte les cartes de débit"
+    },
+    pl: {
+        "nav.home": "Dom",
+        "nav.about": "O nas",
+        "nav.menu": "Menu",
+        "nav.gallery": "Galeria",
+        "nav.contact": "Kontakt",
+        "nav.reservations": "Rezerwacje",
+        "hero.subtitle": "Witamy w Câmpulung Moldovenesc",
+        "hero.title": "Autentyczny smak <br><span>Bukowiny</span>",
+        "hero.desc": "Odkryj tradycyjną kuchnię rumuńską w nowoczesnym wydaniu, gdzie drewno spotyka się z gościnnością.",
+        "hero.btn_menu": "Zobacz Menu",
+        "hero.btn_gallery": "Eksploruj lokal",
+        "about.tag": "Nasza historia",
+        "about.title": "Przystanek w sercu <span>Bukowiny</span>",
+        "about.p1": "W Popasul Drumețului tradycja przeplata się z nowoczesną wyrafinowaniem. Położona w spektakularnej scenerii przyrody nasza restauracja oferuje autentyczną ucieczkę kulinarną.",
+        "about.p2": "Każde danie przygotowywane jest ze świeżych, lokalnych składników, według przepisów przekazywanych z pokolenia na pokolenie, ale podane w nowoczesnej formie.",
+        "about.f1": "Tradycyjna rumuńska",
+        "about.f_pizza": "Piec opalany drewnem",
+        "about.f3": "Wyselekcjonowane wina",
+        "menu.tag": "Nasze Menu",
+        "menu.title": "Smaki, które Cię <span>zachwycą</span>",
+        "reviews.tag": "Opinie",
+        "reviews.title": "Co mówią nasi <span>klienci</span>",
+        "reviews.cta": "Zobacz wszystkie opinie",
+        "contact.title": "Czekamy na <span>Ciebie</span>",
+        "reviews.r1_text": '"Jedzenie w Popasul Drumețului jest bardzo dobre 🫶🏼 Dziewczyny są bardzo miłe i kochane! ❤️"',
+        "reviews.r1_author": "Georgiana G.",
+        "reviews.r2_text": '"Bardzo miłe doświadczenie! Zjadłem smaczną, dobrze przyprawioną zupę i doskonały chrupiący kurczak. Obsługa była szybka."',
+        "reviews.r2_author": "Alina P.",
+        "reviews.r3_text": '"Restauracja jest przestronna, obsługa sprawna, jedzenie urozmaicone i przystępne ceny. Polecam!"',
+        "reviews.r3_author": "Ionut C.",
+        "menu.tab_tradition": "Tradycyjny",
+        "menu.tab_italian": "Włoski",
+        "menu.tab_grill": "Grill i burgery",
+        "gallery.tag": "Galeria",
+        "gallery.title": "Niezapomniane <span>chwile</span>",
+        "contact.address_label": "Adres:",
+        "contact.address": "Calea Bucovinei 335C, Câmpulung Moldovenesc, Rumunia",
+        "contact.phone_label": "Telefon:",
+        "contact.program_label": "Godziny otwarcia:",
+        "contact.program": "Codziennie: 07:30 - 00:30",
+        "footer.rights": "&copy; 2026 Popasul Drumețului. Wszelkie prawa zastrzeżone.",
+        "services.title": "Nasze <span>Usługi</span>",
+        "services.s1_title": "Dostępne",
+        "services.s1_desc": "Przestrzeń dostosowana dla osób o ograniczonej mobilności",
+        "services.s2_title": "Klimatyzacja",
+        "services.s2_desc": "Idealna temperatura o każdej porze roku",
+        "services.s3_title": "Parking",
+        "services.s3_desc": "Własny parking dla klientów",
+        "services.s4_title": "Bezpłatny WiFi",
+        "services.s4_desc": "Szybkie i bezpieczne połączenie internetowe",
+        "payment.title": "Opcje <span>Płatności</span>",
+        "payment.p1_title": "Płatność zbliżeniowa",
+        "payment.p1_desc": "Bezpieczna płatność zbliżeniowa",
+        "payment.p2_title": "Mastercard",
+        "payment.p2_desc": "Akceptuje karty Mastercard",
+        "payment.p3_title": "VISA",
+        "payment.p3_desc": "Akceptuje karty VISA",
+        "payment.p4_title": "Karta Debetowa",
+        "payment.p4_desc": "Akceptuje karty debetowe"
+    },
+    ua: {
+        "nav.home": "Головна",
+        "nav.about": "Про нас",
+        "nav.menu": "Меню",
+        "nav.gallery": "Галерея",
+        "nav.contact": "Контакти",
+        "nav.reservations": "Бронювання",
+        "hero.subtitle": "Ласкаво просимо до Кимпулунг-Молдовенеск",
+        "hero.title": "Автентичний смак <br><span>Буковини</span>",
+        "hero.desc": "Відкрийте для себе традиційну румунську кухню в сучасній обстановці, де дерево поєднується з гостинністю.",
+        "hero.btn_menu": "Переглянути меню",
+        "hero.btn_gallery": "Дослідити заклад",
+        "about.tag": "Наша історія",
+        "about.title": "Зупинка в серці <span>Буковини</span>",
+        "about.p1": "У Popasul Drumețului традиція переплітається з сучасною вишуканістю. Розташований у вражаючому природному оточенні, наш ресторан пропонує автентичну кулінарну втечу.",
+        "about.p2": "Кожна страва готується зі свіжих місцевих інгредієнтів за рецептами, що передаються з покоління в покоління, але подається в сучасній формі.",
+        "about.f1": "Традиційна румунська",
+        "about.f_pizza": "Піч на дровах",
+        "about.f3": "Добірні вина",
+        "menu.tag": "Наше меню",
+        "menu.title": "Смаки, які вас <span>зачарують</span>",
+        "reviews.tag": "Відгуки",
+        "reviews.title": "Що говорять наші <span>клієнти</span>",
+        "reviews.cta": "Переглянути всі відгуки",
+        "contact.title": "Ми чекаємо на <span>вас</span>",
+        "reviews.r1_text": '"У Popasul Drumețului дуже смачна їжа 🫶🏼 Дівчата дуже привітні та милі! ❤️"',
+        "reviews.r1_author": "Georgiana G.",
+        "reviews.r2_text": '"Дуже приємний досвід! Я з\'їв смачний, добре приправлений суп і чудовий кріспі. Обслуговування було швидким."',
+        "reviews.r2_author": "Alina P.",
+        "reviews.r3_text": '"Ресторан просторий, обслуговування оперативне, їжа різноманітна, а ціни нормальні. Рекомендую!"',
+        "reviews.r3_author": "Ionut C.",
+        "menu.tab_tradition": "Традиційна кухня",
+        "menu.tab_italian": "Італійська кухня",
+        "menu.tab_grill": "Гриль та бургери",
+        "gallery.tag": "Галерея",
+        "gallery.title": "Незабутні <span>моменти</span>",
+        "contact.address_label": "Адреса:",
+        "contact.address": "Calea Bucovinei 335C, Кимпулунг-Молдовенеск, Румунія",
+        "contact.phone_label": "Телефон:",
+        "contact.program_label": "Графік роботи:",
+        "contact.program": "Щодня: 07:30 - 00:30",
+        "footer.rights": "&copy; 2026 Popasul Drumețului. Усі права захищені.",
+        "services.title": "Наші <span>Послуги</span>",
+        "services.s1_title": "Доступний",
+        "services.s1_desc": "Простір, пристосований для осіб з обмеженою мобільністю",
+        "services.s2_title": "Кондиціонування",
+        "services.s2_desc": "Ідеальна температура у всі сезони",
+        "services.s3_title": "Парковка",
+        "services.s3_desc": "Власна парковка для клієнтів",
+        "services.s4_title": "Безкоштовний WiFi",
+        "services.s4_desc": "Швидке та безпечне інтернет-з'єднання",
+        "payment.title": "Варіанти <span>Оплати</span>",
+        "payment.p1_title": "Безконтактна оплата",
+        "payment.p1_desc": "Безпечна безконтактна оплата",
+        "payment.p2_title": "Mastercard",
+        "payment.p2_desc": "Прийматимуть карти Mastercard",
+        "payment.p3_title": "VISA",
+        "payment.p3_desc": "Прийматимуть карти VISA",
+        "payment.p4_title": "Дебетова карта",
+        "payment.p4_desc": "Прийматимуть дебетові карти"
+    },
+};
+
+let currentLang = 'ro';
+
+function changeLanguage(lang) {
+    currentLang = lang;
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang] && translations[lang][key]) {
+            el.innerHTML = translations[lang][key];
+        }
+    });
+
+    // Update active button
+    document.querySelectorAll('.lang-switcher button').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.getAttribute('data-lang') === lang) {
+            btn.classList.add('active');
+        }
+    });
+
+    // Update main button text
+    const mainBtn = document.querySelector('.lang-btn');
+    if (mainBtn) mainBtn.textContent = lang.toUpperCase();
+
+    // Re-render menu with current language
+    const activeTab = document.querySelector('.tab-btn.active');
+    if (activeTab) {
+        renderMenu(activeTab.getAttribute('data-target'));
+    }
+}
+
+// Lang Switcher Events
+document.querySelectorAll('[data-lang]').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        const lang = e.target.getAttribute('data-lang');
+        changeLanguage(lang);
+    });
+});
+
+// Menu Tabs
+const tabBtns = document.querySelectorAll('.tab-btn');
+const menuGrid = document.querySelector('.menu-grid');
+
+const menuTranslations = {
+    ro: {
+        tradition: [
+            { name: "Ciorbă Rădăuțeană", desc: "70g / 430ml", price: "20 RON" },
+            { name: "Ciorbă de burtă", desc: "70g / 430ml", price: "22 RON" },
+            { name: "Ciorbă de văcuță", desc: "40g / 460ml", price: "19 RON" },
+            { name: "Ciorbă de găină", desc: "60g / 430ml", price: "20 RON" },
+            { name: "Ciorbă de perișoare", desc: "60g / 430ml", price: "19 RON" },
+            { name: "Ciorbă de fasole", desc: "80g / 420ml", price: "20 RON" },
+            { name: "Ciorba Bunicii", desc: "100g / 400ml", price: "17 RON" },
+            { name: "Dresală cu afumătură", desc: "60g / 440ml", price: "21 RON" },
+            { name: "Dresală cu hribi", desc: "40g / 460ml", price: "22 RON" },
+            { name: "Platoul Câmpulungean", desc: "2 persoane", price: "120 RON" },
+            { name: "Platoul Drumețului", desc: "550g", price: "46 RON" },
+            { name: "Platoul Bucovinean", desc: "550g", price: "46 RON" },
+            { name: "Platoul cu pui", desc: "550g", price: "45 RON" },
+            { name: "Platoul Vegetarian", desc: "500g", price: "30 RON" },
+            { name: "Tochitură casei", desc: "500g", price: "49 RON" },
+            { name: "Tochitură de pui", desc: "500g", price: "45 RON" }
+        ],
+        italian: [
+            { name: "Pasta Carbonara", desc: "Pancetta, ou, parmezan", price: "38 RON" },
+            { name: "Pizza Quattro Stagioni", desc: "Mozzarella, șuncă, ciuperci", price: "44 RON" },
+            { name: "Risotto cu hribi", desc: "Orez arborio, hribi", price: "46 RON" }
+        ],
+        grill: [
+            { name: "Burger din vită Angus", desc: "450g cu cartofi și sos", price: "38 RON" },
+            { name: "Piept de pui crispy", desc: "450g cu cartofi și sos", price: "40 RON" },
+            { name: "Aripioare", desc: "450g cu cartofi și sos", price: "40 RON" },
+            { name: "Cârnați de casă", desc: "150g la grătar", price: "18 RON" },
+            { name: "Ceafă de porc", desc: "200g la grătar", price: "28 RON" },
+            { name: "Piept de pui la grătar", desc: "200g", price: "24 RON" },
+            { name: "Cotlet de porc", desc: "200g", price: "26 RON" },
+            { name: "Pulpă de pui", desc: "200g dezosată", price: "24 RON" },
+            { name: "Mici", desc: "50g/buc", price: "32 RON" }
+        ],
+        drinks: [
+            { name: "Burger din vită Angus", desc: "450g cu cartofi și sos", price: "38 RON" },
+        ],
+        dessert: [
+            { name: "Tiramisu", desc: "Traditional Italian dessert", price: "22 RON" },
+            { name: "Tocăi de la Câmpulung", desc: "Traditional Romanian dessert", price: "18 RON" },
+        ]
+    },
+    en: {
+        tradition: [
+            { name: "Rădăuțeană Soup", desc: "Traditional soup", price: "20 RON" },
+            { name: "Tripe Soup", desc: "Traditional tripe", price: "22 RON" },
+            { name: "Beef Soup", desc: "With noodles", price: "19 RON" },
+            { name: "Chicken Soup", desc: "Homemade", price: "20 RON" },
+            { name: "Meatball Soup", desc: "With meatballs", price: "19 RON" },
+            { name: "Bean Soup", desc: "With smoked meat", price: "20 RON" },
+            { name: "Grandma's Soup", desc: "Traditional", price: "17 RON" },
+            { name: "Potato Stew", desc: "With smoked meat", price: "21 RON" },
+            { name: "Porcini Stew", desc: "With mushrooms", price: "22 RON" },
+            { name: "Câmpulung Platter", desc: "For 2 people", price: "120 RON" },
+            { name: "Traveler's Platter", desc: "Mixed grill", price: "46 RON" },
+            { name: "Bucovina Platter", desc: "House special", price: "46 RON" },
+            { name: "Chicken Platter", desc: "Grilled chicken", price: "45 RON" },
+            { name: "Vegetarian Platter", desc: "Healthy choice", price: "30 RON" },
+            { name: "House Tochitură", desc: "Pork stew", price: "49 RON" },
+            { name: "Chicken Tochitură", desc: "Chicken stew", price: "45 RON" }
+        ],
+        italian: [
+            { name: "Pasta Carbonara", desc: "Pancetta, egg, parmesan", price: "38 RON" },
+            { name: "Pizza Quattro Stagioni", desc: "Mozzarella, ham, mushrooms", price: "44 RON" },
+            { name: "Porcini Risotto", desc: "With wild mushrooms", price: "46 RON" }
+        ],
+        grill: [
+            { name: "Angus Beef Burger", desc: "With fries and sauce", price: "38 RON" },
+            { name: "Crispy Chicken Breast", desc: "With fries and sauce", price: "40 RON" },
+            { name: "Wings", desc: "Spicy or not", price: "40 RON" },
+            { name: "House Sausages", desc: "Grilled", price: "18 RON" },
+            { name: "Grilled Pork Neck", desc: "200g", price: "28 RON" },
+            { name: "Grilled Chicken Breast", desc: "200g", price: "24 RON" },
+            { name: "Pork Chop", desc: "200g", price: "26 RON" },
+            { name: "Boneless Chicken", desc: "200g thigh", price: "24 RON" },
+            { name: "Mici", desc: "Traditional sausages", price: "32 RON" }
+        ]
+    },
+    fr: {
+        tradition: [
+            { name: "Soupe Rădăuțeană", desc: "Soupe traditionnelle", price: "20 RON" },
+            { name: "Soupe aux Tripes", desc: "Soupe classique", price: "22 RON" },
+            { name: "Soupe de Boeuf", desc: "Avec nouilles", price: "19 RON" },
+            { name: "Soupe au Poulet", desc: "Maison", price: "20 RON" },
+            { name: "Soupe aux Boulettes", desc: "Avec boulettes", price: "19 RON" },
+            { name: "Soupe aux Haricots", desc: "Avec viande fumée", price: "20 RON" },
+            { name: "Soupe Grand-mère", desc: "Traditionnelle", price: "17 RON" },
+            { name: "Ragoût de Patates", desc: "Avec viande fumée", price: "21 RON" },
+            { name: "Ragoût aux Cèpes", desc: "Avec champignons", price: "22 RON" },
+            { name: "Plateau Câmpulung", desc: "Pour 2 personnes", price: "120 RON" },
+            { name: "Plateau du Voyageur", desc: "Grillade mixte", price: "46 RON" },
+            { name: "Plateau Bucovine", desc: "Spécialité maison", price: "46 RON" },
+            { name: "Plateau Poulet", desc: "Poulet grillé", price: "45 RON" },
+            { name: "Plateau Végétarien", desc: "Choix sain", price: "30 RON" },
+            { name: "Tochitură Maison", desc: "Ragoût de porc", price: "49 RON" },
+            { name: "Tochitură Poulet", desc: "Ragoût de poulet", price: "45 RON" }
+        ],
+        italian: [
+            { name: "Pâtes Carbonara", desc: "Pancetta, oeuf, parmesan", price: "38 RON" },
+            { name: "Pizza Quattro Stagioni", desc: "Mozzarella, jambon, champignons", price: "44 RON" },
+            { name: "Risotto aux Cèpes", desc: "Avec champignons sauvages", price: "46 RON" }
+        ],
+        grill: [
+            { name: "Burger Angus", desc: "Avec frites et sauce", price: "38 RON" },
+            { name: "Blanc de Poulet Croustillant", desc: "Avec frites", price: "40 RON" },
+            { name: "Ailes", desc: "Piquantes ou non", price: "40 RON" },
+            { name: "Saucisses Maison", desc: "Grillées", price: "18 RON" },
+            { name: "Porc Grillé", desc: "200g", price: "28 RON" },
+            { name: "Blanc de Poulet Grillé", desc: "200g", price: "24 RON" },
+            { name: "Côte de Porc", desc: "200g", price: "26 RON" },
+            { name: "Cuisse de Poulet", desc: "200g désossée", price: "24 RON" },
+            { name: "Mici", desc: "Saucisses traditionnelles", price: "32 RON" }
+        ]
+    },
+    pl: {
+        tradition: [
+            { name: "Zupa Rădăuțeană", desc: "Zupa tradycyjna", price: "20 RON" },
+            { name: "Zupa z Flaczków", desc: "Zupa klasyczna", price: "22 RON" },
+            { name: "Zupa Wołowa", desc: "Z makaronem", price: "19 RON" },
+            { name: "Zupa Drobiowa", desc: "Domowa", price: "20 RON" },
+            { name: "Zupa z Kluski", desc: "Z kluskami", price: "19 RON" },
+            { name: "Zupa Fasolowa", desc: "Z mięsem wądzonym", price: "20 RON" },
+            { name: "Zupa Babci", desc: "Tradycyjna", price: "17 RON" },
+            { name: "Bigos z Kartofli", desc: "Z mięsem wądzonym", price: "21 RON" },
+            { name: "Bigos z Grzybami", desc: "Z grzybami leśnymi", price: "22 RON" },
+            { name: "Talerz Câmpulung", desc: "Na 2 osoby", price: "120 RON" },
+            { name: "Talerz Podróżnika", desc: "Miks grilla", price: "46 RON" },
+            { name: "Talerz Bukowiny", desc: "Specjał domu", price: "46 RON" },
+            { name: "Talerz Drobiowy", desc: "Kurczak grillowany", price: "45 RON" },
+            { name: "Talerz Wegetariański", desc: "Zdrowy wybór", price: "30 RON" },
+            { name: "Tochitură Domu", desc: "Żurek wieprzowy", price: "49 RON" },
+            { name: "Tochitură Drobiowa", desc: "Żurek drobiowy", price: "45 RON" }
+        ],
+        italian: [
+            { name: "Makaron Carbonara", desc: "Pancetta, jajko, parmezan", price: "38 RON" },
+            { name: "Pizza Quattro Stagioni", desc: "Mozzarella, szynka, grzyby", price: "44 RON" },
+            { name: "Risotto z Grzybami", desc: "Z grzybami leśnymi", price: "46 RON" }
+        ],
+        grill: [
+            { name: "Burger Angus", desc: "Z frykami i sosem", price: "38 RON" },
+            { name: "Pierś Kurczaka Chrupiąca", desc: "Z frykami i sosem", price: "40 RON" },
+            { name: "Skrzydełka", desc: "Ostre lub nie", price: "40 RON" },
+            { name: "Kiełbaski Domowe", desc: "Grillowane", price: "18 RON" },
+            { name: "Schab Grillowany", desc: "200g", price: "28 RON" },
+            { name: "Pierś Kurczaka Grillowana", desc: "200g", price: "24 RON" },
+            { name: "Kotlet Mielony", desc: "200g", price: "26 RON" },
+            { name: "Udo Kurczaka", desc: "200g bez kości", price: "24 RON" },
+            { name: "Mici", desc: "Tradycyjne kiełbaski", price: "32 RON" }
+        ]
+    },
+    ua: {
+        tradition: [
+            { name: "Радауцька чорба", desc: "Традиційна чорба", price: "20 RON" },
+            { name: "Флякова суп", desc: "Класична суп", price: "22 RON" },
+            { name: "Яловича суп", desc: "З локшиною", price: "19 RON" },
+            { name: "Курячий суп", desc: "Домашняя", price: "20 RON" },
+            { name: "Суп з фрикадельками", desc: "З фрикадельками", price: "19 RON" },
+            { name: "Суп з квасолею", desc: "З копченою м'ясом", price: "20 RON" },
+            { name: "Суп бабусі", desc: "Традиційна", price: "17 RON" },
+            { name: "Рагу з картоплею", desc: "З копченою м'ясом", price: "21 RON" },
+            { name: "Рагу з грибами", desc: "З лісовими грибами", price: "22 RON" },
+            { name: "Платер Кимпулунг", desc: "На 2 особи", price: "120 RON" },
+            { name: "Платер подорожника", desc: "Змішана гриль", price: "46 RON" },
+            { name: "Платер Буковини", desc: "Фірмова спеціальність", price: "46 RON" },
+            { name: "Платер з курки", desc: "Груль курка", price: "45 RON" },
+            { name: "Овочевий платер", desc: "Здоровий вибір", price: "30 RON" },
+            { name: "Точитура дому", desc: "Свинячий рагу", price: "49 RON" },
+            { name: "Точитура з курки", desc: "Курячий рагу", price: "45 RON" }
+        ],
+        italian: [
+            { name: "Паста Карбонара", desc: "Панчета, яйце, пармезан", price: "38 RON" },
+            { name: "Піца Кватро Стаджіоні", desc: "Моцарела, шинка, гриби", price: "44 RON" },
+            { name: "Різотто з грибами", desc: "З лісовими грибами", price: "46 RON" }
+        ],
+        grill: [
+            { name: "Бургер Angus", desc: "З картоплею фрі та соусом", price: "38 RON" },
+            { name: "Курина грудка хрусткий", desc: "З фрі та соусом", price: "40 RON" },
+            { name: "Крила", desc: "Гострі або ні", price: "40 RON" },
+            { name: "Домашні ковбаски", desc: "На грилі", price: "18 RON" },
+            { name: "Свинячий ошийок", desc: "200g", price: "28 RON" },
+            { name: "Курина грудка на грилі", desc: "200g", price: "24 RON" },
+            { name: "Свинячий котлет", desc: "200g", price: "26 RON" },
+            { name: "Куриця стегно", desc: "200g без кісток", price: "24 RON" },
+            { name: "Мічі", desc: "Традиційні ковбаски", price: "32 RON" }
+        ]
+    }
+};
+
+function renderMenu(category) {
+    if (!menuGrid) return;
+    menuGrid.style.opacity = '0';
+    setTimeout(() => {
+        const roItems = (menuTranslations['ro'] && menuTranslations['ro'][category]) ? menuTranslations['ro'][category] : [];
+        const langItems = (menuTranslations[currentLang] && menuTranslations[currentLang][category]) ? menuTranslations[currentLang][category] : roItems;
+
+        menuGrid.innerHTML = langItems.map((item, index) => {
+            const roName = (roItems[index] && roItems[index].name) ? roItems[index].name : (item.name || '');
+            const translatedName = (item && item.name) ? item.name : roName;
+            const showBoth = currentLang !== 'ro' && translatedName && translatedName !== roName;
+            const nameHtml = showBoth
+                ? `<h3><span class="menu-name-ro">${roName}</span><br><span class="menu-name-translated">${translatedName}</span></h3>`
+                : `<h3>${roName}</h3>`;
+
+            return `
+            <div class="menu-item">
+                <div class="menu-item-info">
+                    ${nameHtml}
+                    <p>${item.desc}</p>
+                </div>
+                <span class="menu-price">${item.price}</span>
+            </div>
+        `;
+        }).join('');
+        menuGrid.style.opacity = '1';
+    }, 300);
+}
+
+tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        tabBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const category = btn.getAttribute('data-target');
+        renderMenu(category);
+    });
+});
+
+// Initial menu render on page load
+window.addEventListener('load', () => {
+    renderMenu('tradition');
+});
