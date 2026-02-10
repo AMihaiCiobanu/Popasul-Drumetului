@@ -391,6 +391,14 @@ section.reveal {
   justify-content: center;
   gap: 0.5rem;
   margin-bottom: 4rem;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 0 1rem; /* allow some breathing room when scrolled */
+  scrollbar-width: none; /* hide Firefox scrollbar */
+}
+
+.menu-tabs::-webkit-scrollbar {
+  display: none; /* hide WebKit scrollbar */
 }
 
 .tab-btn {
@@ -404,6 +412,8 @@ section.reveal {
   cursor: pointer;
   position: relative;
   transition: var(--transition);
+  white-space: nowrap; /* prevent button text wrapping */
+  flex: 0 0 auto; /* keep buttons from stretching so horizontal scroll works */
 }
 
 .tab-btn::after {
@@ -447,6 +457,68 @@ section.reveal {
 .menu-item:hover {
   background: rgba(255, 245, 225, 0.25);
   transform: scale(1.02);
+}
+
+/* Subcategory grouping for drinks and similar grouped lists */
+.menu-subcategory {
+  margin-bottom: 1.75rem;
+}
+
+.subcategory-title {
+  font-family: var(--font-serif);
+  color: var(--gold);
+  font-size: 1.15rem;
+  margin: 0 0 0.75rem 0;
+  letter-spacing: 0.6px;
+}
+
+.menu-subitems {
+  display: grid;
+  grid-template-columns: 1fr; /* one item per row */
+  gap: 0.75rem;
+}
+
+.menu-subitems .menu-item {
+  padding: 1rem;
+  align-items: center;
+}
+
+/* Ensure price stays right-aligned and doesn't wrap awkwardly */
+.menu-price {
+  white-space: nowrap;
+  margin-left: 1rem;
+}
+
+@media (max-width: 576px) {
+  .menu-subitems {
+    grid-template-columns: 1fr;
+  }
+
+  .subcategory-title {
+    font-size: 1rem;
+  }
+}
+
+/* On larger screens, show two items per row inside each subcategory */
+@media (min-width: 768px) {
+  .menu-grid.grouped .menu-subitems {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .menu-grid.grouped .menu-subitems .menu-item {
+    padding: 1rem 1.25rem;
+  }
+}
+
+/* When menu-grid has grouped subcategories, stack subcategories vertically (desktop and mobile)
+   so each subcategory appears one under another */
+.menu-grid.grouped {
+  display: block;
+}
+
+.menu-grid.grouped .menu-subcategory {
+  margin-bottom: 2rem;
 }
 
 .menu-item-info h3 {
@@ -726,5 +798,20 @@ section.reveal {
   }
   .logo-text {
     font-size: 20px;
+  }
+}
+
+/* Improve tabs on very small screens */
+@media (max-width: 480px) {
+  .menu-tabs {
+    justify-content: flex-start;
+    gap: 0.35rem;
+    margin-bottom: 2rem;
+    padding-left: 0.75rem;
+  }
+
+  .tab-btn {
+    font-size: 0.95rem;
+    padding: 0.4rem 0.8rem;
   }
 }

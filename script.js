@@ -387,47 +387,145 @@ const menuGrid = document.querySelector('.menu-grid');
 
 const menuTranslations = {
     ro: {
-        tradition: [
-            { name: "Ciorbă Rădăuțeană", desc: "70g / 430ml", price: "20 RON" },
-            { name: "Ciorbă de burtă", desc: "70g / 430ml", price: "22 RON" },
-            { name: "Ciorbă de văcuță", desc: "40g / 460ml", price: "19 RON" },
-            { name: "Ciorbă de găină", desc: "60g / 430ml", price: "20 RON" },
-            { name: "Ciorbă de perișoare", desc: "60g / 430ml", price: "19 RON" },
-            { name: "Ciorbă de fasole", desc: "80g / 420ml", price: "20 RON" },
-            { name: "Ciorba Bunicii", desc: "100g / 400ml", price: "17 RON" },
-            { name: "Dresală cu afumătură", desc: "60g / 440ml", price: "21 RON" },
-            { name: "Dresală cu hribi", desc: "40g / 460ml", price: "22 RON" },
-            { name: "Platoul Câmpulungean", desc: "2 persoane", price: "120 RON" },
-            { name: "Platoul Drumețului", desc: "550g", price: "46 RON" },
-            { name: "Platoul Bucovinean", desc: "550g", price: "46 RON" },
-            { name: "Platoul cu pui", desc: "550g", price: "45 RON" },
-            { name: "Platoul Vegetarian", desc: "500g", price: "30 RON" },
-            { name: "Tochitură casei", desc: "500g", price: "49 RON" },
-            { name: "Tochitură de pui", desc: "500g", price: "45 RON" }
+        breakfast: [
+            { name: "DEJUNUL BUNICII 350 g", desc: "Doua ochiuri, pastramă, cartofi prăjiți, telemea, roșii", price: "26 RON" },
+            { name: "CASCAVAL PANE 150 g", desc: "Pregătit", price: "19 RON" },
+            { name: "OMLETĂ 200 g", desc: "Cu șuncă și cașcaval", price: "18 RON" },
+            { name: "OMLETĂ 150 g", desc: "", price: "15 RON" },
+            { name: "BRÂNZĂ TELEMEA 100 g", desc: "", price: "10 RON" },
+            { name: "OUĂ OCHIURI 2 bucăți", desc: "", price: "6 RON" },
+            { name: "IAURT 200 g", desc: "", price: "8 RON" }
         ],
-        italian: [
-            { name: "Pasta Carbonara", desc: "Pancetta, ou, parmezan", price: "38 RON" },
-            { name: "Pizza Quattro Stagioni", desc: "Mozzarella, șuncă, ciuperci", price: "44 RON" },
-            { name: "Risotto cu hribi", desc: "Orez arborio, hribi", price: "46 RON" }
+        soup: [
+            { name: "CIORBĂ RĂDĂUȚEANĂ 70g/430 ml", desc: "", price: "20 RON" },
+            { name: "CIORBĂ DE BURTĂ 70g/430 ml", desc: "", price: "22 RON" },
+            { name: "CIORBĂ DE VĂCUȚĂ 40g/460 ml", desc: "", price: "19 RON" },
+            { name: "CIORBĂ DE GĂINĂ 60g/430 ml", desc: "Cu tăiței", price: "20 RON" },
+            { name: "CIORBĂ DE PERIȘOARE 60g/430 ml", desc: "", price: "19 RON" },
+            { name: "CIORBĂ DE FASOLE 80g/420 ml", desc: "Cu afumătură", price: "20 RON" },
+            { name: "CIORBĂ BUNICII 100g/400 ml", desc: "", price: "17 RON" },
+            { name: "DRESALĂ DE CARTOFI CU AFUMĂTURĂ 60g/440 ml", desc: "", price: "21 RON" },
+            { name: "DRESALĂ DE CARTOFI CU HRIBI 40g/460 ml", desc: "", price: "22 RON" }
+        ],
+        fastfood: [
+            { name: "BURGER DIN VITĂ ANGUS 450 g", desc: "Cu cartofi prăjiți și sos", price: "38 RON" },
+            { name: "PIEPT DE PUI CRISPY 450 g", desc: "Cu cartofi prăjiți și sos", price: "40 RON" },
+            { name: "ARIPIOARE 450 g", desc: "Picante / Nepicante, cu cartofi prăjiți și sos", price: "40 RON" },
         ],
         grill: [
-            { name: "Burger din vită Angus", desc: "450g cu cartofi și sos", price: "38 RON" },
-            { name: "Piept de pui crispy", desc: "450g cu cartofi și sos", price: "40 RON" },
-            { name: "Aripioare", desc: "450g cu cartofi și sos", price: "40 RON" },
-            { name: "Cârnați de casă", desc: "150g la grătar", price: "18 RON" },
-            { name: "Ceafă de porc", desc: "200g la grătar", price: "28 RON" },
-            { name: "Piept de pui la grătar", desc: "200g", price: "24 RON" },
-            { name: "Cotlet de porc", desc: "200g", price: "26 RON" },
-            { name: "Pulpă de pui", desc: "200g dezosată", price: "24 RON" },
-            { name: "Mici", desc: "50g/buc", price: "32 RON" }
+            { name: "CÂRNAȚI DE CASĂ 150 g", desc: "", price: "18 RON" },
+            { name: "CEAFĂ DE PORC 200 g", desc: "", price: "28 RON" },
+            { name: "PIEPT DE PUI LA GRĂTAR 200 g", desc: "", price: "24 RON" },
+            { name: "COTLET DE PORC 200 g", desc: "", price: "26 RON" },
+            { name: "PULPĂ DE PUI DEZOSATĂ 200 g", desc: "", price: "24 RON" },
+            { name: "MICI 50 g / buc", desc: "", price: "" }
         ],
-        drinks: [
-            { name: "Burger din vită Angus", desc: "450g cu cartofi și sos", price: "38 RON" },
+        traditional: [
+            { name: "PLATOUL CÂMPULUNGEAN", desc: "Ciolan de porc, cârnăciori, coaste de porc, mici, telemea, brânză de burduf, cartofi aurii, murături, sfeclă cu hrean, sos usturoi — 2 persoane", price: "120 RON" },
+            { name: "PLATOUL DRUMEȚULUI 550 g", desc: "Cârnăciori la grătar, ceafă, piept de pui, mici, brânză telemea, scrijele, murături, sos usturoi", price: "46 RON" },
+            { name: "PLATOUL BUCOVINEAN 550 g", desc: "Cârnați de casă, coaste, kaizer, scrijele, brânză de burduf, murături, sos de usturoi", price: "46 RON" },
+            { name: "PLATOUL CU PUI 550 g", desc: "Piept de pui, copanele picante, crispy, cașcaval pane, cartofi prăjiți", price: "45 RON" },
+            { name: "PLATOUL BUCOVINEAN VEGETARIAN 500 g", desc: "Fasole bătută, zacuscă, șnițel vegetarian, chiftea, murături, pâine prăjită", price: "30 RON" },
+            { name: "PLATOUL CU SCRIJELE 700 g", desc: "Cartofi (scrijele în sezon / rondele), brânză de burduf, slănină, costiță prăjită, sos de usturoi, murături", price: "35 RON" },
+            { name: "TOCHITURA CASEI 500 g", desc: "Pulpa de porc afumată, cârnați, kaizer, brânză de burduf, ou, mămăligă, murături", price: "49 RON" },
+            { name: "TOCHITURĂ BUCOVINEANĂ DE PUI 500 g", desc: "Pulpa de pui dezosată, ficatei de pui, brânză de burduf, ou, mămăligă", price: "45 RON" },
+            { name: "CIOLAN DE PORC CU MĂMĂLIGUȚĂ 700 g", desc: "", price: "56 RON" }
+        ],
+        sides: [
+            { name: "CARTOFI PRAJIȚI 200 g", desc: "", price: "12 RON" },
+            { name: "BULZ BUCOVINEAN 300 g", desc: "", price: "39 RON" },
+            { name: "PILAF DE OREZ 200 g", desc: "", price: "10 RON" },
+            { name: "CARTOFI NATUR 200 g", desc: "", price: "10 RON" },
+            { name: "CARTOFI AURII 200 g", desc: "", price: "15 RON" },
+            { name: "CIUPERCI CHAMPIGNON 200 g", desc: "", price: "17 RON" },
+            { name: "MĂMĂLIGĂ 200 g", desc: "", price: "8 RON" },
+            { name: "FASOLE SCĂZUTĂ 250 g", desc: "", price: "15 RON" },
+            { name: "FASOLE BĂTUTĂ 250 g", desc: "", price: "15 RON" }
+        ],
+        salat: [
+            { name: "SALATĂ CU TON 300 g", desc: "Salată verde, roșii, ceapă, ton, ardei, lămâie, porumb, maioneză", price: "25 RON" },
+            { name: "SALATĂ CU PUI 300 g", desc: "Salată verde, roșii, ceapă, castraveți, măsline, ou, șuncă, telemea", price: "25 RON" },
+            { name: "SALATĂ BULGĂREASCĂ 300 g", desc: "", price: "22 RON" },
+            { name: "SALATĂ DE FASOLE CU CEAPĂ 150 g", desc: "", price: "14 RON" },
+            { name: "SALATĂ DE ROȘII CU TELEMEA 150 g", desc: "", price: "14 RON" },
+            { name: "SALATĂ DE VARZĂ 150 g", desc: "", price: "8 RON" }
         ],
         dessert: [
-            { name: "Tiramisu", desc: "Traditional Italian dessert", price: "22 RON" },
-            { name: "Tocăi de la Câmpulung", desc: "Traditional Romanian dessert", price: "18 RON" },
-        ]
+            { name: "PAPANAȘI CU SMÂNTÂNĂ ȘI DULCEAȚĂ 200 g", desc: "", price: "32 RON" },
+            { name: "CLĂTITE CU BRÂNZĂ ȘI SMÂNTÂNĂ 200 g", desc: "", price: "26 RON" },
+            { name: "CLĂTITE CU DULCEAȚĂ 200 g", desc: "", price: "19 RON" },
+            { name: "CLĂTITE CU CIOCOLATĂ 200 g", desc: "", price: "19 RON" },
+            { name: "GĂLUȘTE CU PRUNE 200 g", desc: "", price: "20 RON" },
+            { name: "TOCINEI CU SMÂNTÂNĂ 200 g", desc: "", price: "25 RON" }
+        ],
+        drinks: {
+            soft: [
+                { name: "COCA-COLA 250 ml", desc: "", price: "8 RON" },
+                { name: "COCA-COLA 500 ml", desc: "", price: "10 RON" },
+                { name: "COCA-COLA ZERO 500 ml", desc: "", price: "10 RON" },
+                { name: "FANTA 250 ml", desc: "", price: "8 RON" },
+                { name: "FANTA 500 ml", desc: "", price: "10 RON" },
+                { name: "SPRITE 500 ml", desc: "", price: "10 RON" },
+                { name: "CAPPY NECTAR 250 ml", desc: "", price: "10 RON" },
+                { name: "CAPPY PULPY 330 ml", desc: "", price: "9 RON" },
+                { name: "FUZETEA 500 ml", desc: "", price: "8 RON" },
+                { name: "SCHWEPPES 250 ml", desc: "", price: "8 RON" },
+                { name: "SCHWEPPES 500 ml", desc: "", price: "10 RON" },
+                { name: "ALOE VERA 500 ml", desc: "", price: "10 RON" },
+                { name: "REDBULL 500 ml", desc: "", price: "12 RON" },
+                { name: "TIGER ENERGY 500 ml", desc: "", price: "7 RON" },
+                { name: "BURN 500 ml", desc: "", price: "10 RON" },
+                { name: "APĂ MINERALĂ 500 ml", desc: "", price: "8 RON" },
+                { name: "APĂ PLATĂ 500 ml", desc: "", price: "8 RON" },
+                { name: "VITAMIN AQUA 500 ml", desc: "", price: "12 RON" },
+                { name: "APĂ PLATĂ 750 ml", desc: "", price: "10 RON" },
+                { name: "APĂ MINERALĂ 750 ml", desc: "", price: "10 RON" },
+                { name: "LIMONADĂ CU MENTĂ 500 ml", desc: "", price: "14 RON" }
+            ],
+            hot: [
+                { name: "ESPRESSO", desc: "", price: "7 RON" },
+                { name: "CAPPUCCINO", desc: "", price: "9 RON" },
+                { name: "CIOLATĂ CALDĂ", desc: "", price: "8 RON" },
+                { name: "CEAI (INFUZIE)", desc: "", price: "8 RON" }
+            ],
+            wines: [
+                { name: "SAUVIGNON BLANC 750 ml", desc: "", price: "65 RON" },
+                { name: "RARA NEAGRĂ 750 ml", desc: "", price: "65 RON" },
+                { name: "ROZE 750 ml", desc: "", price: "65 RON" },
+                { name: "VINUL CASEI - ALB 200 ml", desc: "", price: "10 RON" },
+                { name: "VINUL CASEI - ROSU 200 ml", desc: "", price: "10 RON" },
+                { name: "VINUL CASEI - ROZE 200 ml", desc: "", price: "10 RON" }
+            ],
+            spirits: [
+                { name: "PALINCĂ 100 ml", desc: "", price: "12 RON" },
+                { name: "AFINATĂ 100 ml", desc: "", price: "14 RON" },
+                { name: "VIȘINATĂ 100 ml", desc: "", price: "14 RON" },
+                { name: "STALINSKAYA 100 ml", desc: "Vodka", price: "15 RON" },
+                { name: "FINLANDIA 100 ml", desc: "Vodka", price: "16 RON" },
+                { name: "ABSOLUT 100 ml", desc: "Vodka", price: "18 RON" },
+                { name: "VORONA 100 ml", desc: "Vodka", price: "11 RON" },
+                { name: "STEFAN CEL MARE 100 ml", desc: "Vodka", price: "18 RON" },
+                { name: "ALEXANDER 100 ml", desc: "Vodka", price: "15 RON" },
+                { name: "VORONSKAYA 100 ml", desc: "Vodka", price: "15 RON" },
+                { name: "CAVA D'ORO 100 ml", desc: "Coniac", price: "12 RON" },
+                { name: "UNIREA 100 ml", desc: "Coniac", price: "10 RON" },
+                { name: "ALEXANDRION 5* 100 ml", desc: "Coniac", price: "15 RON" },
+                { name: "METAXA 5* 100 ml", desc: "Coniac", price: "20 RON" },
+                { name: "JIDVEI VS 100 ml", desc: "", price: "20 RON" },
+                { name: "JIDVEI VSOP 100 ml", desc: "", price: "25 RON" },
+                { name: "J&B 100 ml", desc: "Whiskey", price: "18 RON" },
+                { name: "JACK DANIEL'S 100 ml", desc: "Whiskey", price: "22 RON" },
+                { name: "WEMBLEY 100 ml", desc: "Gin", price: "10 RON" }
+            ],
+            beers: [
+                { name: "BECK'S 330 ml", desc: "", price: "12 RON" },
+                { name: "BECK'S DOZĂ 500 ml", desc: "", price: "10 RON" },
+                { name: "STELLA ARTOIS 330 ml", desc: "", price: "12 RON" },
+                { name: "STELLA ARTOIS 500 ml", desc: "", price: "14 RON" },
+                { name: "BERE DE CASA HALBĂ 400 ml", desc: "", price: "8 RON" },
+                { name: "BERGENBIER 330 ml", desc: "", price: "9 RON" }
+            ]
+        }
     },
     en: {
         tradition: [
@@ -582,24 +680,59 @@ function renderMenu(category) {
         const roItems = (menuTranslations['ro'] && menuTranslations['ro'][category]) ? menuTranslations['ro'][category] : [];
         const langItems = (menuTranslations[currentLang] && menuTranslations[currentLang][category]) ? menuTranslations[currentLang][category] : roItems;
 
-        menuGrid.innerHTML = langItems.map((item, index) => {
-            const roName = (roItems[index] && roItems[index].name) ? roItems[index].name : (item.name || '');
-            const translatedName = (item && item.name) ? item.name : roName;
-            const showBoth = currentLang !== 'ro' && translatedName && translatedName !== roName;
-            const nameHtml = showBoth
-                ? `<h3><span class="menu-name-ro">${roName}</span><br><span class="menu-name-translated">${translatedName}</span></h3>`
-                : `<h3>${roName}</h3>`;
+        // Helper to render an array of items
+        const renderItemsArray = (itemsArray, roArray) => {
+            return (itemsArray || []).map((item, index) => {
+                const roName = (Array.isArray(roArray) && roArray[index] && roArray[index].name) ? roArray[index].name : (item.name || '');
+                const translatedName = (item && item.name) ? item.name : roName;
+                const showBoth = currentLang !== 'ro' && translatedName && translatedName !== roName;
+                const nameHtml = showBoth
+                    ? `<h3><span class="menu-name-ro">${roName}</span><br><span class="menu-name-translated">${translatedName}</span></h3>`
+                    : `<h3>${roName}</h3>`;
 
-            return `
-            <div class="menu-item">
-                <div class="menu-item-info">
-                    ${nameHtml}
-                    <p>${item.desc}</p>
+                return `
+                <div class="menu-item">
+                    <div class="menu-item-info">
+                        ${nameHtml}
+                        <p>${item.desc}</p>
+                    </div>
+                    <span class="menu-price">${item.price}</span>
                 </div>
-                <span class="menu-price">${item.price}</span>
-            </div>
-        `;
-        }).join('');
+            `;
+            }).join('');
+        };
+
+        // If langItems is an array, render as before
+        if (Array.isArray(langItems)) {
+            menuGrid.classList.remove('grouped');
+            menuGrid.innerHTML = renderItemsArray(langItems, roItems);
+        } else if (langItems && typeof langItems === 'object') {
+            // mark grid as grouped so CSS can stack subcategories
+            menuGrid.classList.add('grouped');
+            // langItems is an object with subcategories (e.g., drinks: {soft:[], hot:[], wines:[]})
+            const subcategoryLabels = {
+                soft: 'Răcoritoare',
+                hot: 'Băuturi Calde',
+                wines: 'Vinuri',
+                spirits: 'Spirtoase',
+                beers: 'Bere',
+            };
+
+            let html = '';
+            Object.keys(langItems).forEach(subKey => {
+                const subItems = langItems[subKey] || [];
+                const roSubItems = (roItems && typeof roItems === 'object') ? roItems[subKey] || [] : [];
+                if (subItems.length === 0) return; // skip empty categories
+                const label = subcategoryLabels[subKey] || subKey;
+                html += `<div class="menu-subcategory"><h3 class="subcategory-title">${label}</h3>`;
+                html += `<div class="menu-subitems">${renderItemsArray(subItems, roSubItems)}</div>`;
+                html += `</div>`;
+            });
+            menuGrid.innerHTML = html;
+        } else {
+            menuGrid.classList.remove('grouped');
+            menuGrid.innerHTML = '';
+        }
         menuGrid.style.opacity = '1';
     }, 300);
 }
@@ -615,5 +748,5 @@ tabBtns.forEach(btn => {
 
 // Initial menu render on page load
 window.addEventListener('load', () => {
-    renderMenu('tradition');
+    renderMenu('breakfast');
 });
