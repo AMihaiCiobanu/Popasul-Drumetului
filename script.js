@@ -413,6 +413,9 @@ const menuTranslations = {
                 { name: "SMÂNTÂNĂ 50g", desc: "", price: "5 RON" },
                 { name: "ARDEI IUTE 1 buc", desc: "", price: "1.5 RON" },
                 { name: "LĂMÂIE", desc: "", price: "1 RON" }
+            ],
+            onthego: [
+                { name: "AMBALAJ", desc: "", price: "1 RON" }
             ]
         },
         fastfood: [
@@ -725,7 +728,8 @@ function renderMenu(category) {
                 spirits: 'Spirtoase',
                 beers: 'Bere',
                 soup: 'Ciorbe',
-                extra: 'Extra Savoare'
+                extra: 'Extra Savoare',
+                onthego: 'La Pachet'
             };
 
             let html = '';
