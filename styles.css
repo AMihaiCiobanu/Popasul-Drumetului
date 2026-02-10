@@ -523,7 +523,7 @@ section.reveal {
 
 .menu-item-info h3 {
   font-family: var(--font-serif);
-  font-size: 1.3rem;
+  font-size: 18px;
   color: var(--gold);
   margin-bottom: 0.3rem;
 }

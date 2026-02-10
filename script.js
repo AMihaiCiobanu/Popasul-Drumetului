@@ -396,17 +396,25 @@ const menuTranslations = {
             { name: "OUĂ OCHIURI 2 bucăți", desc: "", price: "6 RON" },
             { name: "IAURT 200 g", desc: "", price: "8 RON" }
         ],
-        soup: [
-            { name: "CIORBĂ RĂDĂUȚEANĂ 70g/430 ml", desc: "", price: "20 RON" },
-            { name: "CIORBĂ DE BURTĂ 70g/430 ml", desc: "", price: "22 RON" },
-            { name: "CIORBĂ DE VĂCUȚĂ 40g/460 ml", desc: "", price: "19 RON" },
-            { name: "CIORBĂ DE GĂINĂ 60g/430 ml", desc: "Cu tăiței", price: "20 RON" },
-            { name: "CIORBĂ DE PERIȘOARE 60g/430 ml", desc: "", price: "19 RON" },
-            { name: "CIORBĂ DE FASOLE 80g/420 ml", desc: "Cu afumătură", price: "20 RON" },
-            { name: "CIORBĂ BUNICII 100g/400 ml", desc: "", price: "17 RON" },
-            { name: "DRESALĂ DE CARTOFI CU AFUMĂTURĂ 60g/440 ml", desc: "", price: "21 RON" },
-            { name: "DRESALĂ DE CARTOFI CU HRIBI 40g/460 ml", desc: "", price: "22 RON" }
-        ],
+        soup: {
+            soup: [
+                { name: "CIORBĂ RĂDĂUȚEANĂ 70g/430 ml", desc: "", price: "20 RON" },
+                { name: "CIORBĂ DE BURTĂ 70g/430 ml", desc: "", price: "22 RON" },
+                { name: "CIORBĂ DE VĂCUȚĂ 40g/460 ml", desc: "", price: "19 RON" },
+                { name: "CIORBĂ DE GĂINĂ 60g/430 ml", desc: "Cu tăiței", price: "20 RON" },
+                { name: "CIORBĂ DE PERIȘOARE 60g/430 ml", desc: "", price: "19 RON" },
+                { name: "CIORBĂ DE FASOLE 80g/420 ml", desc: "Cu afumătură", price: "20 RON" },
+                { name: "CIORBĂ BUNICII 100g/400 ml", desc: "", price: "17 RON" },
+                { name: "DRESALĂ DE CARTOFI CU AFUMĂTURĂ 60g/440 ml", desc: "", price: "21 RON" },
+                { name: "DRESALĂ DE CARTOFI CU HRIBI 40g/460 ml", desc: "", price: "22 RON" }
+            ],
+            extra: [
+                { name: "PÂINE 100g", desc: "", price: "3 RON" },
+                { name: "SMÂNTÂNĂ 50g", desc: "", price: "5 RON" },
+                { name: "ARDEI IUTE 1 buc", desc: "", price: "1.5 RON" },
+                { name: "LĂMÂIE", desc: "", price: "1 RON" }
+            ]
+        },
         fastfood: [
             { name: "BURGER DIN VITĂ ANGUS 450 g", desc: "Cu cartofi prăjiți și sos", price: "38 RON" },
             { name: "PIEPT DE PUI CRISPY 450 g", desc: "Cu cartofi prăjiți și sos", price: "40 RON" },
@@ -716,6 +724,8 @@ function renderMenu(category) {
                 wines: 'Vinuri',
                 spirits: 'Spirtoase',
                 beers: 'Bere',
+                soup: 'Ciorbe',
+                extra: 'Extra Savoare'
             };
 
             let html = '';
