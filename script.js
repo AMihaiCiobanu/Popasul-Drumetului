@@ -383,6 +383,7 @@ document.querySelectorAll('[data-lang]').forEach(btn => {
 
 // Menu Tabs
 const tabBtns = document.querySelectorAll('.tab-btn');
+const categorySelect = document.getElementById('menuCategorySelect');
 const menuGrid = document.querySelector('.menu-grid');
 
 const menuTranslations = {
@@ -686,14 +687,29 @@ const menuTranslations = {
 
 
 
+function setActiveCategory(category) {
+    tabBtns.forEach(b => {
+        b.classList.toggle('active', b.getAttribute('data-target') === category);
+    });
+    if (categorySelect) {
+        categorySelect.value = category;
+    }
+    renderMenu(category);
+}
+
 tabBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-        tabBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
         const category = btn.getAttribute('data-target');
-        renderMenu(category);
+        setActiveCategory(category);
     });
 });
+
+if (categorySelect) {
+    categorySelect.addEventListener('change', (e) => {
+        const category = e.target.value;
+        setActiveCategory(category);
+    });
+}
 
 // Lightbox functionality
 const lightbox = document.createElement('div');
@@ -814,5 +830,5 @@ function renderMenu(category) {
 
 // Initial menu render on page load
 window.addEventListener('load', () => {
-    renderMenu('breakfast');
+    setActiveCategory('breakfast');
 });
