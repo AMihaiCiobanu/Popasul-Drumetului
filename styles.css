@@ -403,6 +403,12 @@ section.reveal {
   padding: 0 1rem;
 }
 
+.dropdown-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #f6f3f3;
+}
+
 .menu-tabs-mobile select {
   width: 100%;
   background: linear-gradient(
