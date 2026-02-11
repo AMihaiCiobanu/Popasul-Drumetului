@@ -445,13 +445,13 @@ section.reveal {
 
 .menu-item {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   padding: 1.5rem;
   background: var(--glass-bg);
   border: 1px solid var(--glass-border);
   border-radius: 8px;
   transition: var(--transition);
+  gap: 1rem;
 }
 
 .menu-item:hover {
@@ -486,29 +486,8 @@ section.reveal {
 /* Ensure price stays right-aligned and doesn't wrap awkwardly */
 .menu-price {
   white-space: nowrap;
-  margin-left: 1rem;
-}
-
-@media (max-width: 576px) {
-  .menu-subitems {
-    grid-template-columns: 1fr;
-  }
-
-  .subcategory-title {
-    font-size: 1rem;
-  }
-}
-
-/* On larger screens, show two items per row inside each subcategory */
-@media (min-width: 768px) {
-  .menu-grid.grouped .menu-subitems {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-  }
-
-  .menu-grid.grouped .menu-subitems .menu-item {
-    padding: 1rem 1.25rem;
-  }
+  margin-left: auto;
+  flex-shrink: 0;
 }
 
 /* When menu-grid has grouped subcategories, stack subcategories vertically (desktop and mobile)
@@ -520,17 +499,32 @@ section.reveal {
 .menu-grid.grouped .menu-subcategory {
   margin-bottom: 2rem;
 }
-
+.menu-item-info {
+  flex: 1;
+  margin: 0;
+}
 .menu-item-info h3 {
   font-family: var(--font-serif);
   font-size: 18px;
   color: var(--gold);
   margin-bottom: 0.3rem;
+  text-align: left;
 }
 
 .menu-item-info p {
   font-size: 0.9rem;
   color: rgba(255, 245, 225, 0.7);
+  text-align: left;
+  margin: 0;
+}
+
+.menu-item-image {
+  width: 70px;
+  height: 70px;
+  min-width: 70px;
+  object-fit: cover;
+  border-radius: 8px;
+  flex-shrink: 0;
 }
 
 .menu-price {
@@ -813,5 +807,83 @@ section.reveal {
   .tab-btn {
     font-size: 0.95rem;
     padding: 0.4rem 0.8rem;
+  }
+  .menu-subitems {
+    grid-template-columns: 1fr;
+  }
+
+  .subcategory-title {
+    font-size: 1rem;
+  }
+}
+
+/* Lightbox styles */
+.lightbox {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 2000;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.lightbox.active {
+  display: flex;
+  opacity: 1;
+}
+
+.lightbox-content {
+  position: relative;
+  max-width: 90%;
+  max-height: 90%;
+}
+
+.lightbox-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: -40px;
+  right: 0;
+  background: transparent;
+  border: none;
+  color: var(--cream);
+  font-size: 2rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.lightbox-close:hover {
+  color: var(--gold);
+}
+
+.menu-item-image {
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.menu-item-image:hover {
+  opacity: 0.8;
+  transform: scale(1.02);
+}
+
+/* On larger screens, show two items per row inside each subcategory */
+@media (min-width: 768px) {
+  .menu-grid.grouped .menu-subitems {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .menu-grid.grouped .menu-subitems .menu-item {
+    padding: 1rem 1.25rem;
   }
 }

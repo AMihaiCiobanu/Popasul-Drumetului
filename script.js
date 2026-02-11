@@ -388,13 +388,13 @@ const menuGrid = document.querySelector('.menu-grid');
 const menuTranslations = {
     ro: {
         breakfast: [
-            { name: "DEJUNUL BUNICII 350 g", desc: "Doua ochiuri, pastramă, cartofi prăjiți, telemea, roșii", price: "26 RON" },
-            { name: "CASCAVAL PANE 150 g", desc: "Pregătit", price: "19 RON" },
-            { name: "OMLETĂ 200 g", desc: "Cu șuncă și cașcaval", price: "18 RON" },
-            { name: "OMLETĂ 150 g", desc: "", price: "15 RON" },
-            { name: "BRÂNZĂ TELEMEA 100 g", desc: "", price: "10 RON" },
-            { name: "OUĂ OCHIURI 2 bucăți", desc: "", price: "6 RON" },
-            { name: "IAURT 200 g", desc: "", price: "8 RON" }
+            { name: "DEJUNUL BUNICII 350 g", desc: "Doua ochiuri, pastramă, cartofi prăjiți, telemea, roșii", price: "26 RON", image: "images/papanasi.jpg" },
+            { name: "CASCAVAL PANE 150 g", desc: "Pregătit", price: "19 RON", image: "images/papanasi.jpg" },
+            { name: "OMLETĂ 200 g", desc: "Cu șuncă și cașcaval", price: "18 RON", image: "images/papanasi.jpg" },
+            { name: "OMLETĂ 150 g", desc: "", price: "15 RON", image: "images/papanasi.jpg" },
+            { name: "BRÂNZĂ TELEMEA 100 g", desc: "", price: "10 RON", image: "images/papanasi.jpg" },
+            { name: "OUĂ OCHIURI 2 bucăți", desc: "", price: "6 RON", image: "images/papanasi.jpg" },
+            { name: "IAURT 200 g", desc: "", price: "8 RON", image: "images/papanasi.jpg" }
         ],
         soup: {
             soup: [
@@ -684,6 +684,56 @@ const menuTranslations = {
     }
 };
 
+
+
+tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        tabBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const category = btn.getAttribute('data-target');
+        renderMenu(category);
+    });
+});
+
+// Lightbox functionality
+const lightbox = document.createElement('div');
+lightbox.className = 'lightbox';
+lightbox.innerHTML = `
+    <div class="lightbox-content">
+        <button class="lightbox-close">&times;</button>
+        <img class="lightbox-image" src="" alt="Menu item">
+    </div>
+`;
+document.body.appendChild(lightbox);
+
+const lightboxImage = lightbox.querySelector('.lightbox-image');
+const lightboxClose = lightbox.querySelector('.lightbox-close');
+
+function openLightbox(imageSrc) {
+    if (imageSrc) {
+        lightboxImage.src = imageSrc;
+        lightbox.classList.add('active');
+    }
+}
+
+function closeLightbox() {
+    lightbox.classList.remove('active');
+}
+
+lightboxClose.addEventListener('click', closeLightbox);
+lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) {
+        closeLightbox();
+    }
+});
+
+// Close lightbox on Escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        closeLightbox();
+    }
+});
+
 function renderMenu(category) {
     if (!menuGrid) return;
     menuGrid.style.opacity = '0';
@@ -701,8 +751,11 @@ function renderMenu(category) {
                     ? `<h3><span class="menu-name-ro">${roName}</span><br><span class="menu-name-translated">${translatedName}</span></h3>`
                     : `<h3>${roName}</h3>`;
 
+                const imageHtml = item.image ? `<img src="${item.image}" alt="${item.name}" class="menu-item-image">` : '';
+
                 return `
                 <div class="menu-item">
+                    ${imageHtml}
                     <div class="menu-item-info">
                         ${nameHtml}
                         <p>${item.desc}</p>
@@ -747,18 +800,17 @@ function renderMenu(category) {
             menuGrid.classList.remove('grouped');
             menuGrid.innerHTML = '';
         }
+
+        // Attach click handlers to all images
+        menuGrid.querySelectorAll('.menu-item-image').forEach(img => {
+            img.addEventListener('click', (e) => {
+                openLightbox(img.src);
+            });
+        });
+
         menuGrid.style.opacity = '1';
     }, 300);
 }
-
-tabBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-        tabBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        const category = btn.getAttribute('data-target');
-        renderMenu(category);
-    });
-});
 
 // Initial menu render on page load
 window.addEventListener('load', () => {
