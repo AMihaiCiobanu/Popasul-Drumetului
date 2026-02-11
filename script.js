@@ -389,13 +389,13 @@ const menuGrid = document.querySelector('.menu-grid');
 const menuTranslations = {
     ro: {
         breakfast: [
-            { name: "DEJUNUL BUNICII 350 g", desc: "Doua ochiuri, pastramă, cartofi prăjiți, telemea, roșii", price: "26 RON", image: "images/papanasi.jpg" },
-            { name: "CASCAVAL PANE 150 g", desc: "Pregătit", price: "19 RON", image: "images/papanasi.jpg" },
-            { name: "OMLETĂ 200 g", desc: "Cu șuncă și cașcaval", price: "18 RON", image: "images/papanasi.jpg" },
-            { name: "OMLETĂ 150 g", desc: "", price: "15 RON", image: "images/papanasi.jpg" },
-            { name: "BRÂNZĂ TELEMEA 100 g", desc: "", price: "10 RON", image: "images/papanasi.jpg" },
+            { name: "DEJUNUL BUNICII", desc: "Doua ochiuri, pastramă, cartofi prăjiți, telemea, roșii 350g", price: "26 RON", image: "images/papanasi.jpg" },
+            { name: "CASCAVAL PANE", desc: "Pregătit 150g", price: "19 RON", image: "images/papanasi.jpg" },
+            { name: "OMLETĂ", desc: "Cu șuncă și cașcaval 200g", price: "18 RON", image: "images/papanasi.jpg" },
+            { name: "OMLETĂ", desc: "150 g", price: "15 RON", image: "images/papanasi.jpg" },
+            { name: "BRÂNZĂ TELEMEA", desc: "100 g", price: "10 RON", image: "" },
             { name: "OUĂ OCHIURI 2 bucăți", desc: "", price: "6 RON", image: "images/papanasi.jpg" },
-            { name: "IAURT 200 g", desc: "", price: "8 RON", image: "images/papanasi.jpg" }
+            { name: "IAURT", desc: "200 g", price: "8 RON", image: "" }
         ],
         soup: {
             soup: [
