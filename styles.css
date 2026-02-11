@@ -572,7 +572,7 @@ section.reveal {
 
 .menu-price {
   font-weight: 800;
-  color: #d7a94d;
+  color: #efbe5c;
   letter-spacing: 0.2px;
   margin-left: auto;
 }
@@ -866,15 +866,9 @@ section.reveal {
   .menu-price {
     font-size: 0.95rem;
     font-weight: 800;
-    color: #2c1a0f;
-    background: var(--gold);
-    padding: 10px;
-    border-radius: 999px;
+    color: #efbe5c;
     letter-spacing: 0.2px;
     margin-left: auto;
-    align-self: flex-start;
-    box-shadow: 0 6px 18px rgba(255, 204, 112, 0.4);
-    white-space: nowrap;
   }
 }
 
