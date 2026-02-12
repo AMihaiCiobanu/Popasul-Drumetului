@@ -1584,7 +1584,7 @@ function renderMenu(category) {
                 const translatedName = (item && item.name) ? item.name : roName;
                 const showBoth = currentLang !== 'ro' && translatedName && translatedName !== roName;
                 const nameHtml = showBoth
-                    ? `<h3><span class="menu-name-ro">${roName}</span><br><span class="menu-name-translated">${translatedName}</span></h3>`
+                    ? `<h3>${translatedName} <span class="menu-name-ro">(${roName})</span></h3>`
                     : `<h3>${roName}</h3>`;
 
                 const imageHtml = item.image ? `<img src="${item.image}" alt="${item.name}" class="menu-item-image">` : '';

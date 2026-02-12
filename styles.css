@@ -500,6 +500,10 @@ section.reveal {
     box-shadow 0.18s ease,
     background 0.18s ease;
 }
+.menu-name-ro {
+  color: white;
+  font-size: 0.9em;
+}
 
 .menu-item:hover {
   background: linear-gradient(
