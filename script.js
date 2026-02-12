@@ -386,31 +386,118 @@ const tabBtns = document.querySelectorAll('.tab-btn');
 const categorySelect = document.getElementById('menuCategorySelect');
 const menuGrid = document.querySelector('.menu-grid');
 
+const breakfastImages = {
+    1: "images/micdejun.jpg",
+    2: "images/papanasi.jpg",
+    3: "",
+    4: "",
+    5: "",
+    6: "",
+    7: "",
+    8: "",
+    9: ""
+};
+
+const soupImages = {
+    1: "",
+    2: "",
+    3: "",
+    4: "",
+    5: "",
+    6: "",
+    7: "",
+    8: "",
+    9: "",
+    10: ""
+};
+
+const fastfoodImages = {
+    1: "",
+    2: "",
+    3: "",
+    4: ""
+};
+
+const grillImages = {
+    grill: { 1: "", 2: "", 3: "", 4: "", 5: "", 6: "", 7: "", 8: "" },
+    sides: { 1: "", 2: "", 3: "", 4: "", 5: "", 6: "", 7: "", 8: "", 9: "" },
+    sauces: { 1: "", 2: "", 3: "", 4: "", 5: "" }
+};
+
+const traditionImages = {
+    1: "",
+    2: "",
+    3: "",
+    4: "",
+    5: "",
+    6: "",
+    7: "",
+    8: "",
+    9: "",
+    10: "",
+    11: "",
+    12: "",
+    13: "",
+    14: "",
+    15: "",
+    16: "",
+    17: "",
+    18: "",
+    19: "",
+    20: "",
+};
+
+const salateImages = {
+    1: "",
+    2: "",
+    3: "",
+    4: "",
+    5: "",
+    6: "",
+    7: "",
+    8: "",
+    9: "",
+    10: "",
+    11: ""
+};
+
+const dessertImages = {
+    1: "",
+    2: "",
+    3: "",
+    4: "",
+    5: "",
+    6: "",
+    7: ""
+};
+
+
+
 const menuTranslations = {
     ro: {
         breakfast: [
-            { name: "DEJUNUL BUNICII", desc: "Doua ochiuri, pastramă, cartofi prăjiți, telemea, roșii 350g", price: "26 RON", image: "images/papanasi.jpg" },
-            { name: "CASCAVAL PANE", desc: "Pregătit 150g", price: "19 RON", image: "images/papanasi.jpg" },
-            { name: "OMLETĂ", desc: "Cu șuncă și cașcaval 200g", price: "18 RON", image: "images/papanasi.jpg" },
-            { name: "OMLETĂ", desc: "Cu cașcaval 150g", price: "15 RON", image: "images/papanasi.jpg" },
-            { name: "OUĂ OCHIURI", desc: "2 bucăți", price: "6 RON", image: "images/papanasi.jpg" },
-            { name: "BRÂNZĂ TELEMEA", desc: "Sau burduf 100g", price: "10 RON", image: "" },
-            { name: "DULCEAȚĂ", desc: "100g", price: "6 RON", image: "" },
-            { name: "UNT", desc: "50g", price: "8 RON", image: "" },
-            { name: "IAURT", desc: "200g", price: "8 RON", image: "" }
+            { name: "DEJUNUL BUNICII", desc: "Doua ochiuri, pastramă, cartofi prăjiți, telemea, roșii 350g", price: "26 RON", image: breakfastImages[1] },
+            { name: "CASCAVAL PANE", desc: "Pregătit 150g", price: "19 RON", image: breakfastImages[2] },
+            { name: "OMLETĂ", desc: "Cu șuncă și cașcaval 200g", price: "18 RON", image: breakfastImages[3] },
+            { name: "OMLETĂ", desc: "Cu cașcaval 150g", price: "15 RON", image: breakfastImages[4] },
+            { name: "OUĂ OCHIURI", desc: "2 bucăți", price: "6 RON", image: breakfastImages[5] },
+            { name: "BRÂNZĂ TELEMEA", desc: "Sau burduf 100g", price: "10 RON", image: breakfastImages[6] },
+            { name: "DULCEAȚĂ", desc: "100g", price: "6 RON", image: breakfastImages[7] },
+            { name: "UNT", desc: "50g", price: "8 RON", image: breakfastImages[8] },
+            { name: "IAURT", desc: "200g", price: "8 RON", image: breakfastImages[9] }
         ],
         soup: {
             soup: [
-                { name: "CIORBĂ RĂDĂUȚEANĂ", desc: "70g/430 ml", price: "20 RON" },
-                { name: "CIORBĂ DE BURTĂ", desc: "70g/430 ml", price: "20 RON" },
-                { name: "CIORBĂ DE VĂCUȚĂ", desc: "40g/460g", price: "22 RON" },
-                { name: "CIORBĂ DE GĂINĂ", desc: "Cu tăiței 60g/430 ml", price: "19 RON" },
-                { name: "CIORBĂ DE PERIȘOARE", desc: "60g/430 ml", price: "19 RON" },
-                { name: "CIORBĂ DE FASOLE", desc: "Cu afumătură  80g/420 ml", price: "20 RON" },
-                { name: "SOLEANCA", desc: "Ciorbă moldoveneasca 100g/400 ml", price: "20 RON" },
-                { name: "CIORBĂ BUNICII", desc: "Ciorba de legume 100g/400 ml", price: "17 RON" },
-                { name: "DRESALĂ DE CARTOFI CU AFUMĂTURĂ", desc: "60g/440 ml", price: "21 RON" },
-                { name: "DRESALĂ DE CARTOFI CU HRIBI", desc: "40g/460 ml", price: "22 RON" }
+                { name: "CIORBĂ RĂDĂUȚEANĂ", desc: "70g/430 ml", price: "20 RON", image: soupImages[1] },
+                { name: "CIORBĂ DE BURTĂ", desc: "70g/430 ml", price: "20 RON", image: soupImages[2] },
+                { name: "CIORBĂ DE VĂCUȚĂ", desc: "40g/460g", price: "22 RON", image: soupImages[3] },
+                { name: "CIORBĂ DE GĂINĂ", desc: "Cu tăiței 60g/430 ml", price: "19 RON", image: soupImages[4] },
+                { name: "CIORBĂ DE PERIȘOARE", desc: "60g/430 ml", price: "19 RON", image: soupImages[5] },
+                { name: "CIORBĂ DE FASOLE", desc: "Cu afumătură  80g/420 ml", price: "20 RON", image: soupImages[6] },
+                { name: "SOLEANCA", desc: "Ciorbă moldoveneasca 100g/400 ml", price: "20 RON", image: soupImages[7] },
+                { name: "CIORBĂ BUNICII", desc: "Ciorba de legume 100g/400 ml", price: "17 RON", image: soupImages[8] },
+                { name: "DRESALĂ DE CARTOFI CU AFUMĂTURĂ", desc: "60g/440 ml", price: "21 RON", image: soupImages[9] },
+                { name: "DRESALĂ DE CARTOFI CU HRIBI", desc: "40g/460 ml", price: "22 RON", image: soupImages[10] }
             ],
             extra: [
                 { name: "PÂINE", desc: "100g", price: "3 RON" },
@@ -423,78 +510,87 @@ const menuTranslations = {
             ]
         },
         fastfood: [
-            { name: "BURGER DIN VITĂ ANGUS", desc: "Cu cartofi prăjiți și sos 450g", price: "38 RON" },
-            { name: "PIEPT DE PUI CRISPY", desc: "Cu cartofi prăjiți și sos 450g", price: "40 RON" },
-            { name: "ARIPIOARE", desc: "Picante/Nepicante, cu cartofi prăjiți și sos 450g", price: "40 RON" },
-            { name: "SHAORMA LA FARFURIE", desc: "450g", price: "30 RON" },
+            { name: "BURGER DIN VITĂ ANGUS", desc: "Cu cartofi prăjiți și sos 450g", price: "38 RON", image: fastfoodImages[1] },
+            { name: "PIEPT DE PUI CRISPY", desc: "Cu cartofi prăjiți și sos 450g", price: "40 RON", image: fastfoodImages[2] },
+            { name: "ARIPIOARE", desc: "Picante/Nepicante, cu cartofi prăjiți și sos 450g", price: "40 RON", image: fastfoodImages[3] },
+            { name: "SHAORMA LA FARFURIE", desc: "450g", price: "30 RON", image: fastfoodImages[4] },
         ],
         grill:
         {
             grill: [
-                { name: "PĂSTRĂV", desc: "La grătar / prăjit 100g", price: "15 RON" },
-                { name: "CĂRNÂCIORI LA GRĂTAR", desc: "150g", price: "18 RON" },
-                { name: "CÂRNAȚI DE CASĂ", desc: "150g", price: "18 RON" },
-                { name: "CEAFĂ DE PORC", desc: "200g", price: "28 RON" },
-                { name: "PIEPT DE PUI LA GRĂTAR", desc: "200g", price: "24 RON" },
-                { name: "COTLET DE PORC", desc: "200g", price: "26 RON" },
-                { name: "PULPĂ DE PUI DEZOSATĂ", desc: "200g", price: "24 RON" },
-                { name: "MICI", desc: "50g/buc", price: "6 RON" }
+                { name: "PĂSTRĂV", desc: "La grătar / prăjit 100g", price: "15 RON", image: grillImages.grill[1] },
+                { name: "CĂRNÂCIORI LA GRĂTAR", desc: "150g", price: "18 RON", image: grillImages.grill[2] },
+                { name: "CÂRNAȚI DE CASĂ", desc: "150g", price: "18 RON", image: grillImages.grill[3] },
+                { name: "CEAFĂ DE PORC", desc: "200g", price: "28 RON", image: grillImages.grill[4] },
+                { name: "PIEPT DE PUI LA GRĂTAR", desc: "200g", price: "24 RON", image: grillImages.grill[5] },
+                { name: "COTLET DE PORC", desc: "200g", price: "26 RON", image: grillImages.grill[6] },
+                { name: "PULPĂ DE PUI DEZOSATĂ", desc: "200g", price: "24 RON", image: grillImages.grill[7] },
+                { name: "MICI", desc: "50g/buc", price: "6 RON", image: grillImages.grill[8] }
             ],
             sides: [
-                { name: "SCIRJELE", desc: "Cu usturoi sau ceapa 200g", price: "18 RON" },
-                { name: "CARTOFI PRAJIȚI", desc: "200g", price: "12 RON" },
-                { name: "PILAF DE OREZ", desc: "200g", price: "10 RON" },
-                { name: "CARTOFI NATUR", desc: "200g", price: "10 RON" },
-                { name: "CARTOFI AURII", desc: "200g", price: "15 RON" },
-                { name: "CIUPERCI CHAMPIGNON", desc: "La tigaie 200g", price: "17 RON" },
-                { name: "MĂMĂLIGĂ", desc: "200g", price: "8 RON" },
-                { name: "FASOLE SCĂZUTĂ", desc: "250g", price: "15 RON" },
-                { name: "FASOLE BĂTUTĂ", desc: "250g", price: "15 RON" }
+                { name: "SCIRJELE", desc: "Cu usturoi sau ceapa 200g", price: "18 RON", image: grillImages.sides[1] },
+                { name: "CARTOFI PRAJIȚI", desc: "200g", price: "12 RON", image: grillImages.sides[2] },
+                { name: "PILAF DE OREZ", desc: "200g", price: "10 RON", image: grillImages.sides[3] },
+                { name: "CARTOFI NATUR", desc: "200g", price: "10 RON", image: grillImages.sides[4] },
+                { name: "CARTOFI AURII", desc: "200g", price: "15 RON", image: grillImages.sides[5] },
+                { name: "CIUPERCI CHAMPIGNON", desc: "La tigaie 200g", price: "17 RON", image: grillImages.sides[6] },
+                { name: "MĂMĂLIGĂ", desc: "200g", price: "8 RON", image: grillImages.sides[7] },
+                { name: "FASOLE SCĂZUTĂ", desc: "250g", price: "15 RON", image: grillImages.sides[8] },
+                { name: "FASOLE BĂTUTĂ", desc: "250g", price: "15 RON", image: grillImages.sides[9] }
             ],
             sauces: [
-                { name: "SOS DE USTUROI", desc: "5g", price: "5 RON" },
-                { name: "SOS TZATZIKI", desc: "50g", price: "5 RON" },
-                { name: "SOSUL BUCĂTARULUI ROȘU PICANT", desc: "50g", price: "5 RON" },
-                { name: "SOSUL BUCĂTARULUI ROȘU DULCE", desc: "50g", price: "5 RON" },
-                { name: "KETCHUP DULCE", desc: "50g", price: "4 RON" },
-                { name: "MUȘTAR", desc: "50g", price: "4 RON" }
+                { name: "SOS DE USTUROI", desc: "5g", price: "5 RON", image: grillImages.sauces[1] },
+                { name: "SOS TZATZIKI", desc: "50g", price: "5 RON", image: grillImages.sauces[2] },
+                { name: "SOSUL BUCĂTARULUI ROȘU PICANT", desc: "50g", price: "5 RON", image: grillImages.sauces[3] },
+                { name: "SOSUL BUCĂTARULUI ROȘU DULCE", desc: "50g", price: "5 RON", image: grillImages.sauces[4] },
+                { name: "KETCHUP DULCE", desc: "50g", price: "4 RON", image: grillImages.sauces[5] },
+                { name: "MUȘTAR", desc: "50g", price: "4 RON", image: grillImages.sauces[6] }
             ]
         },
         traditional: [
-            { name: "PLATOUL CÂMPULUNGEAN", desc: "Ciolan de porc, cârnăciori, coaste de porc, mici, telemea, brânză de burduf, cartofi aurii, murături, sfeclă cu hrean, sos usturoi — 2 persoane", price: "120 RON" },
-            { name: "PLATOUL DRUMEȚULUI", desc: "Cârnăciori la grătar, ceafă, piept de pui, mici, brânză telemea, scrijele, murături, sos usturoi  550g", price: "46 RON" },
-            { name: "PLATOUL BUCOVINEAN", desc: "Cârnați de casă, coaste, kaizer, scrijele, brânză de burduf, murături, sos de usturoi  550g", price: "46 RON" },
-            { name: "PLATOUL CU PUI", desc: "Piept de pui, copanele picante, crispy, cașcaval pane, cartofi prăjiți  550g", price: "45 RON" },
-            { name: "PLATOUL BUCOVINEAN VEGETARIAN", desc: "Fasole bătută, zacuscă, șnițel vegetarian, chiftea, murături, pâine prăjită  500g", price: "30 RON" },
-            { name: "PLATOUL CU SCRIJELE", desc: "Cartofi (scrijele în sezon / rondele), brânză de burduf, slănină, costiță prăjită, sos de usturoi, murături  700g", price: "35 RON" },
-            { name: "TOCHITURA CASEI", desc: "Pulpa de porc afumată, cârnați, kaizer, brânză de burduf, ou, mămăligă, murături  500g", price: "49 RON" },
-            { name: "TOCHITURĂ BUCOVINEANĂ DE PUI", desc: "Pulpa de pui dezosată, ficatei de pui, brânză de burduf, ou, mămăligă  500g", price: "45 RON" },
-            { name: "CIOLAN DE PORC CU MĂMĂLIGUȚĂ", desc: "", price: "56 RON" },
-            { name: "CARTOFI PRAJIȚI 200 g", desc: "", price: "12 RON" },
-            { name: "BULZ BUCOVINEAN 300 g", desc: "", price: "39 RON" },
-            { name: "PILAF DE OREZ 200 g", desc: "", price: "10 RON" },
-            { name: "CARTOFI NATUR 200 g", desc: "", price: "10 RON" },
-            { name: "CARTOFI AURII 200 g", desc: "", price: "15 RON" },
-            { name: "CIUPERCI CHAMPIGNON 200 g", desc: "", price: "17 RON" },
-            { name: "MĂMĂLIGĂ 200 g", desc: "", price: "8 RON" },
-            { name: "FASOLE SCĂZUTĂ 250 g", desc: "", price: "15 RON" },
-            { name: "FASOLE BĂTUTĂ 250 g", desc: "", price: "15 RON" }
+            { name: "PLATOUL CÂMPULUNGEAN", desc: "Ciolan de porc, cârnăciori, coaste de porc, mici, telemea, brânză de burduf, cartofi aurii, murături, sfeclă cu hrean, sos usturoi — 2 persoane", price: "120 RON", image: traditionImages[1] },
+            { name: "PLATOUL DRUMEȚULUI", desc: "Cârnăciori la grătar, ceafă, piept de pui, mici, brânză telemea, scrijele, murături, sos usturoi  550g", price: "46 RON", image: traditionImages[2] },
+            { name: "PLATOUL BUCOVINEAN", desc: "Cârnați de casă, coaste, kaizer, scrijele, brânză de burduf, murături, sos de usturoi  550g", price: "46 RON", image: traditionImages[3] },
+            { name: "PLATOUL CU PUI", desc: "Piept de pui, copanele picante, crispy, cașcaval pane, cartofi prăjiți  550g", price: "45 RON", image: traditionImages[4] },
+            { name: "PLATOUL BUCOVINEAN VEGETARIAN", desc: "Fasole bătută, zacuscă, șnițel vegetarian, chiftea, murături, pâine prăjită  500g", price: "30 RON", image: traditionImages[5] },
+            { name: "PLATOUL CU SCRIJELE", desc: "Cartofi (scrijele în sezon / rondele), brânză de burduf, slănină, costiță prăjită, sos de usturoi, murături  700g", price: "35 RON", image: traditionImages[6] },
+            { name: "TOCHITURA CASEI", desc: "Pulpa de porc afumată, cârnați, kaizer, brânză de burduf, ou, mămăligă, murături  500g", price: "49 RON", image: traditionImages[7] },
+            { name: "TOCHITURĂ BUCOVINEANĂ DE PUI", desc: "Pulpa de pui dezosată, ficatei de pui, brânză de burduf, ou, mămăligă  500g", price: "45 RON", image: traditionImages[8] },
+            { name: "BULZ BUCOVINEAN", desc: "300g", price: "39 RON", image: traditionImages[9] },
+            { name: "CIOLAN DE PORC CU MĂMĂLIGUȚĂ", desc: "700g", price: "56 RON", image: traditionImages[10] },
+            { name: "CIOLAN DE PORC CU FASOLE/RONDELE DE CARTOFI PRĂJIȚI", desc: "700g", price: "58 RON", image: traditionImages[11] },
+            { name: "CIULAMA DE PUI CU CIUPERCI ȘI MĂMĂLIGUȚĂ", desc: "350g", price: "35 RON", image: traditionImages[12] },
+            { name: "COASTE DE PORC LA CEAUN", desc: "300g", price: "36 RON", image: traditionImages[13] },
+            { name: "SNITEL DE PORC", desc: "200g", price: "25 RON", image: traditionImages[14] },
+            { name: "SNITEL DIN PIEPT DE PUI", desc: "200g", price: "25 RON", image: traditionImages[15] },
+            { name: "FICATEI CU USTUROI SI MAMALIGA", desc: "300g", price: "28 RON", image: traditionImages[16] },
+            { name: "HRIBI SOTE", desc: "250g", price: "40 RON", image: traditionImages[17] },
+            { name: "HRIBI SOTE CU SMÂNTÂNĂ", desc: "350g", price: "50 RON", image: traditionImages[18] },
+            { name: "FASOLE CU CÂRNAȚI", desc: "350g", price: "32 RON", image: traditionImages[19] },
+            { name: "MĂMĂLIGĂ CU BRÂNZĂ ȘI SMÂNTÂNĂ", desc: "400g", price: "20 RON", image: traditionImages[20] },
+
         ],
         salat: [
-            { name: "SALATĂ CU TON 300 g", desc: "Salată verde, roșii, ceapă, ton, ardei, lămâie, porumb, maioneză", price: "25 RON" },
-            { name: "SALATĂ CU PUI 300 g", desc: "Salată verde, roșii, ceapă, castraveți, măsline, ou, șuncă, telemea", price: "25 RON" },
-            { name: "SALATĂ BULGĂREASCĂ 300 g", desc: "", price: "22 RON" },
-            { name: "SALATĂ DE FASOLE CU CEAPĂ 150 g", desc: "", price: "14 RON" },
-            { name: "SALATĂ DE ROȘII CU TELEMEA 150 g", desc: "", price: "14 RON" },
-            { name: "SALATĂ DE VARZĂ 150 g", desc: "", price: "8 RON" }
+            { name: "SALATĂ CU TON", desc: "Salată verde, roșii, ceapă, ton, ardei, lămâie, porumb, maioneză 300 g", price: "25 RON", image: salateImages[1] },
+            { name: "SALATĂ CU PUI", desc: "Salată verde, roșii, ceapă, castraveți, măsline, ou, șuncă, telemea 300 g", price: "25 RON", image: salateImages[2] },
+            { name: "SALATĂ BULGĂREASCĂ", desc: "300 g", price: "22 RON", image: salateImages[3] },
+            { name: "SALATĂ DE FASOLE CU CEAPĂ", desc: "150 g", price: "14 RON", image: salateImages[4] },
+            { name: "SALATĂ DE ROȘII CU TELEMEA", desc: "150 g", price: "12 RON", image: salateImages[5] },
+            { name: "SALATĂ DE SFECLĂ CU HREAN", desc: "200 g", price: "10 RON", image: salateImages[6] },
+            { name: "SALATĂ ASORTATĂ", desc: "Varza, rosii, castraveti, ceapă 150 g", price: "9 RON", image: salateImages[7] },
+            { name: "SALATĂ DE VARZĂ", desc: "150 g", price: "8 RON", image: salateImages[8] },
+            { name: "SALATĂ DE ROȘII", desc: "200 g", price: "8 RON", image: salateImages[9] },
+            { name: "SALATĂ DE ROȘII CU CASTRAVEȚI", desc: "200 g", price: "9 RON", image: salateImages[10] },
+            { name: "SALATĂ DE MURĂTURI", desc: "200 g", price: "9 RON", image: salateImages[11] },
         ],
         dessert: [
-            { name: "PAPANAȘI CU SMÂNTÂNĂ ȘI DULCEAȚĂ 200 g", desc: "", price: "32 RON" },
-            { name: "CLĂTITE CU BRÂNZĂ ȘI SMÂNTÂNĂ 200 g", desc: "", price: "26 RON" },
-            { name: "CLĂTITE CU DULCEAȚĂ 200 g", desc: "", price: "19 RON" },
-            { name: "CLĂTITE CU CIOCOLATĂ 200 g", desc: "", price: "19 RON" },
-            { name: "GĂLUȘTE CU PRUNE 200 g", desc: "", price: "20 RON" },
-            { name: "TOCINEI CU SMÂNTÂNĂ 200 g", desc: "", price: "25 RON" }
+            { name: "PAPANAȘI CU SMÂNTÂNĂ ȘI DULCEAȚĂ", desc: "200g", price: "32 RON", image: dessertImages[1] },
+            { name: "CLĂTITE CU BRÂNZĂ ȘI SMÂNTÂNĂ", desc: "200g", price: "26 RON", image: dessertImages[2] },
+            { name: "CHIROSTE CU BRANZA DULCE", desc: "200g", price: "23 RON", image: dessertImages[3] },
+            { name: "CLĂTITE CU DULCEAȚĂ", desc: "200g", price: "19 RON", image: dessertImages[4] },
+            { name: "CLĂTITE CU CIOCOLATĂ", desc: "200g", price: "19 RON", image: dessertImages[5] },
+            { name: "GĂLUȘTE CU PRUNE", desc: "200g", price: "20 RON", image: dessertImages[6] },
+            { name: "TOCINEI CU SMÂNTÂNĂ", desc: "200g", price: "25 RON", image: dessertImages[7] }
         ],
         drinks: {
             soft: [
