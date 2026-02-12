@@ -389,7 +389,7 @@ const menuGrid = document.querySelector('.menu-grid');
 const breakfastImages = {
     1: "images/micdejun.jpg",
     2: "images/papanasi.jpg",
-    3: "",
+    3: "images/omleta.jpg",
     4: "",
     5: "",
     6: "",
