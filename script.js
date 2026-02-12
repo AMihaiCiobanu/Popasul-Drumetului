@@ -1618,7 +1618,10 @@ function renderMenu(category) {
                 beers: 'Bere',
                 soup: 'Ciorbe',
                 extra: 'Extra Savoare',
-                onthego: 'La Pachet'
+                onthego: 'La Pachet',
+                grill: 'Grill',
+                sides: 'Garnituri',
+                sauces: 'Sosuri'
             };
 
             let html = '';
