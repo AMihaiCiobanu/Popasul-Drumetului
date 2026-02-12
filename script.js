@@ -1611,25 +1611,68 @@ function renderMenu(category) {
             menuGrid.classList.add('grouped');
             // langItems is an object with subcategories (e.g., drinks: {soft:[], hot:[], wines:[]})
             const subcategoryLabels = {
-                soft: 'Răcoritoare',
-                hot: 'Băuturi Calde',
-                wines: 'Vinuri',
-                spirits: 'Spirtoase',
-                beers: 'Bere',
-                soup: 'Ciorbe',
-                extra: 'Extra Savoare',
-                onthego: 'La Pachet',
-                grill: 'Grill',
-                sides: 'Garnituri',
-                sauces: 'Sosuri'
+                ro: {
+                    soft: 'Răcoritoare',
+                    hot: 'Băuturi Calde',
+                    wines: 'Vinuri',
+                    spirits: 'Spirtoase',
+                    beers: 'Bere',
+                    soup: 'Ciorbe',
+                    extra: 'Extra Savoare',
+                    onthego: 'La Pachet',
+                    grill: 'Grill',
+                    sides: 'Garnituri',
+                    sauces: 'Sosuri'
+                },
+                en: {
+                    soft: 'Soft Drinks',
+                    hot: 'Hot Drinks',
+                    wines: 'Wines',
+                    spirits: 'Spirits',
+                    beers: 'Beer',
+                    soup: 'Soups',
+                    extra: 'Extra Flavor',
+                    onthego: 'To Go',
+                    grill: 'Grill',
+                    sides: 'Side Dishes',
+                    sauces: 'Sauces'
+                },
+                fr: {
+                    soft: 'Boissons Rafraîchissantes',
+                    hot: 'Boissons Chaudes',
+                    wines: 'Vins',
+                    spirits: 'Spiritueux',
+                    beers: 'Bière',
+                    soup: 'Soupes',
+                    extra: 'Supplément Saveur',
+                    onthego: 'À Emporter',
+                    grill: 'Grill',
+                    sides: 'Accompagnements',
+                    sauces: 'Sauces'
+                },
+                pl: {
+                    soft: 'Napoje Chłodzące',
+                    hot: 'Napoje Gorące',
+                    wines: 'Wina',
+                    spirits: 'Alkohole Mocne',
+                    beers: 'Piwo',
+                    soup: 'Zupy',
+                    extra: 'Dodatkowy Smak',
+                    onthego: 'Na Wynos',
+                    grill: 'Grill',
+                    sides: 'Dodatki',
+                    sauces: 'Sosy'
+                }
             };
+
+            const currentLabels = subcategoryLabels[currentLang] || subcategoryLabels['ro'];
 
             let html = '';
             Object.keys(langItems).forEach(subKey => {
                 const subItems = langItems[subKey] || [];
                 const roSubItems = (roItems && typeof roItems === 'object') ? roItems[subKey] || [] : [];
                 if (subItems.length === 0) return; // skip empty categories
-                const label = subcategoryLabels[subKey] || subKey;
+                const label = currentLabels[subKey] || subKey;
                 html += `<div class="menu-subcategory"><h3 class="subcategory-title">${label}</h3>`;
                 html += `<div class="menu-subitems">${renderItemsArray(subItems, roSubItems)}</div>`;
                 html += `</div>`;
