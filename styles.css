@@ -207,8 +207,14 @@ section.reveal {
   height: 20px;
 }
 
-.lang-switcher:hover .lang-dropdown {
+.lang-switcher.open .lang-dropdown {
   display: flex;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .lang-switcher:hover .lang-dropdown {
+    display: flex;
+  }
 }
 
 .lang-dropdown button {

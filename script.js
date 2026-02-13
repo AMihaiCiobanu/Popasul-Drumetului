@@ -399,7 +399,10 @@ function changeLanguage(lang) {
 
     // Update main button text
     const mainBtn = document.querySelector('.lang-btn');
-    if (mainBtn) mainBtn.textContent = lang.toUpperCase();
+    if (mainBtn) {
+        mainBtn.textContent = lang.toUpperCase();
+        mainBtn.setAttribute('data-lang', lang);
+    }
 
     // Re-render menu with current language
     const activeTab = document.querySelector('.tab-btn.active');
@@ -409,11 +412,50 @@ function changeLanguage(lang) {
 }
 
 // Lang Switcher Events
-document.querySelectorAll('[data-lang]').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-        const lang = e.target.getAttribute('data-lang');
-        changeLanguage(lang);
+const langSwitcher = document.querySelector('.lang-switcher');
+const langBtn = langSwitcher ? langSwitcher.querySelector('.lang-btn') : null;
+const langDropdown = langSwitcher ? langSwitcher.querySelector('.lang-dropdown') : null;
+
+function closeLangDropdown() {
+    if (!langSwitcher || !langBtn) return;
+    langSwitcher.classList.remove('open');
+    langBtn.setAttribute('aria-expanded', 'false');
+}
+
+if (langBtn) {
+    langBtn.setAttribute('type', 'button');
+    langBtn.setAttribute('aria-haspopup', 'true');
+    langBtn.setAttribute('aria-expanded', 'false');
+    langBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const isOpen = langSwitcher.classList.toggle('open');
+        langBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
     });
+}
+
+if (langDropdown) {
+    langDropdown.querySelectorAll('button[data-lang]').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            const lang = btn.getAttribute('data-lang');
+            if (lang) changeLanguage(lang);
+            closeLangDropdown();
+            btn.blur();
+        });
+    });
+}
+
+document.addEventListener('click', (e) => {
+    if (!langSwitcher || langSwitcher.contains(e.target)) return;
+    closeLangDropdown();
+});
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        closeLangDropdown();
+    }
 });
 
 // Menu Tabs
