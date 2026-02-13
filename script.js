@@ -399,7 +399,10 @@ function changeLanguage(lang) {
 
     // Update main button text
     const mainBtn = document.querySelector('.lang-btn');
-    if (mainBtn) mainBtn.textContent = lang.toUpperCase();
+    if (mainBtn) {
+        mainBtn.textContent = lang.toUpperCase();
+        mainBtn.setAttribute('data-lang', lang);
+    }
 
     // Re-render menu with current language
     const activeTab = document.querySelector('.tab-btn.active');
@@ -409,11 +412,50 @@ function changeLanguage(lang) {
 }
 
 // Lang Switcher Events
-document.querySelectorAll('[data-lang]').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-        const lang = e.target.getAttribute('data-lang');
-        changeLanguage(lang);
+const langSwitcher = document.querySelector('.lang-switcher');
+const langBtn = langSwitcher ? langSwitcher.querySelector('.lang-btn') : null;
+const langDropdown = langSwitcher ? langSwitcher.querySelector('.lang-dropdown') : null;
+
+function closeLangDropdown() {
+    if (!langSwitcher || !langBtn) return;
+    langSwitcher.classList.remove('open');
+    langBtn.setAttribute('aria-expanded', 'false');
+}
+
+if (langBtn) {
+    langBtn.setAttribute('type', 'button');
+    langBtn.setAttribute('aria-haspopup', 'true');
+    langBtn.setAttribute('aria-expanded', 'false');
+    langBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const isOpen = langSwitcher.classList.toggle('open');
+        langBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
     });
+}
+
+if (langDropdown) {
+    langDropdown.querySelectorAll('button[data-lang]').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            const lang = btn.getAttribute('data-lang');
+            if (lang) changeLanguage(lang);
+            closeLangDropdown();
+            btn.blur();
+        });
+    });
+}
+
+document.addEventListener('click', (e) => {
+    if (!langSwitcher || langSwitcher.contains(e.target)) return;
+    closeLangDropdown();
+});
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        closeLangDropdown();
+    }
 });
 
 // Menu Tabs
@@ -1584,7 +1626,7 @@ function renderMenu(category) {
                 const translatedName = (item && item.name) ? item.name : roName;
                 const showBoth = currentLang !== 'ro' && translatedName && translatedName !== roName;
                 const nameHtml = showBoth
-                    ? `<h3><span class="menu-name-ro">${roName}</span><br><span class="menu-name-translated">${translatedName}</span></h3>`
+                    ? `<h3>${translatedName} <span class="menu-name-ro">(${roName})</span></h3>`
                     : `<h3>${roName}</h3>`;
 
                 const imageHtml = item.image ? `<img src="${item.image}" alt="${item.name}" class="menu-item-image">` : '';
@@ -1611,25 +1653,68 @@ function renderMenu(category) {
             menuGrid.classList.add('grouped');
             // langItems is an object with subcategories (e.g., drinks: {soft:[], hot:[], wines:[]})
             const subcategoryLabels = {
-                soft: 'Răcoritoare',
-                hot: 'Băuturi Calde',
-                wines: 'Vinuri',
-                spirits: 'Spirtoase',
-                beers: 'Bere',
-                soup: 'Ciorbe',
-                extra: 'Extra Savoare',
-                onthego: 'La Pachet',
-                grill: 'Grill',
-                sides: 'Garnituri',
-                sauces: 'Sosuri'
+                ro: {
+                    soft: 'Răcoritoare',
+                    hot: 'Băuturi Calde',
+                    wines: 'Vinuri',
+                    spirits: 'Spirtoase',
+                    beers: 'Bere',
+                    soup: 'Ciorbe',
+                    extra: 'Extra Savoare',
+                    onthego: 'La Pachet',
+                    grill: 'Grill',
+                    sides: 'Garnituri',
+                    sauces: 'Sosuri'
+                },
+                en: {
+                    soft: 'Soft Drinks',
+                    hot: 'Hot Drinks',
+                    wines: 'Wines',
+                    spirits: 'Spirits',
+                    beers: 'Beer',
+                    soup: 'Soups',
+                    extra: 'Extra Flavor',
+                    onthego: 'To Go',
+                    grill: 'Grill',
+                    sides: 'Side Dishes',
+                    sauces: 'Sauces'
+                },
+                fr: {
+                    soft: 'Boissons Rafraîchissantes',
+                    hot: 'Boissons Chaudes',
+                    wines: 'Vins',
+                    spirits: 'Spiritueux',
+                    beers: 'Bière',
+                    soup: 'Soupes',
+                    extra: 'Supplément Saveur',
+                    onthego: 'À Emporter',
+                    grill: 'Grill',
+                    sides: 'Accompagnements',
+                    sauces: 'Sauces'
+                },
+                pl: {
+                    soft: 'Napoje Chłodzące',
+                    hot: 'Napoje Gorące',
+                    wines: 'Wina',
+                    spirits: 'Alkohole Mocne',
+                    beers: 'Piwo',
+                    soup: 'Zupy',
+                    extra: 'Dodatkowy Smak',
+                    onthego: 'Na Wynos',
+                    grill: 'Grill',
+                    sides: 'Dodatki',
+                    sauces: 'Sosy'
+                }
             };
+
+            const currentLabels = subcategoryLabels[currentLang] || subcategoryLabels['ro'];
 
             let html = '';
             Object.keys(langItems).forEach(subKey => {
                 const subItems = langItems[subKey] || [];
                 const roSubItems = (roItems && typeof roItems === 'object') ? roItems[subKey] || [] : [];
                 if (subItems.length === 0) return; // skip empty categories
-                const label = subcategoryLabels[subKey] || subKey;
+                const label = currentLabels[subKey] || subKey;
                 html += `<div class="menu-subcategory"><h3 class="subcategory-title">${label}</h3>`;
                 html += `<div class="menu-subitems">${renderItemsArray(subItems, roSubItems)}</div>`;
                 html += `</div>`;
