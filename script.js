@@ -459,6 +459,15 @@ function changeLanguage(lang) {
     if (activeTab) {
         renderMenu(activeTab.getAttribute('data-target'));
     }
+
+    // Track language selection in Google Analytics
+    if (typeof gtag !== 'undefined') {
+        gtag('event', 'language_change', {
+            'event_category': 'engagement',
+            'event_label': lang,
+            'language': lang
+        });
+    }
 }
 
 // Lang Switcher Events
@@ -1607,6 +1616,15 @@ function setActiveCategory(category) {
         categorySelect.value = category;
     }
     renderMenu(category);
+
+    // Track menu category selection in Google Analytics
+    if (typeof gtag !== 'undefined') {
+        gtag('event', 'menu_category_view', {
+            'event_category': 'menu',
+            'event_label': category,
+            'menu_category': category
+        });
+    }
 }
 
 tabBtns.forEach(btn => {
