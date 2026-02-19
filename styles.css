@@ -1029,6 +1029,9 @@ section.reveal {
 .legal-page {
   background: var(--wood-medium);
   min-height: 100vh;
+  /* Always visible on load (avoids IntersectionObserver threshold issue on mobile) */
+  opacity: 1;
+  transform: none;
 }
 
 .legal-intro {
