@@ -431,6 +431,112 @@ const translations = {
 
 let currentLang = 'ro';
 
+/**
+ * Converts analytics labels to Romanian regardless of current language
+ * Ensures all analytics tags appear in Romanian for consistent reporting
+ */
+function getRomanianAnalyticsLabel(label) {
+    if (!label) return label;
+    
+    const labelStr = String(label).toLowerCase().trim();
+    
+    // Language code mappings
+    const languageMap = {
+        'ro': 'Română',
+        'en': 'Engleză',
+        'fr': 'Franceză',
+        'pl': 'Poloneză',
+        'ua': 'Ucraineană',
+        'uk': 'Ucraineană'
+    };
+    
+    // Menu category mappings
+    const categoryMap = {
+        'breakfast': 'Mic Dejun',
+        'soup': 'Ciorbe',
+        'fastfood': 'Fast Food',
+        'grill': 'Grătar',
+        'traditional': 'Tradițional',
+        'salat': 'Salate',
+        'dessert': 'Desert',
+        'drinks': 'Băuturi'
+    };
+    
+    // Section name mappings
+    const sectionMap = {
+        'home': 'Acasă',
+        'about': 'Despre Noi',
+        'menu': 'Meniu',
+        'gallery': 'Galerie',
+        'contact': 'Contact',
+        'services': 'Servicii',
+        'payment': 'Plată',
+        'reviews': 'Recenzii'
+    };
+    
+    // Event label mappings
+    const eventLabelMap = {
+        'header_reservation_button': 'Buton Rezervări Header',
+        'view_menu_hero': 'Vezi Meniul Hero',
+        'explore_restaurant_hero': 'Explorează Localul Hero',
+        'google_maps_review': 'Google Maps Recenzie',
+        'google_maps_view': 'Google Maps Vizualizare',
+        'google_maps_loaded': 'Google Maps Încărcat',
+        'recenzie': 'Recenzie',
+        'review': 'Recenzie',
+        '30_seconds': '30 Secunde',
+        'contact_section_visible': 'Secțiune Contact Vizibilă',
+        'cookies_accepted': 'Cookies Acceptate',
+        'cookies_declined': 'Cookies Refuzate'
+    };
+    
+    // Check language codes first
+    if (languageMap[labelStr]) {
+        return languageMap[labelStr];
+    }
+    
+    // Check menu categories
+    if (categoryMap[labelStr]) {
+        return categoryMap[labelStr];
+    }
+    
+    // Check section names
+    if (sectionMap[labelStr]) {
+        return sectionMap[labelStr];
+    }
+    
+    // Check event labels
+    if (eventLabelMap[labelStr]) {
+        return eventLabelMap[labelStr];
+    }
+    
+    // Check if label contains known patterns
+    if (labelStr.includes('google_maps')) {
+        if (labelStr.includes('review') || labelStr.includes('recenzie')) {
+            return 'Google Maps Recenzie';
+        }
+        return 'Google Maps Vizualizare';
+    }
+    
+    // For link text that might be translated, try to detect common patterns
+    const linkTextMap = {
+        'anpc': 'ANPC - Protecția Consumatorului',
+        'sol': 'SOL - Soluționare Online Litigii',
+        'termeni': 'Termeni și Condiții',
+        'politica': 'Politica de Confidențialitate',
+        'cookies': 'Politica de Cookies'
+    };
+    
+    for (const [key, value] of Object.entries(linkTextMap)) {
+        if (labelStr.includes(key)) {
+            return value;
+        }
+    }
+    
+    // Return original label if no mapping found (fallback)
+    return label;
+}
+
 function changeLanguage(lang) {
     currentLang = lang;
     document.querySelectorAll('[data-i18n]').forEach(el => {
@@ -465,7 +571,7 @@ function changeLanguage(lang) {
     if (typeof gtag !== 'undefined') {
         gtag('event', 'language_change', {
             'event_category': 'engagement',
-            'event_label': lang,
+            'event_label': getRomanianAnalyticsLabel(lang),
             'language': lang
         });
     }
@@ -1570,7 +1676,7 @@ function setActiveCategory(category) {
     if (typeof gtag !== 'undefined') {
         gtag('event', 'menu_category_view', {
             'event_category': 'menu',
-            'event_label': category,
+            'event_label': getRomanianAnalyticsLabel(category),
             'menu_category': category
         });
     }
@@ -2103,7 +2209,7 @@ function initializeGATracking() {
         btn.addEventListener('click', function () {
             gtag('event', 'reservation_click', {
                 'event_category': 'engagement',
-                'event_label': 'header_reservation_button',
+                'event_label': getRomanianAnalyticsLabel('header_reservation_button'),
                 'value': 1
             });
         });
@@ -2115,7 +2221,7 @@ function initializeGATracking() {
         menuBtn.addEventListener('click', function () {
             gtag('event', 'cta_click', {
                 'event_category': 'engagement',
-                'event_label': 'view_menu_hero',
+                'event_label': getRomanianAnalyticsLabel('view_menu_hero'),
                 'button_location': 'hero'
             });
         });
@@ -2126,7 +2232,7 @@ function initializeGATracking() {
         galleryBtn.addEventListener('click', function () {
             gtag('event', 'cta_click', {
                 'event_category': 'engagement',
-                'event_label': 'explore_restaurant_hero',
+                'event_label': getRomanianAnalyticsLabel('explore_restaurant_hero'),
                 'button_location': 'hero'
             });
         });
@@ -2137,9 +2243,10 @@ function initializeGATracking() {
         link.addEventListener('click', function () {
             const isReview = this.textContent.toLowerCase().includes('recenzie') ||
                 this.textContent.toLowerCase().includes('review');
+            const labelKey = 'google_maps_' + (isReview ? 'review' : 'view');
             gtag('event', isReview ? 'review_click' : 'map_click', {
                 'event_category': 'engagement',
-                'event_label': 'google_maps_' + (isReview ? 'review' : 'view'),
+                'event_label': getRomanianAnalyticsLabel(labelKey),
                 'value': isReview ? 2 : 1
             });
         });
@@ -2169,7 +2276,7 @@ function initializeGATracking() {
                 !linkUrl.includes('instagram.com')) {
                 gtag('event', 'external_link_click', {
                     'event_category': 'outbound',
-                    'event_label': linkText || linkUrl,
+                    'event_label': getRomanianAnalyticsLabel(linkText || linkUrl),
                     'link_url': linkUrl
                 });
             }
@@ -2182,7 +2289,7 @@ function initializeGATracking() {
             const section = this.getAttribute('href').replace('#', '');
             gtag('event', 'navigation_click', {
                 'event_category': 'navigation',
-                'event_label': section,
+                'event_label': getRomanianAnalyticsLabel(section),
                 'nav_location': 'main_menu'
             });
         });
@@ -2194,7 +2301,7 @@ function initializeGATracking() {
             const linkText = this.textContent.trim();
             gtag('event', 'footer_link_click', {
                 'event_category': 'navigation',
-                'event_label': linkText,
+                'event_label': getRomanianAnalyticsLabel(linkText),
                 'nav_location': 'footer'
             });
         });
@@ -2231,7 +2338,7 @@ function initializeGATracking() {
                 const imgAlt = entry.target.getAttribute('alt') || 'unknown';
                 gtag('event', 'image_view', {
                     'event_category': 'gallery',
-                    'event_label': imgAlt,
+                    'event_label': getRomanianAnalyticsLabel(imgAlt),
                     'image_location': 'gallery_section'
                 });
                 imageObserver.unobserve(entry.target);
@@ -2245,7 +2352,7 @@ function initializeGATracking() {
     setTimeout(() => {
         gtag('event', 'time_on_page', {
             'event_category': 'engagement',
-            'event_label': '30_seconds',
+            'event_label': getRomanianAnalyticsLabel('30_seconds'),
             'value': 30
         });
     }, 30000);
@@ -2258,7 +2365,7 @@ function initializeGATracking() {
                 if (entry.isIntersecting) {
                     gtag('event', 'contact_section_view', {
                         'event_category': 'engagement',
-                        'event_label': 'contact_section_visible'
+                        'event_label': getRomanianAnalyticsLabel('contact_section_visible')
                     });
                     contactObserver.unobserve(entry.target);
                 }
@@ -2273,7 +2380,7 @@ function initializeGATracking() {
         mapIframe.addEventListener('load', function () {
             gtag('event', 'map_load', {
                 'event_category': 'engagement',
-                'event_label': 'google_maps_loaded'
+                'event_label': getRomanianAnalyticsLabel('google_maps_loaded')
             });
         });
     }
@@ -2365,7 +2472,7 @@ function grantConsent() {
         // Track consent acceptance
         gtag('event', 'cookie_consent', {
             'event_category': 'engagement',
-            'event_label': 'cookies_accepted'
+            'event_label': getRomanianAnalyticsLabel('cookies_accepted')
         });
 
         // Update user properties AFTER consent (GDPR compliant)
