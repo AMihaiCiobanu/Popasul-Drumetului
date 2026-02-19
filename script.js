@@ -522,90 +522,38 @@ const tabBtns = document.querySelectorAll('.tab-btn');
 const categorySelect = document.getElementById('menuCategorySelect');
 const menuGrid = document.querySelector('.menu-grid');
 
-const breakfastImages = {
-    1: "images/micdejun.jpg",
-    2: "",
-    3: "",
-    4: "",
-    5: "",
-    6: "",
-    7: "",
-    8: "",
-    9: ""
-};
+/**
+ * Creates an image map object with empty string values
+ * @param {number} count - Number of image slots to create
+ * @returns {Object} Object with numeric keys (1, 2, 3...) and empty string values
+ */
+function createImageMap(count) {
+    const imageMap = {};
+    for (let i = 1; i <= count; i++) {
+        imageMap[i] = "";
+    }
+    return imageMap;
+}
 
-const soupImages = {
-    1: "",
-    2: "",
-    3: "",
-    4: "",
-    5: "",
-    6: "",
-    7: "",
-    8: "",
-    9: "",
-    10: ""
-};
+// Image maps using factory function for consistency
+const breakfastImages = createImageMap(9);
+breakfastImages[1] = "images/micdejun.jpg"; // Preserve existing image
 
-const fastfoodImages = {
-    1: "",
-    2: "",
-    3: "",
-    4: ""
-};
+const soupImages = createImageMap(10);
+
+const fastfoodImages = createImageMap(4);
 
 const grillImages = {
-    grill: { 1: "", 2: "", 3: "", 4: "", 5: "", 6: "", 7: "", 8: "" },
-    sides: { 1: "", 2: "", 3: "", 4: "", 5: "", 6: "", 7: "", 8: "", 9: "" },
-    sauces: { 1: "", 2: "", 3: "", 4: "", 5: "" }
+    grill: createImageMap(8),
+    sides: createImageMap(9),
+    sauces: createImageMap(5)
 };
 
-const traditionImages = {
-    1: "",
-    2: "",
-    3: "",
-    4: "",
-    5: "",
-    6: "",
-    7: "",
-    8: "",
-    9: "",
-    10: "",
-    11: "",
-    12: "",
-    13: "",
-    14: "",
-    15: "",
-    16: "",
-    17: "",
-    18: "",
-    19: "",
-    20: "",
-};
+const traditionImages = createImageMap(20);
 
-const salateImages = {
-    1: "",
-    2: "",
-    3: "",
-    4: "",
-    5: "",
-    6: "",
-    7: "",
-    8: "",
-    9: "",
-    10: "",
-    11: ""
-};
+const salateImages = createImageMap(11);
 
-const dessertImages = {
-    1: "",
-    2: "",
-    3: "",
-    4: "",
-    5: "",
-    6: "",
-    7: ""
-};
+const dessertImages = createImageMap(7);
 
 const menuTranslations = {
     ro: {
@@ -1673,120 +1621,173 @@ lightbox.addEventListener('click', (e) => {
     }
 });
 
-// Close lightbox on Escape key
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-        closeLightbox();
+// Subcategory labels for menu categories (moved outside function for better performance)
+const subcategoryLabels = {
+    ro: {
+        soft: 'Răcoritoare',
+        hot: 'Băuturi Calde',
+        wines: 'Vinuri',
+        spirits: 'Spirtoase',
+        beers: 'Bere',
+        soup: 'Ciorbe',
+        extra: 'Extra Savoare',
+        onthego: 'La Pachet',
+        grill: 'Grill',
+        sides: 'Garnituri',
+        sauces: 'Sosuri'
+    },
+    en: {
+        soft: 'Soft Drinks',
+        hot: 'Hot Drinks',
+        wines: 'Wines',
+        spirits: 'Spirits',
+        beers: 'Beer',
+        soup: 'Soups',
+        extra: 'Extra Flavor',
+        onthego: 'To Go',
+        grill: 'Grill',
+        sides: 'Side Dishes',
+        sauces: 'Sauces'
+    },
+    fr: {
+        soft: 'Boissons Rafraîchissantes',
+        hot: 'Boissons Chaudes',
+        wines: 'Vins',
+        spirits: 'Spiritueux',
+        beers: 'Bière',
+        soup: 'Soupes',
+        extra: 'Supplément Saveur',
+        onthego: 'À Emporter',
+        grill: 'Grill',
+        sides: 'Accompagnements',
+        sauces: 'Sauces'
+    },
+    pl: {
+        soft: 'Napoje Chłodzące',
+        hot: 'Napoje Gorące',
+        wines: 'Wina',
+        spirits: 'Alkohole Mocne',
+        beers: 'Piwo',
+        soup: 'Zupy',
+        extra: 'Dodatkowy Smak',
+        onthego: 'Na Wynos',
+        grill: 'Grill',
+        sides: 'Dodatki',
+        sauces: 'Sosy'
+    },
+    ua: {
+        soft: 'Безалкогольні напої',
+        hot: 'Гарячі напої',
+        wines: 'Вино',
+        spirits: 'Міцні напої',
+        beers: 'Пиво',
+        soup: 'Супи',
+        extra: 'Додатковий смак',
+        onthego: 'На винос',
+        grill: 'Гриль',
+        sides: 'Гарніри',
+        sauces: 'Соуси'
     }
-});
+};
+
+/**
+ * Creates HTML for a single menu item
+ * @param {Object} item - Menu item data
+ * @param {string} roName - Romanian name for the item
+ * @returns {string} HTML string for the menu item
+ */
+function createMenuItemHTML(item, roName) {
+    const translatedName = item && item.name ? item.name : roName;
+    const showBoth = currentLang !== 'ro' && translatedName && translatedName !== roName;
+    const nameHtml = showBoth
+        ? `<h3>${translatedName} <span class="menu-name-ro">(${roName})</span></h3>`
+        : `<h3>${roName}</h3>`;
+    const imageHtml = item.image ? `<img src="${item.image}" alt="${item.name || roName}" class="menu-item-image">` : '';
+
+    return `
+        <div class="menu-item">
+            ${imageHtml}
+            <div class="menu-item-info">
+                ${nameHtml}
+                <p>${item.desc || ''}</p>
+            </div>
+            <span class="menu-price">${item.price || ''}</span>
+        </div>
+    `;
+}
+
+/**
+ * Renders an array of menu items
+ * @param {Array} itemsArray - Array of menu items
+ * @param {Array} roArray - Romanian array for fallback names
+ * @returns {string} HTML string for all menu items
+ */
+function renderItemsArray(itemsArray, roArray) {
+    return (itemsArray || []).map((item, index) => {
+        const roName = (Array.isArray(roArray) && roArray[index] && roArray[index].name) 
+            ? roArray[index].name 
+            : (item.name || '');
+        return createMenuItemHTML(item, roName);
+    }).join('');
+}
+
+/**
+ * Gets subcategory labels for the current language
+ * @returns {Object} Object with subcategory labels
+ */
+function getSubcategoryLabels() {
+    return subcategoryLabels[currentLang] || subcategoryLabels['ro'];
+}
+
+/**
+ * Attaches click handlers to menu item images for lightbox
+ * @param {HTMLElement} container - Container element to search for images
+ */
+function attachImageClickHandlers(container) {
+    container.querySelectorAll('.menu-item-image').forEach(img => {
+        img.addEventListener('click', () => {
+            openLightbox(img.src);
+        });
+    });
+}
+
+// Close lightbox on Escape key using utility function
+setupEscapeKeyHandler(closeLightbox);
 
 function renderMenu(category) {
     if (!menuGrid) return;
     menuGrid.style.opacity = '0';
     setTimeout(() => {
-        const roItems = (menuTranslations['ro'] && menuTranslations['ro'][category]) ? menuTranslations['ro'][category] : [];
-        const langItems = (menuTranslations[currentLang] && menuTranslations[currentLang][category]) ? menuTranslations[currentLang][category] : roItems;
+        const roItems = (menuTranslations['ro'] && menuTranslations['ro'][category]) 
+            ? menuTranslations['ro'][category] 
+            : [];
+        const langItems = (menuTranslations[currentLang] && menuTranslations[currentLang][category]) 
+            ? menuTranslations[currentLang][category] 
+            : roItems;
 
-        // Helper to render an array of items
-        const renderItemsArray = (itemsArray, roArray) => {
-            return (itemsArray || []).map((item, index) => {
-                const roName = (Array.isArray(roArray) && roArray[index] && roArray[index].name) ? roArray[index].name : (item.name || '');
-                const translatedName = (item && item.name) ? item.name : roName;
-                const showBoth = currentLang !== 'ro' && translatedName && translatedName !== roName;
-                const nameHtml = showBoth
-                    ? `<h3>${translatedName} <span class="menu-name-ro">(${roName})</span></h3>`
-                    : `<h3>${roName}</h3>`;
-
-                const imageHtml = item.image ? `<img src="${item.image}" alt="${item.name}" class="menu-item-image">` : '';
-
-                return `
-                <div class="menu-item">
-                    ${imageHtml}
-                    <div class="menu-item-info">
-                        ${nameHtml}
-                        <p>${item.desc}</p>
-                    </div>
-                    <span class="menu-price">${item.price}</span>
-                </div>
-            `;
-            }).join('');
-        };
-
-        // If langItems is an array, render as before
+        // If langItems is an array, render as simple list
         if (Array.isArray(langItems)) {
             menuGrid.classList.remove('grouped');
             menuGrid.innerHTML = renderItemsArray(langItems, roItems);
         } else if (langItems && typeof langItems === 'object') {
-            // mark grid as grouped so CSS can stack subcategories
+            // Mark grid as grouped so CSS can stack subcategories
             menuGrid.classList.add('grouped');
-            // langItems is an object with subcategories (e.g., drinks: {soft:[], hot:[], wines:[]})
-            const subcategoryLabels = {
-                ro: {
-                    soft: 'Răcoritoare',
-                    hot: 'Băuturi Calde',
-                    wines: 'Vinuri',
-                    spirits: 'Spirtoase',
-                    beers: 'Bere',
-                    soup: 'Ciorbe',
-                    extra: 'Extra Savoare',
-                    onthego: 'La Pachet',
-                    grill: 'Grill',
-                    sides: 'Garnituri',
-                    sauces: 'Sosuri'
-                },
-                en: {
-                    soft: 'Soft Drinks',
-                    hot: 'Hot Drinks',
-                    wines: 'Wines',
-                    spirits: 'Spirits',
-                    beers: 'Beer',
-                    soup: 'Soups',
-                    extra: 'Extra Flavor',
-                    onthego: 'To Go',
-                    grill: 'Grill',
-                    sides: 'Side Dishes',
-                    sauces: 'Sauces'
-                },
-                fr: {
-                    soft: 'Boissons Rafraîchissantes',
-                    hot: 'Boissons Chaudes',
-                    wines: 'Vins',
-                    spirits: 'Spiritueux',
-                    beers: 'Bière',
-                    soup: 'Soupes',
-                    extra: 'Supplément Saveur',
-                    onthego: 'À Emporter',
-                    grill: 'Grill',
-                    sides: 'Accompagnements',
-                    sauces: 'Sauces'
-                },
-                pl: {
-                    soft: 'Napoje Chłodzące',
-                    hot: 'Napoje Gorące',
-                    wines: 'Wina',
-                    spirits: 'Alkohole Mocne',
-                    beers: 'Piwo',
-                    soup: 'Zupy',
-                    extra: 'Dodatkowy Smak',
-                    onthego: 'Na Wynos',
-                    grill: 'Grill',
-                    sides: 'Dodatki',
-                    sauces: 'Sosy'
-                }
-            };
-
-            const currentLabels = subcategoryLabels[currentLang] || subcategoryLabels['ro'];
-
+            const currentLabels = getSubcategoryLabels();
             let html = '';
+            
             Object.keys(langItems).forEach(subKey => {
                 const subItems = langItems[subKey] || [];
-                const roSubItems = (roItems && typeof roItems === 'object') ? roItems[subKey] || [] : [];
-                if (subItems.length === 0) return; // skip empty categories
+                const roSubItems = (roItems && typeof roItems === 'object') 
+                    ? roItems[subKey] || [] 
+                    : [];
+                if (subItems.length === 0) return; // Skip empty categories
+                
                 const label = currentLabels[subKey] || subKey;
                 html += `<div class="menu-subcategory"><h3 class="subcategory-title">${label}</h3>`;
                 html += `<div class="menu-subitems">${renderItemsArray(subItems, roSubItems)}</div>`;
                 html += `</div>`;
             });
+            
             menuGrid.innerHTML = html;
         } else {
             menuGrid.classList.remove('grouped');
@@ -1794,17 +1795,266 @@ function renderMenu(category) {
         }
 
         // Attach click handlers to all images
-        menuGrid.querySelectorAll('.menu-item-image').forEach(img => {
-            img.addEventListener('click', (e) => {
-                openLightbox(img.src);
-            });
-        });
+        attachImageClickHandlers(menuGrid);
 
         menuGrid.style.opacity = '1';
     }, 300);
 }
 
+// ============================================
+// Helper Functions for HTML Generation
+// ============================================
+
+/**
+ * Creates a social media link HTML element
+ * @param {string} platform - 'facebook' or 'tiktok'
+ * @param {string} url - The social media URL
+ * @param {string} label - The link label text
+ * @param {string} ariaLabel - Optional aria-label attribute
+ * @returns {string} HTML string for the social link
+ */
+function createSocialLink(platform, url, label, ariaLabel = '') {
+    const svgPaths = {
+        facebook: 'M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.78-3.89 1.1 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0 0 22 12z',
+        tiktok: 'M16.7 5.1a4.5 4.5 0 0 0 2.8 1.2V9a7.4 7.4 0 0 1-4.3-1.4v6.5a5.7 5.7 0 1 1-5.7-5.7c.4 0 .8 0 1.2.1v2.8a2.8 2.8 0 1 0 2.6 2.8V2h2.4a4.5 4.5 0 0 0 1 3.1z'
+    };
+
+    const ariaLabelAttr = ariaLabel ? ` aria-label="${ariaLabel}"` : '';
+    const svgPath = svgPaths[platform] || '';
+
+    return `
+        <a class="social-link" href="${url}" target="_blank" rel="noreferrer"${ariaLabelAttr}>
+            <span class="social-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" role="img" focusable="false">
+                    <path d="${svgPath}" />
+                </svg>
+            </span>
+            <span>${label}</span>
+        </a>
+    `;
+}
+
+/**
+ * Creates a review card HTML element
+ * @param {Object} review - Review data object
+ * @param {string} review.textKey - Translation key for review text (data-i18n)
+ * @param {string} review.text - Default review text
+ * @param {string} review.authorKey - Translation key for author (data-i18n)
+ * @param {string} review.author - Default author name
+ * @param {string} review.source - Review source (e.g., "Google Maps")
+ * @param {number} review.stars - Number of stars (default: 5)
+ * @returns {string} HTML string for the review card
+ */
+function createReviewCard(review) {
+    const stars = '★'.repeat(review.stars || 5);
+    const textAttr = review.textKey ? ` data-i18n="${review.textKey}"` : '';
+    const authorAttr = review.authorKey ? ` data-i18n="${review.authorKey}"` : '';
+
+    return `
+        <div class="review-card">
+            <div class="review-stars">${stars}</div>
+            <p class="review-text"${textAttr}>${review.text}</p>
+            <h4 class="review-author"${authorAttr}>${review.author}</h4>
+            <span class="review-source">${review.source}</span>
+        </div>
+    `;
+}
+
+/**
+ * Creates a feature item HTML element (for services or payments)
+ * @param {Object} item - Feature item data
+ * @param {string} item.icon - Icon emoji or text
+ * @param {string} item.titleKey - Translation key for title (data-i18n)
+ * @param {string} item.title - Default title text
+ * @param {string} item.descKey - Translation key for description (data-i18n)
+ * @param {string} item.desc - Default description text
+ * @param {string} item.className - CSS class name ('service-item' or 'payment-item')
+ * @returns {string} HTML string for the feature item
+ */
+function createFeatureItem(item) {
+    const titleAttr = item.titleKey ? ` data-i18n="${item.titleKey}"` : '';
+    const descAttr = item.descKey ? ` data-i18n="${item.descKey}"` : '';
+    const className = item.className || 'service-item';
+
+    return `
+        <div class="${className}">
+            <span class="${className.replace('-item', '-icon')}">${item.icon}</span>
+            <h3${titleAttr}>${item.title}</h3>
+            <p${descAttr}>${item.desc}</p>
+        </div>
+    `;
+}
+
+/**
+ * Utility function to setup Escape key handler
+ * @param {Function} callback - Function to call when Escape is pressed
+ */
+function setupEscapeKeyHandler(callback) {
+    const handler = (e) => {
+        if (e.key === 'Escape') {
+            callback();
+        }
+    };
+    document.addEventListener('keydown', handler);
+    return () => document.removeEventListener('keydown', handler);
+}
+
+/**
+ * Initialize social media links in about section and footer
+ */
+function initializeSocialLinks() {
+    const socialData = {
+        facebook: {
+            url: 'https://www.facebook.com/p/Popasul-Drumetului-Campulung-Moldovenesc-61556556680444/',
+            label: 'Facebook'
+        },
+        tiktok: {
+            url: 'https://www.tiktok.com/@popasul.drumetului',
+            label: 'TikTok'
+        }
+    };
+
+    // About section
+    const aboutSocial = document.querySelector('.about-social');
+    if (aboutSocial) {
+        aboutSocial.innerHTML = 
+            createSocialLink('facebook', socialData.facebook.url, socialData.facebook.label) +
+            createSocialLink('tiktok', socialData.tiktok.url, socialData.tiktok.label);
+    }
+
+    // Footer section
+    const footerSocial = document.querySelector('.footer-social');
+    if (footerSocial) {
+        footerSocial.innerHTML = 
+            createSocialLink('facebook', socialData.facebook.url, socialData.facebook.label, 'Facebook') +
+            createSocialLink('tiktok', socialData.tiktok.url, socialData.tiktok.label, 'TikTok');
+    }
+}
+
+/**
+ * Initialize review cards dynamically
+ */
+function initializeReviewCards() {
+    const reviewsData = [
+        {
+            textKey: 'reviews.r1_text',
+            text: '"Foarte bună mâncarea la popasul drumețului 🫶🏼 Fetele foarte amabile și drăguțe ! ❤️"',
+            authorKey: 'reviews.r1_author',
+            author: 'Georgiana G.',
+            source: 'Google Maps',
+            stars: 5
+        },
+        {
+            textKey: 'reviews.r2_text',
+            text: '"O experiență foarte plăcută! Am mâncat o ciorbă gustoasă, bine condimentată, și un crispy excelent. Servirea a fost rapidă."',
+            authorKey: 'reviews.r2_author',
+            author: 'Alina P.',
+            source: 'Google Maps',
+            stars: 5
+        },
+        {
+            textKey: 'reviews.r3_text',
+            text: '"Restaurantul este spațios, servirea promptă, mâncare diversificată și preturi decente. Recomand!"',
+            authorKey: 'reviews.r3_author',
+            author: 'Ionut C.',
+            source: 'Google Maps',
+            stars: 5
+        }
+    ];
+
+    const reviewsGrid = document.querySelector('.reviews-grid');
+    if (reviewsGrid) {
+        reviewsGrid.innerHTML = reviewsData.map(review => createReviewCard(review)).join('');
+    }
+}
+
+/**
+ * Initialize service and payment items dynamically
+ */
+function initializeFeatureItems() {
+    const servicesData = [
+        {
+            icon: '♿',
+            titleKey: 'services.s1_title',
+            title: 'Accessible',
+            descKey: 'services.s1_desc',
+            desc: 'Spațiu adaptat pentru persoane cu mobilitate redusă',
+            className: 'service-item'
+        },
+        {
+            icon: '❄️',
+            titleKey: 'services.s2_title',
+            title: 'Aer condiționat',
+            descKey: 'services.s2_desc',
+            desc: 'Temperatura ideală în toate anotimpurile',
+            className: 'service-item'
+        },
+        {
+            icon: '🅿️',
+            titleKey: 'services.s3_title',
+            title: 'Parcare',
+            descKey: 'services.s3_desc',
+            desc: 'Parcare proprie pentru clienți',
+            className: 'service-item'
+        },
+        {
+            icon: '📶',
+            titleKey: 'services.s4_title',
+            title: 'WiFi Gratuit',
+            descKey: 'services.s4_desc',
+            desc: 'Conexiune internet rapidă și sigură',
+            className: 'service-item'
+        }
+    ];
+
+    const paymentsData = [
+        {
+            icon: '💵',
+            titleKey: 'payment.p3_title',
+            title: 'Numerar',
+            descKey: 'payment.p3_desc',
+            desc: 'Acceptă plata numerar',
+            className: 'payment-item'
+        },
+        {
+            icon: '📳',
+            titleKey: 'payment.p1_title',
+            title: 'Contactless',
+            descKey: 'payment.p1_desc',
+            desc: 'Plată contactless sigură',
+            className: 'payment-item'
+        },
+        {
+            icon: '💳',
+            titleKey: 'payment.p2_title',
+            title: 'Card',
+            descKey: 'payment.p2_desc',
+            desc: 'Acceptă cărți Mastercard, Visa',
+            className: 'payment-item'
+        }
+    ];
+
+    const servicesGrid = document.querySelector('.services-grid');
+    if (servicesGrid) {
+        servicesGrid.innerHTML = servicesData.map(item => createFeatureItem(item)).join('');
+    }
+
+    const paymentGrid = document.querySelector('.payment-grid');
+    if (paymentGrid) {
+        paymentGrid.innerHTML = paymentsData.map(item => createFeatureItem(item)).join('');
+    }
+}
+
 // Initial menu render on page load
 window.addEventListener('load', () => {
     setActiveCategory('breakfast');
+    
+    // Initialize social media links
+    initializeSocialLinks();
+    
+    // Initialize review cards
+    initializeReviewCards();
+    
+    // Initialize feature items (services and payments)
+    initializeFeatureItems();
 });
