@@ -20,11 +20,26 @@
 
     <!-- X (Twitter) -->
     <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://popasuldrumetuluibucovina.ro/images/exterior.jpeg" />
+    <meta property="twitter:url" content="https://popasuldrumetuluibucovina.ro/" />
     <meta property="twitter:title" content="Popasul Drumețului | Tradiție și Gust în Câmpulung Moldovenesc" />
     <meta property="twitter:description"
         content="Descoperă tradiția culinară românească într-un ambient modern, unde lemnul și ospitalitatea se întâlnesc." />
     <meta property="twitter:image" content="https://popasuldrumetuluibucovina.ro/images/exterior.jpeg" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://popasuldrumetuluibucovina.ro/" />
+
+    <!-- Keywords -->
+    <meta name="keywords"
+        content="restaurant Câmpulung Moldovenesc, mâncare tradițională românească, bucătărie bucovineană, restaurant Bucovina, popas turistic, cuptor pe lemne, restaurant local, gastronomie românească" />
+
+    <!-- Hreflang Tags for Multilingual SEO -->
+    <link rel="alternate" hreflang="ro" href="https://popasuldrumetuluibucovina.ro/" />
+    <link rel="alternate" hreflang="en" href="https://popasuldrumetuluibucovina.ro/" />
+    <link rel="alternate" hreflang="fr" href="https://popasuldrumetuluibucovina.ro/" />
+    <link rel="alternate" hreflang="pl" href="https://popasuldrumetuluibucovina.ro/" />
+    <link rel="alternate" hreflang="uk" href="https://popasuldrumetuluibucovina.ro/" />
+    <link rel="alternate" hreflang="x-default" href="https://popasuldrumetuluibucovina.ro/" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -35,14 +50,93 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FP0PSW68HZ"></script>
+    <!-- Google tag (gtag.js) - Enhanced Configuration -->
     <script>
+        // Initialize dataLayer before anything else
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
+
+        // Default consent mode (GDPR compliant - wait for user consent)
+        gtag('consent', 'default', {
+            'analytics_storage': 'denied',
+            'ad_storage': 'denied',
+            'wait_for_update': 500
+        });
+
         gtag('js', new Date());
 
-        gtag('config', 'G-FP0PSW68HZ');
+        // Enhanced GA4 Configuration
+        gtag('config', 'G-FP0PSW68HZ', {
+            'cookie_flags': 'SameSite=None;Secure',
+            'anonymize_ip': true,
+            'allow_google_signals': false, // Disable until user consents
+            'allow_ad_personalization_signals': false,
+            'page_title': document.title,
+            'page_location': window.location.href,
+            'send_page_view': true,
+            'cookie_expires': 63072000, // 2 years in seconds
+            'cookie_domain': 'auto',
+            'cookie_prefix': '_ga',
+            'custom_map': {
+                'dimension1': 'user_language',
+                'dimension2': 'page_section'
+            }
+        });
+
+        // Set user properties (visitor_type will be set after consent)
+        gtag('set', 'user_properties', {
+            'preferred_language': document.documentElement.lang || 'ro',
+            'visitor_type': 'unknown' // Will be updated after consent
+        });
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FP0PSW68HZ"></script>
+
+    <!-- Structured Data (JSON-LD) for Local Business/Restaurant -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Restaurant",
+      "name": "Popasul Drumețului",
+      "image": "https://popasuldrumetuluibucovina.ro/images/exterior.jpeg",
+      "@id": "https://popasuldrumetuluibucovina.ro",
+      "url": "https://popasuldrumetuluibucovina.ro",
+      "telephone": "+40754358065",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Calea Bucovinei Nr 335C",
+        "addressLocality": "Câmpulung Moldovenesc",
+        "addressRegion": "Suceava",
+        "postalCode": "725100",
+        "addressCountry": "RO"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 47.5133203,
+        "longitude": 25.6263568
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "opens": "07:30",
+          "closes": "00:30"
+        }
+      ],
+      "servesCuisine": "Romanian",
+      "acceptsReservations": "True",
+      "menu": "https://popasuldrumetuluibucovina.ro/#menu",
+      "email": "euroconceptsrl@yahoo.com",
+      "description": "Descoperă tradiția culinară românească într-un ambient modern, unde lemnul și ospitalitatea se întâlnesc. Restaurant tradițional românesc în inima Bucovinei."
+    }
     </script>
 </head>
 
@@ -330,6 +424,67 @@
             </div>
         </div>
     </footer>
+
+    <!-- Cookie Consent Banner (GDPR Compliant) -->
+    <div id="cookieConsent" class="cookie-consent" style="display: none;">
+        <div class="cookie-consent-content">
+            <div class="cookie-consent-text">
+                <h3 data-i18n="cookies.title">🍪 Acest site folosește cookies</h3>
+                <p data-i18n="cookies.message">
+                    Folosim cookies pentru a îmbunătăți experiența ta pe site și pentru a analiza traficul.
+                    Continuând să navighezi, ești de acord cu utilizarea cookies.
+                    <a href="politica-cookies.html" target="_blank" data-i18n="cookies.learn_more">Aflați mai multe</a>
+                </p>
+            </div>
+            <div class="cookie-consent-buttons">
+                <button id="cookieAccept" class="btn btn-primary" data-i18n="cookies.accept">Accept</button>
+                <button id="cookieDecline" class="btn btn-secondary" data-i18n="cookies.decline">Refuz</button>
+                <button id="cookieSettings" class="btn btn-text" data-i18n="cookies.settings">Setări</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cookie Settings Modal -->
+    <div id="cookieSettingsModal" class="cookie-modal" style="display: none;">
+        <div class="cookie-modal-content">
+            <div class="cookie-modal-header">
+                <h2 data-i18n="cookies.settings_title">Setări Cookie</h2>
+                <button class="cookie-modal-close" id="closeSettings">&times;</button>
+            </div>
+            <div class="cookie-modal-body">
+                <div class="cookie-category">
+                    <div class="cookie-category-header">
+                        <label class="cookie-switch">
+                            <input type="checkbox" id="essentialCookies" checked disabled>
+                            <span class="cookie-slider"></span>
+                        </label>
+                        <div>
+                            <h4 data-i18n="cookies.essential_title">Cookies Esențiale</h4>
+                            <p data-i18n="cookies.essential_desc">Necesare pentru funcționarea corectă a site-ului. Nu
+                                pot fi dezactivate.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="cookie-category">
+                    <div class="cookie-category-header">
+                        <label class="cookie-switch">
+                            <input type="checkbox" id="analyticsCookies">
+                            <span class="cookie-slider"></span>
+                        </label>
+                        <div>
+                            <h4 data-i18n="cookies.analytics_title">Cookies Analitice</h4>
+                            <p data-i18n="cookies.analytics_desc">Ne ajută să înțelegem cum vizitatorii interactionează
+                                cu site-ul nostru (Google Analytics).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="cookie-modal-footer">
+                <button id="saveSettings" class="btn btn-primary" data-i18n="cookies.save">Salvează
+                    Preferințele</button>
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>

@@ -1724,8 +1724,8 @@ function createMenuItemHTML(item, roName) {
  */
 function renderItemsArray(itemsArray, roArray) {
     return (itemsArray || []).map((item, index) => {
-        const roName = (Array.isArray(roArray) && roArray[index] && roArray[index].name) 
-            ? roArray[index].name 
+        const roName = (Array.isArray(roArray) && roArray[index] && roArray[index].name)
+            ? roArray[index].name
             : (item.name || '');
         return createMenuItemHTML(item, roName);
     }).join('');
@@ -1758,11 +1758,11 @@ function renderMenu(category) {
     if (!menuGrid) return;
     menuGrid.style.opacity = '0';
     setTimeout(() => {
-        const roItems = (menuTranslations['ro'] && menuTranslations['ro'][category]) 
-            ? menuTranslations['ro'][category] 
+        const roItems = (menuTranslations['ro'] && menuTranslations['ro'][category])
+            ? menuTranslations['ro'][category]
             : [];
-        const langItems = (menuTranslations[currentLang] && menuTranslations[currentLang][category]) 
-            ? menuTranslations[currentLang][category] 
+        const langItems = (menuTranslations[currentLang] && menuTranslations[currentLang][category])
+            ? menuTranslations[currentLang][category]
             : roItems;
 
         // If langItems is an array, render as simple list
@@ -1774,20 +1774,20 @@ function renderMenu(category) {
             menuGrid.classList.add('grouped');
             const currentLabels = getSubcategoryLabels();
             let html = '';
-            
+
             Object.keys(langItems).forEach(subKey => {
                 const subItems = langItems[subKey] || [];
-                const roSubItems = (roItems && typeof roItems === 'object') 
-                    ? roItems[subKey] || [] 
+                const roSubItems = (roItems && typeof roItems === 'object')
+                    ? roItems[subKey] || []
                     : [];
                 if (subItems.length === 0) return; // Skip empty categories
-                
+
                 const label = currentLabels[subKey] || subKey;
                 html += `<div class="menu-subcategory"><h3 class="subcategory-title">${label}</h3>`;
                 html += `<div class="menu-subitems">${renderItemsArray(subItems, roSubItems)}</div>`;
                 html += `</div>`;
             });
-            
+
             menuGrid.innerHTML = html;
         } else {
             menuGrid.classList.remove('grouped');
@@ -1917,7 +1917,7 @@ function initializeSocialLinks() {
     // About section
     const aboutSocial = document.querySelector('.about-social');
     if (aboutSocial) {
-        aboutSocial.innerHTML = 
+        aboutSocial.innerHTML =
             createSocialLink('facebook', socialData.facebook.url, socialData.facebook.label) +
             createSocialLink('tiktok', socialData.tiktok.url, socialData.tiktok.label);
     }
@@ -1925,7 +1925,7 @@ function initializeSocialLinks() {
     // Footer section
     const footerSocial = document.querySelector('.footer-social');
     if (footerSocial) {
-        footerSocial.innerHTML = 
+        footerSocial.innerHTML =
             createSocialLink('facebook', socialData.facebook.url, socialData.facebook.label, 'Facebook') +
             createSocialLink('tiktok', socialData.tiktok.url, socialData.tiktok.label, 'TikTok');
     }
@@ -2048,13 +2048,536 @@ function initializeFeatureItems() {
 // Initial menu render on page load
 window.addEventListener('load', () => {
     setActiveCategory('breakfast');
-    
+
     // Initialize social media links
     initializeSocialLinks();
-    
+
     // Initialize review cards
     initializeReviewCards();
-    
+
     // Initialize feature items (services and payments)
     initializeFeatureItems();
+
+    // Initialize Google Analytics event tracking
+    initializeGATracking();
 });
+
+// ============================================
+// GOOGLE ANALYTICS EVENT TRACKING
+// ============================================
+
+function initializeGATracking() {
+    if (typeof gtag === 'undefined') return;
+
+    // Track Phone Call Clicks
+    document.querySelectorAll('a[href^="tel:"]').forEach(link => {
+        link.addEventListener('click', function () {
+            const phoneNumber = this.getAttribute('href').replace('tel:', '');
+            gtag('event', 'phone_call_click', {
+                'event_category': 'contact',
+                'event_label': phoneNumber,
+                'value': 1
+            });
+            gtag('event', 'conversion', {
+                'send_to': 'AW-CONVERSION_ID/CONVERSION_LABEL', // Replace with actual conversion ID
+                'event_category': 'lead'
+            });
+        });
+    });
+
+    // Track Email Clicks
+    document.querySelectorAll('a[href^="mailto:"]').forEach(link => {
+        link.addEventListener('click', function () {
+            const email = this.getAttribute('href').replace('mailto:', '');
+            gtag('event', 'email_click', {
+                'event_category': 'contact',
+                'event_label': email,
+                'value': 1
+            });
+        });
+    });
+
+    // Track Reservation Button Clicks
+    document.querySelectorAll('.btn-reserv, [data-i18n="nav.reservations"]').forEach(btn => {
+        btn.addEventListener('click', function () {
+            gtag('event', 'reservation_click', {
+                'event_category': 'engagement',
+                'event_label': 'header_reservation_button',
+                'value': 1
+            });
+        });
+    });
+
+    // Track CTA Button Clicks (Hero Section)
+    const menuBtn = document.querySelector('a[href="#menu"].btn-primary');
+    if (menuBtn) {
+        menuBtn.addEventListener('click', function () {
+            gtag('event', 'cta_click', {
+                'event_category': 'engagement',
+                'event_label': 'view_menu_hero',
+                'button_location': 'hero'
+            });
+        });
+    }
+
+    const galleryBtn = document.querySelector('a[href="#gallery"].btn-secondary');
+    if (galleryBtn) {
+        galleryBtn.addEventListener('click', function () {
+            gtag('event', 'cta_click', {
+                'event_category': 'engagement',
+                'event_label': 'explore_restaurant_hero',
+                'button_location': 'hero'
+            });
+        });
+    }
+
+    // Track Google Review Link Clicks
+    document.querySelectorAll('a[href*="google.com/maps"]').forEach(link => {
+        link.addEventListener('click', function () {
+            const isReview = this.textContent.toLowerCase().includes('recenzie') ||
+                this.textContent.toLowerCase().includes('review');
+            gtag('event', isReview ? 'review_click' : 'map_click', {
+                'event_category': 'engagement',
+                'event_label': 'google_maps_' + (isReview ? 'review' : 'view'),
+                'value': isReview ? 2 : 1
+            });
+        });
+    });
+
+    // Track Social Media Link Clicks
+    document.addEventListener('click', function (e) {
+        const socialLink = e.target.closest('a[href*="facebook.com"], a[href*="instagram.com"], a[href*="tiktok.com"], a[href*="youtube.com"]');
+        if (socialLink) {
+            const platform = socialLink.href.includes('facebook') ? 'facebook' :
+                socialLink.href.includes('instagram') ? 'instagram' :
+                    socialLink.href.includes('tiktok') ? 'tiktok' : 'youtube';
+            gtag('event', 'social_click', {
+                'event_category': 'social_media',
+                'event_label': platform,
+                'link_url': socialLink.href
+            });
+        }
+    });
+
+    // Track External Links (ANPC, SOL, etc.)
+    document.querySelectorAll('a[target="_blank"][rel*="noopener"]').forEach(link => {
+        link.addEventListener('click', function () {
+            const linkText = this.textContent.trim();
+            const linkUrl = this.getAttribute('href');
+            if (!linkUrl.includes('google.com') && !linkUrl.includes('facebook.com') &&
+                !linkUrl.includes('instagram.com')) {
+                gtag('event', 'external_link_click', {
+                    'event_category': 'outbound',
+                    'event_label': linkText || linkUrl,
+                    'link_url': linkUrl
+                });
+            }
+        });
+    });
+
+    // Track Navigation Menu Clicks
+    document.querySelectorAll('.nav-links a[href^="#"]').forEach(link => {
+        link.addEventListener('click', function () {
+            const section = this.getAttribute('href').replace('#', '');
+            gtag('event', 'navigation_click', {
+                'event_category': 'navigation',
+                'event_label': section,
+                'nav_location': 'main_menu'
+            });
+        });
+    });
+
+    // Track Footer Link Clicks
+    document.querySelectorAll('.footer-links a').forEach(link => {
+        link.addEventListener('click', function () {
+            const linkText = this.textContent.trim();
+            gtag('event', 'footer_link_click', {
+                'event_category': 'navigation',
+                'event_label': linkText,
+                'nav_location': 'footer'
+            });
+        });
+    });
+
+    // Track Scroll Depth
+    let scrollDepth = 0;
+    const scrollMilestones = [25, 50, 75, 90, 100];
+    let trackedMilestones = new Set();
+
+    window.addEventListener('scroll', function () {
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight;
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const scrollPercent = (scrollTop / (documentHeight - windowHeight)) * 100;
+
+        scrollMilestones.forEach(milestone => {
+            if (scrollPercent >= milestone && !trackedMilestones.has(milestone)) {
+                trackedMilestones.add(milestone);
+                gtag('event', 'scroll_depth', {
+                    'event_category': 'engagement',
+                    'event_label': milestone + '%',
+                    'value': milestone
+                });
+            }
+        });
+    });
+
+    // Track Gallery Image Views (Intersection Observer)
+    const galleryImages = document.querySelectorAll('.gallery-item img');
+    const imageObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const imgAlt = entry.target.getAttribute('alt') || 'unknown';
+                gtag('event', 'image_view', {
+                    'event_category': 'gallery',
+                    'event_label': imgAlt,
+                    'image_location': 'gallery_section'
+                });
+                imageObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    galleryImages.forEach(img => imageObserver.observe(img));
+
+    // Track Time on Page (send event after 30 seconds)
+    setTimeout(() => {
+        gtag('event', 'time_on_page', {
+            'event_category': 'engagement',
+            'event_label': '30_seconds',
+            'value': 30
+        });
+    }, 30000);
+
+    // Track Contact Section Visibility
+    const contactSection = document.querySelector('#contact');
+    if (contactSection) {
+        const contactObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    gtag('event', 'contact_section_view', {
+                        'event_category': 'engagement',
+                        'event_label': 'contact_section_visible'
+                    });
+                    contactObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+        contactObserver.observe(contactSection);
+    }
+
+    // Track Map Interactions (iframe)
+    const mapIframe = document.querySelector('.contact-map iframe');
+    if (mapIframe) {
+        mapIframe.addEventListener('load', function () {
+            gtag('event', 'map_load', {
+                'event_category': 'engagement',
+                'event_label': 'google_maps_loaded'
+            });
+        });
+    }
+}
+
+// ============================================
+// GDPR COOKIE CONSENT MANAGEMENT
+// ============================================
+// Cookie Expiration Policy:
+// - Accepted: 12 months (GDPR compliant)
+// - Declined: 30 days (re-ask sooner to capture opt-ins)
+// ============================================
+
+// Check cookie consent status on page load
+document.addEventListener('DOMContentLoaded', function () {
+    initCookieConsent();
+});
+
+function initCookieConsent() {
+    const consentStatus = getCookieConsent();
+
+    // If no consent decision has been made, show the banner
+    if (consentStatus === null) {
+        setTimeout(() => {
+            document.getElementById('cookieConsent').style.display = 'block';
+        }, 1000); // Show after 1 second
+    } else if (consentStatus === true) {
+        // User has accepted cookies, grant consent
+        grantConsent();
+    }
+
+    // Setup event listeners
+    setupCookieEventListeners();
+}
+
+function getCookieConsent() {
+    const consent = localStorage.getItem('cookieConsent');
+    const consentDate = localStorage.getItem('cookieConsentDate');
+    const expirationDate = localStorage.getItem('cookieConsentExpiration');
+
+    // If no consent exists, return null
+    if (consent === null || consentDate === null) return null;
+
+    // Check if consent has expired
+    if (expirationDate) {
+        const now = new Date().getTime();
+        const expiration = new Date(expirationDate).getTime();
+
+        if (now > expiration) {
+            // Consent has expired, clear it and return null
+            clearCookieConsent();
+            return null;
+        }
+    }
+
+    return consent === 'accepted';
+}
+
+function setCookieConsent(accepted) {
+    const now = new Date();
+    const expirationDate = new Date();
+
+    // If accepted: 12 months, if declined: 30 days
+    if (accepted) {
+        expirationDate.setMonth(expirationDate.getMonth() + 12); // 12 months
+    } else {
+        expirationDate.setDate(expirationDate.getDate() + 30); // 30 days
+    }
+
+    localStorage.setItem('cookieConsent', accepted ? 'accepted' : 'declined');
+    localStorage.setItem('cookieConsentDate', now.toISOString());
+    localStorage.setItem('cookieConsentExpiration', expirationDate.toISOString());
+}
+
+function clearCookieConsent() {
+    localStorage.removeItem('cookieConsent');
+    localStorage.removeItem('cookieConsentDate');
+    localStorage.removeItem('cookieConsentExpiration');
+    localStorage.removeItem('returning_visitor'); // GDPR: Clear visitor tracking
+}
+
+function grantConsent() {
+    if (typeof gtag !== 'undefined') {
+        gtag('consent', 'update', {
+            'analytics_storage': 'granted',
+            'ad_storage': 'denied' // Keep ad storage denied
+        });
+
+        // Track consent acceptance
+        gtag('event', 'cookie_consent', {
+            'event_category': 'engagement',
+            'event_label': 'cookies_accepted'
+        });
+
+        // Update user properties AFTER consent (GDPR compliant)
+        const isReturning = localStorage.getItem('returning_visitor') ? 'returning' : 'new';
+        gtag('set', 'user_properties', {
+            'visitor_type': isReturning
+        });
+
+        // Mark as returning visitor for next time
+        localStorage.setItem('returning_visitor', 'true');
+    }
+}
+
+function revokeConsent() {
+    if (typeof gtag !== 'undefined') {
+        gtag('consent', 'update', {
+            'analytics_storage': 'denied',
+            'ad_storage': 'denied'
+        });
+    }
+}
+
+function setupCookieEventListeners() {
+    // Accept button
+    const acceptBtn = document.getElementById('cookieAccept');
+    if (acceptBtn) {
+        acceptBtn.addEventListener('click', function () {
+            setCookieConsent(true);
+            grantConsent();
+            document.getElementById('cookieConsent').style.display = 'none';
+
+            // Show thank you message (optional)
+            showCookieNotification('Mulțumim! Preferințele tale au fost salvate.', 'success');
+        });
+    }
+
+    // Decline button
+    const declineBtn = document.getElementById('cookieDecline');
+    if (declineBtn) {
+        declineBtn.addEventListener('click', function () {
+            setCookieConsent(false);
+            revokeConsent();
+            document.getElementById('cookieConsent').style.display = 'none';
+
+            showCookieNotification('Preferințele tale au fost salvate. Funcționalitatea analytics nu va fi activată.', 'info');
+        });
+    }
+
+    // Settings button
+    const settingsBtn = document.getElementById('cookieSettings');
+    if (settingsBtn) {
+        settingsBtn.addEventListener('click', function () {
+            document.getElementById('cookieConsent').style.display = 'none';
+            document.getElementById('cookieSettingsModal').style.display = 'flex';
+
+            // Set current preferences
+            const consent = getCookieConsent();
+            const analyticsCheckbox = document.getElementById('analyticsCookies');
+            if (analyticsCheckbox) {
+                analyticsCheckbox.checked = consent === true;
+            }
+        });
+    }
+
+    // Close settings modal
+    const closeSettings = document.getElementById('closeSettings');
+    if (closeSettings) {
+        closeSettings.addEventListener('click', function () {
+            document.getElementById('cookieSettingsModal').style.display = 'none';
+        });
+    }
+
+    // Save settings button
+    const saveSettings = document.getElementById('saveSettings');
+    if (saveSettings) {
+        saveSettings.addEventListener('click', function () {
+            const analyticsEnabled = document.getElementById('analyticsCookies').checked;
+
+            setCookieConsent(analyticsEnabled);
+
+            if (analyticsEnabled) {
+                grantConsent();
+            } else {
+                revokeConsent();
+            }
+
+            document.getElementById('cookieSettingsModal').style.display = 'none';
+            showCookieNotification('Preferințele tale au fost salvate cu succes!', 'success');
+        });
+    }
+
+    // Close modal when clicking outside
+    const modal = document.getElementById('cookieSettingsModal');
+    if (modal) {
+        modal.addEventListener('click', function (e) {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    }
+}
+
+// Show notification toast
+function showCookieNotification(message, type = 'info') {
+    const notification = document.createElement('div');
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: ${type === 'success' ? '#4CAF50' : '#2196F3'};
+        color: white;
+        padding: 1rem 1.5rem;
+        border-radius: 5px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        z-index: 10002;
+        max-width: 300px;
+        animation: slideInRight 0.3s ease-out;
+    `;
+    notification.textContent = message;
+    document.body.appendChild(notification);
+
+    setTimeout(() => {
+        notification.style.animation = 'fadeOut 0.3s ease-out';
+        setTimeout(() => {
+            notification.remove();
+        }, 300);
+    }, 3000);
+}
+
+// Add translations for cookie consent
+if (typeof translations !== 'undefined') {
+    // Romanian
+    translations.ro = translations.ro || {};
+    Object.assign(translations.ro, {
+        "cookies.title": "🍪 Acest site folosește cookies",
+        "cookies.message": "Folosim cookies pentru a îmbunătăți experiența ta pe site și pentru a analiza traficul. Continuând să navighezi, ești de acord cu utilizarea cookies.",
+        "cookies.learn_more": "Aflați mai multe",
+        "cookies.accept": "Accept",
+        "cookies.decline": "Refuz",
+        "cookies.settings": "Setări",
+        "cookies.settings_title": "Setări Cookie",
+        "cookies.essential_title": "Cookies Esențiale",
+        "cookies.essential_desc": "Necesare pentru funcționarea corectă a site-ului. Nu pot fi dezactivate.",
+        "cookies.analytics_title": "Cookies Analitice",
+        "cookies.analytics_desc": "Ne ajută să înțelegem cum vizitatorii interactionează cu site-ul nostru (Google Analytics).",
+        "cookies.save": "Salvează Preferințele"
+    });
+
+    // English
+    translations.en = translations.en || {};
+    Object.assign(translations.en, {
+        "cookies.title": "🍪 This site uses cookies",
+        "cookies.message": "We use cookies to improve your experience and analyze traffic. By continuing to browse, you agree to the use of cookies.",
+        "cookies.learn_more": "Learn more",
+        "cookies.accept": "Accept",
+        "cookies.decline": "Decline",
+        "cookies.settings": "Settings",
+        "cookies.settings_title": "Cookie Settings",
+        "cookies.essential_title": "Essential Cookies",
+        "cookies.essential_desc": "Required for proper site functionality. Cannot be disabled.",
+        "cookies.analytics_title": "Analytics Cookies",
+        "cookies.analytics_desc": "Help us understand how visitors interact with our website (Google Analytics).",
+        "cookies.save": "Save Preferences"
+    });
+
+    // French
+    translations.fr = translations.fr || {};
+    Object.assign(translations.fr, {
+        "cookies.title": "🍪 Ce site utilise des cookies",
+        "cookies.message": "Nous utilisons des cookies pour améliorer votre expérience et analyser le trafic. En continuant à naviguer, vous acceptez l'utilisation de cookies.",
+        "cookies.learn_more": "En savoir plus",
+        "cookies.accept": "Accepter",
+        "cookies.decline": "Refuser",
+        "cookies.settings": "Paramètres",
+        "cookies.settings_title": "Paramètres des Cookies",
+        "cookies.essential_title": "Cookies Essentiels",
+        "cookies.essential_desc": "Nécessaires au bon fonctionnement du site. Ne peuvent pas être désactivés.",
+        "cookies.analytics_title": "Cookies Analytiques",
+        "cookies.analytics_desc": "Nous aident à comprendre comment les visiteurs interagissent avec notre site (Google Analytics).",
+        "cookies.save": "Enregistrer les Préférences"
+    });
+
+    // Polish
+    translations.pl = translations.pl || {};
+    Object.assign(translations.pl, {
+        "cookies.title": "🍪 Ta strona używa plików cookie",
+        "cookies.message": "Używamy plików cookie, aby poprawić Twoje wrażenia i analizować ruch. Kontynuując przeglądanie, zgadzasz się na użycie plików cookie.",
+        "cookies.learn_more": "Dowiedz się więcej",
+        "cookies.accept": "Akceptuj",
+        "cookies.decline": "Odrzuć",
+        "cookies.settings": "Ustawienia",
+        "cookies.settings_title": "Ustawienia Cookie",
+        "cookies.essential_title": "Niezbędne pliki cookie",
+        "cookies.essential_desc": "Wymagane do prawidłowego działania witryny. Nie można ich wyłączyć.",
+        "cookies.analytics_title": "Pliki cookie analityczne",
+        "cookies.analytics_desc": "Pomagają nam zrozumieć, jak odwiedzający wchodzą w interakcję z naszą witryną (Google Analytics).",
+        "cookies.save": "Zapisz preferencje"
+    });
+
+    // Ukrainian
+    translations.ua = translations.ua || {};
+    Object.assign(translations.ua, {
+        "cookies.title": "🍪 Цей сайт використовує cookies",
+        "cookies.message": "Ми використовуємо файли cookie для покращення вашого досвіду та аналізу трафіку. Продовжуючи перегляд, ви погоджуєтеся на використання файлів cookie.",
+        "cookies.learn_more": "Дізнатися більше",
+        "cookies.accept": "Прийняти",
+        "cookies.decline": "Відхилити",
+        "cookies.settings": "Налаштування",
+        "cookies.settings_title": "Налаштування Cookie",
+        "cookies.essential_title": "Основні файли cookie",
+        "cookies.essential_desc": "Необхідні для правильної роботи сайту. Не можуть бути вимкнені.",
+        "cookies.analytics_title": "Аналітичні файли cookie",
+        "cookies.analytics_desc": "Допомагають нам зрозуміти, як відвідувачі взаємодіють з нашим сайтом (Google Analytics).",
+        "cookies.save": "Зберегти налаштування"
+    });
+}
