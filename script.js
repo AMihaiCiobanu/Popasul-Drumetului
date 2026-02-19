@@ -1,4 +1,39 @@
 // @ts-nocheck
+
+// Inject shared header on legal pages.
+// Script is loaded at the end of <body>, so the DOM is fully parsed when this runs.
+(function () {
+    const placeholder = document.getElementById('legal-header');
+    if (!placeholder) return;
+    placeholder.outerHTML = `
+    <header class="header scrolled">
+        <nav class="nav container">
+            <div class="logo">
+                <a href="index.html" class="logo-text">Popasul <span>Drumețului</span></a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html#about" data-i18n="nav.about">Despre Noi</a></li>
+                <li><a href="index.html#menu" data-i18n="nav.menu">Meniu</a></li>
+                <li><a href="index.html#gallery" data-i18n="nav.gallery">Galerie</a></li>
+                <li><a href="index.html#contact" data-i18n="nav.contact">Contact</a></li>
+            </ul>
+            <div class="header-actions">
+                <div class="lang-switcher">
+                    <button class="lang-btn active" data-lang="ro">RO</button>
+                    <div class="lang-dropdown">
+                        <button data-lang="ro">RO</button>
+                        <button data-lang="en">EN</button>
+                        <button data-lang="fr">FR</button>
+                        <button data-lang="pl">PL</button>
+                        <button data-lang="ua">UA</button>
+                    </div>
+                </div>
+                <a href="tel:+40754358065" class="btn-reserv" data-i18n="nav.reservations">Rezervări</a>
+            </div>
+        </nav>
+    </header>`;
+})();
+
 window.addEventListener('scroll', () => {
     const header = document.querySelector('.header');
     if (window.scrollY > 50) {
@@ -1641,6 +1676,74 @@ if (categorySelect) {
     });
 }
 
+const subcategoryLabels = {
+    ro: {
+        soft: 'Răcoritoare',
+        hot: 'Băuturi Calde',
+        wines: 'Vinuri',
+        spirits: 'Spirtoase',
+        beers: 'Bere',
+        soup: 'Ciorbe',
+        extra: 'Extra Savoare',
+        onthego: 'La Pachet',
+        grill: 'Grill',
+        sides: 'Garnituri',
+        sauces: 'Sosuri'
+    },
+    en: {
+        soft: 'Soft Drinks',
+        hot: 'Hot Drinks',
+        wines: 'Wines',
+        spirits: 'Spirits',
+        beers: 'Beer',
+        soup: 'Soups',
+        extra: 'Extra Flavor',
+        onthego: 'To Go',
+        grill: 'Grill',
+        sides: 'Side Dishes',
+        sauces: 'Sauces'
+    },
+    fr: {
+        soft: 'Boissons Rafraîchissantes',
+        hot: 'Boissons Chaudes',
+        wines: 'Vins',
+        spirits: 'Spiritueux',
+        beers: 'Bière',
+        soup: 'Soupes',
+        extra: 'Supplément Saveur',
+        onthego: 'À Emporter',
+        grill: 'Grill',
+        sides: 'Accompagnements',
+        sauces: 'Sauces'
+    },
+    pl: {
+        soft: 'Napoje Chłodzące',
+        hot: 'Napoje Gorące',
+        wines: 'Wina',
+        spirits: 'Alkohole Mocne',
+        beers: 'Piwo',
+        soup: 'Zupy',
+        extra: 'Dodatkowy Smak',
+        onthego: 'Na Wynos',
+        grill: 'Grill',
+        sides: 'Dodatki',
+        sauces: 'Sosy'
+    },
+    ua: {
+        soft: 'Безалкогольні напої',
+        hot: 'Гарячі напої',
+        wines: 'Вина',
+        spirits: 'Міцні напої',
+        beers: 'Пиво',
+        soup: 'Супи',
+        extra: 'Додатково',
+        onthego: 'На винос',
+        grill: 'Гриль',
+        sides: 'Гарніри',
+        sauces: 'Соуси'
+    }
+};
+
 // Lightbox functionality
 const lightbox = document.createElement('div');
 lightbox.className = 'lightbox';
@@ -1720,60 +1823,6 @@ function renderMenu(category) {
             // mark grid as grouped so CSS can stack subcategories
             menuGrid.classList.add('grouped');
             // langItems is an object with subcategories (e.g., drinks: {soft:[], hot:[], wines:[]})
-            const subcategoryLabels = {
-                ro: {
-                    soft: 'Răcoritoare',
-                    hot: 'Băuturi Calde',
-                    wines: 'Vinuri',
-                    spirits: 'Spirtoase',
-                    beers: 'Bere',
-                    soup: 'Ciorbe',
-                    extra: 'Extra Savoare',
-                    onthego: 'La Pachet',
-                    grill: 'Grill',
-                    sides: 'Garnituri',
-                    sauces: 'Sosuri'
-                },
-                en: {
-                    soft: 'Soft Drinks',
-                    hot: 'Hot Drinks',
-                    wines: 'Wines',
-                    spirits: 'Spirits',
-                    beers: 'Beer',
-                    soup: 'Soups',
-                    extra: 'Extra Flavor',
-                    onthego: 'To Go',
-                    grill: 'Grill',
-                    sides: 'Side Dishes',
-                    sauces: 'Sauces'
-                },
-                fr: {
-                    soft: 'Boissons Rafraîchissantes',
-                    hot: 'Boissons Chaudes',
-                    wines: 'Vins',
-                    spirits: 'Spiritueux',
-                    beers: 'Bière',
-                    soup: 'Soupes',
-                    extra: 'Supplément Saveur',
-                    onthego: 'À Emporter',
-                    grill: 'Grill',
-                    sides: 'Accompagnements',
-                    sauces: 'Sauces'
-                },
-                pl: {
-                    soft: 'Napoje Chłodzące',
-                    hot: 'Napoje Gorące',
-                    wines: 'Wina',
-                    spirits: 'Alkohole Mocne',
-                    beers: 'Piwo',
-                    soup: 'Zupy',
-                    extra: 'Dodatkowy Smak',
-                    onthego: 'Na Wynos',
-                    grill: 'Grill',
-                    sides: 'Dodatki',
-                    sauces: 'Sosy'
-                }
-            };
 
             const currentLabels = subcategoryLabels[currentLang] || subcategoryLabels['ro'];
 
