@@ -518,16 +518,18 @@ function getRomanianAnalyticsLabel(label) {
         return 'Google Maps Vizualizare';
     }
     
-    // For link text that might be translated, try to detect common patterns
-    const linkTextMap = {
-        'anpc': 'ANPC - Protecția Consumatorului',
-        'sol': 'SOL - Soluționare Online Litigii',
-        'termeni': 'Termeni și Condiții',
-        'politica': 'Politica de Confidențialitate',
-        'cookies': 'Politica de Cookies'
-    };
+    // For link text that might be translated, try to detect common patterns.
+    // Use array order so more specific patterns are checked first (e.g. "cookies"
+    // before "politica" so "Politica de Cookies" maps correctly, not to Confidențialitate).
+    const linkTextMap = [
+        ['anpc', 'ANPC - Protecția Consumatorului'],
+        ['sol', 'SOL - Soluționare Online Litigii'],
+        ['termeni', 'Termeni și Condiții'],
+        ['cookies', 'Politica de Cookies'],
+        ['politica', 'Politica de Confidențialitate']
+    ];
     
-    for (const [key, value] of Object.entries(linkTextMap)) {
+    for (const [key, value] of linkTextMap) {
         if (labelStr.includes(key)) {
             return value;
         }
