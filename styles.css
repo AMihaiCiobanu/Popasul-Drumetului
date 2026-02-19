@@ -1229,6 +1229,77 @@ section.reveal {
   .cookie-table td {
     padding: 0.5rem;
   }
+  /* Optimize review cards for mobile */
+  .reviews-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+  }
+  .review-card {
+    padding: 1.5rem;
+    border-radius: 10px;
+  }
+  .review-stars {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+  .review-text {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 1.25rem;
+  }
+  .review-author {
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+  }
+  .review-source {
+    font-size: 0.75rem;
+  }
+  .reviews-cta {
+    margin-top: 1.5rem;
+  }
+  /* Optimize payment cards for mobile */
+  .payment-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  .payment-item {
+    padding: 1.25rem;
+    border-radius: 8px;
+  }
+  .payment-icon {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+  }
+  .payment-item h3 {
+    font-size: 1rem;
+    margin-bottom: 0.4rem;
+  }
+  .payment-item p {
+    font-size: 0.85rem;
+  }
+  /* Optimize service cards for mobile */
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  .service-item {
+    padding: 1.25rem;
+    border-radius: 8px;
+  }
+  .service-icon {
+    font-size: 2.25rem;
+    margin-bottom: 0.75rem;
+  }
+  .service-item h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.4rem;
+  }
+  .service-item p {
+    font-size: 0.85rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -1247,6 +1318,73 @@ section.reveal {
   }
   .subcategory-title {
     font-size: 1rem;
+  }
+  /* Further optimize review cards for small mobile */
+  .reviews-grid {
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  .review-card {
+    padding: 1.25rem;
+    border-radius: 8px;
+  }
+  .review-stars {
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+  }
+  .review-text {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin-bottom: 1rem;
+  }
+  .review-author {
+    font-size: 0.95rem;
+    margin-bottom: 0.2rem;
+  }
+  .review-source {
+    font-size: 0.7rem;
+  }
+  /* Further optimize payment cards for small mobile */
+  .payment-grid {
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+  }
+  .payment-item {
+    padding: 1rem;
+    border-radius: 6px;
+  }
+  .payment-icon {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+  }
+  .payment-item h3 {
+    font-size: 0.95rem;
+    margin-bottom: 0.3rem;
+  }
+  .payment-item p {
+    font-size: 0.8rem;
+    line-height: 1.3;
+  }
+  /* Further optimize service cards for small mobile */
+  .services-grid {
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+  }
+  .service-item {
+    padding: 1rem;
+    border-radius: 6px;
+  }
+  .service-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+  .service-item h3 {
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+  }
+  .service-item p {
+    font-size: 0.8rem;
+    line-height: 1.3;
   }
 }
 
