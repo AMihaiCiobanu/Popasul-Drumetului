@@ -15,5 +15,8 @@ Allow: /images/
 # Sitemap location
 Sitemap: https://popasuldrumetuluibucovina.ro/sitemap.xml
 
+# Preferred domain (Yandex)
+Host: popasuldrumetuluibucovina.ro
+
 # Crawl-delay for respectful crawling (optional)
 # Crawl-delay: 1
