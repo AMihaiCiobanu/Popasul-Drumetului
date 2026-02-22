@@ -64,10 +64,11 @@ body {
 
 .section-title {
   font-family: var(--font-serif);
-  font-size: 2.5rem;
-  line-height: 50px;
+  font-size: clamp(1.9rem, 4vw, 2.75rem);
+  line-height: 1.25;
   margin-bottom: 2rem;
   color: var(--cream);
+  letter-spacing: -0.02em;
 }
 
 .section-title span {
@@ -76,10 +77,10 @@ body {
 }
 
 section {
-  padding: 4rem 0;
+  padding: clamp(3rem, 6vw, 5rem) 0;
   opacity: 0;
   transform: translateY(30px);
-  transition: all 0.8s ease-out;
+  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 section.reveal {
@@ -154,20 +155,37 @@ section.reveal {
   font-size: 0.95rem;
   letter-spacing: 1px;
   transition: var(--transition);
+  position: relative;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--gold);
+  transition: var(--transition);
 }
 
 .nav-links a:hover {
   color: var(--gold);
 }
 
+.nav-links a:hover::after {
+  width: 100%;
+}
+
 .btn-reserv {
   background: transparent;
   border: 1px solid var(--gold);
   color: var(--gold);
-  padding: 4px 6px;
+  padding: 0.5rem 1rem;
   text-decoration: none;
-  font-size: 12px;
+  font-size: 0.85rem;
   font-weight: 600;
+  border-radius: 8px;
   cursor: pointer;
   transition: var(--transition);
 }
@@ -274,11 +292,9 @@ section.reveal {
   left: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(
-    circle at center,
-    transparent 0%,
-    rgba(0, 0, 0, 0.6) 100%
-  );
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 40%, transparent 0%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.7) 100%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.25) 0%, transparent 40%, rgba(0, 0, 0, 0.5) 100%);
 }
 
 .hero-content {
@@ -289,6 +305,7 @@ section.reveal {
   margin: 0 auto;
 }
 
+
 .hero-subtitle {
   color: var(--gold);
   text-transform: uppercase;
@@ -296,6 +313,7 @@ section.reveal {
   font-size: 0.9rem;
   margin-bottom: 1rem;
   display: block;
+  animation: heroFadeUp 0.8s ease-out 0.2s both;
 }
 
 .hero-title {
@@ -304,6 +322,7 @@ section.reveal {
   line-height: 1.1;
   margin-bottom: 1.5rem;
   color: var(--cream);
+  animation: heroFadeUp 0.8s ease-out 0.35s both;
 }
 
 .hero-title span {
@@ -315,6 +334,22 @@ section.reveal {
   font-size: 1.1rem;
   margin-bottom: 2.5rem;
   color: rgba(255, 245, 225, 0.8);
+  animation: heroFadeUp 0.8s ease-out 0.5s both;
+}
+
+.hero-btns {
+  animation: heroFadeUp 0.8s ease-out 0.65s both;
+}
+
+@keyframes heroFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .btn {
@@ -323,6 +358,7 @@ section.reveal {
   text-decoration: none;
   font-weight: 600;
   letter-spacing: 1px;
+  border-radius: 8px;
   transition: var(--transition);
   margin: 0.5rem;
 }
@@ -336,6 +372,11 @@ section.reveal {
   background: var(--gold-vibrant);
   transform: translateY(-3px);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
 }
 
 .btn-secondary {
@@ -355,8 +396,9 @@ section.reveal {
 
 .about-img img {
   width: 100%;
-  border-radius: 10px;
-  box-shadow: 20px 20px 0 var(--gold);
+  border-radius: 12px;
+  border: 2px solid rgba(212, 175, 55, 0.2);
+  box-shadow: 16px 16px 0 var(--gold), 0 8px 24px rgba(0, 0, 0, 0.2);
 }
 
 .about-text p {
@@ -446,7 +488,7 @@ section.reveal {
 
 .section-header {
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
 }
 
 .menu-tabs {
@@ -658,19 +700,27 @@ section.reveal {
 
 .gallery-item {
   overflow: hidden;
-  border-radius: 8px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 245, 225, 0.06);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  transition: var(--transition);
 }
 
 .gallery-item img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: var(--transition);
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), filter 0.4s ease;
+}
+
+.gallery-item:hover {
+  border-color: rgba(212, 175, 55, 0.25);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(212, 175, 55, 0.1);
 }
 
 .gallery-item:hover img {
-  transform: scale(1.1);
-  filter: brightness(0.7);
+  transform: scale(1.08);
+  filter: brightness(0.85);
 }
 
 .gallery-item.large {
@@ -859,9 +909,9 @@ section.reveal {
 
 .contact-map {
   border: 1px solid var(--glass-border);
-  border-radius: 10px;
+  border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 245, 225, 0.05);
 }
 
 /* Footer */
@@ -917,6 +967,9 @@ section.reveal {
   font-size: 1.1rem;
   color: var(--gold);
   margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid rgba(212, 175, 55, 0.35);
+  display: inline-block;
 }
 
 .footer-links {
@@ -1519,11 +1572,11 @@ section.reveal {
   color: var(--gold);
   font-size: 1.2rem;
   margin-bottom: 0.5rem;
-  font-family: var(--font-primary);
+  font-family: var(--font-serif);
 }
 
 .cookie-consent-text p {
-  color: var(--light);
+  color: var(--text-light);
   font-size: 0.95rem;
   line-height: 1.5;
   margin: 0;
@@ -1562,19 +1615,19 @@ section.reveal {
 }
 
 .cookie-consent-buttons .btn-primary:hover {
-  background: #fff;
+  background: var(--cream);
   transform: translateY(-2px);
 }
 
 .cookie-consent-buttons .btn-secondary {
   background: transparent;
-  color: var(--light);
-  border: 2px solid var(--light);
+  color: var(--text-light);
+  border: 2px solid var(--cream);
 }
 
 .cookie-consent-buttons .btn-secondary:hover {
-  background: var(--light);
-  color: var(--dark);
+  background: var(--cream);
+  color: var(--wood-dark);
 }
 
 .cookie-consent-buttons .btn-text {
@@ -1615,7 +1668,7 @@ section.reveal {
 }
 
 .cookie-modal-content {
-  background: var(--dark);
+  background: var(--wood-dark);
   border: 2px solid var(--gold);
   border-radius: 10px;
   max-width: 600px;
@@ -1649,13 +1702,13 @@ section.reveal {
   color: var(--gold);
   font-size: 1.5rem;
   margin: 0;
-  font-family: var(--font-primary);
+  font-family: var(--font-serif);
 }
 
 .cookie-modal-close {
   background: transparent;
   border: none;
-  color: var(--light);
+  color: var(--text-light);
   font-size: 2rem;
   cursor: pointer;
   transition: var(--transition);
@@ -1697,7 +1750,7 @@ section.reveal {
 }
 
 .cookie-category p {
-  color: var(--light);
+  color: var(--text-light);
   font-size: 0.9rem;
   line-height: 1.5;
   margin: 0;
@@ -1766,15 +1819,15 @@ section.reveal {
   font-size: 1rem;
   cursor: pointer;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   background: var(--gold);
-  color: var(--dark);
+  color: var(--wood-dark);
   font-weight: 600;
   transition: var(--transition);
 }
 
 .cookie-modal-footer .btn:hover {
-  background: #fff;
+  background: var(--cream);
   transform: translateY(-2px);
 }
 
