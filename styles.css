@@ -1050,6 +1050,35 @@ section.reveal {
   margin: 0;
 }
 
+.footer-madeby {
+  flex-basis: 100%;
+  text-align: center;
+  margin: 0;
+}
+
+.footer-madeby a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: rgba(255, 245, 225, 0.6);
+  text-decoration: none;
+  opacity: 0.9;
+  transition: opacity 0.2s ease;
+}
+
+.footer-madeby a:hover {
+  opacity: 1;
+}
+
+.footer-madeby .madeby-label {
+  font-size: 0.85rem;
+}
+
+.footer-madeby svg {
+  height: 24px;
+  width: auto;
+}
+
 .social-link {
   display: flex;
   align-items: center;
