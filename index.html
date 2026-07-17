@@ -11,20 +11,24 @@
         content="Popasul Drumețului - Restaurant tradițional românesc în Câmpulung Moldovenesc, Bucovina. Mâncare tradițională românească, bucătărie bucovineană, cuptor pe lemne. Restaurant local cu tradiție în inima Bucovinei. Rezervări: +40 754 358 065" />
 
     <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content="restaurant.restaurant" />
+    <meta property="og:site_name" content="Popasul Drumețului" />
+    <meta property="og:locale" content="ro_RO" />
     <meta property="og:url" content="https://popasuldrumetuluibucovina.ro/" />
     <meta property="og:title" content="Popasul Drumețului | Tradiție și Gust în Câmpulung Moldovenesc" />
     <meta property="og:description"
         content="Popasul Drumețului - Restaurant tradițional românesc în Câmpulung Moldovenesc, Bucovina. Mâncare tradițională românească, bucătărie bucovineană, cuptor pe lemne. Restaurant local cu tradiție în inima Bucovinei. Rezervări: +40 754 358 065" />
     <meta property="og:image" content="https://popasuldrumetuluibucovina.ro/images/exterior.jpeg" />
+    <meta property="og:image:width" content="969" />
+    <meta property="og:image:height" content="1200" />
+    <meta property="og:image:alt" content="Popasul Drumețului - exteriorul restaurantului din Câmpulung Moldovenesc" />
 
     <!-- X (Twitter) -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://popasuldrumetuluibucovina.ro/" />
-    <meta property="twitter:title" content="Popasul Drumețului | Tradiție și Gust în Câmpulung Moldovenesc" />
-    <meta property="twitter:description"
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Popasul Drumețului | Tradiție și Gust în Câmpulung Moldovenesc" />
+    <meta name="twitter:description"
         content="Popasul Drumețului - Restaurant tradițional românesc în Câmpulung Moldovenesc, Bucovina. Mâncare tradițională românească, bucătărie bucovineană, cuptor pe lemne. Restaurant local cu tradiție în inima Bucovinei. Rezervări: +40 754 358 065" />
-    <meta property="twitter:image" content="https://popasuldrumetuluibucovina.ro/images/exterior.jpeg" />
+    <meta name="twitter:image" content="https://popasuldrumetuluibucovina.ro/images/exterior.jpeg" />
 
     <!-- Canonical URL -->
     <link rel="canonical" href="https://popasuldrumetuluibucovina.ro/" />
@@ -33,13 +37,9 @@
     <meta name="keywords"
         content="Popasul Drumețului, restaurant Câmpulung Moldovenesc, restaurant Bucovina, restaurant Suceava, mâncare tradițională românească, bucătărie bucovineană, popas turistic Bucovina, cuptor pe lemne, restaurant local Câmpulung Moldovenesc, gastronomie românească, unde să mănânc Câmpulung Moldovenesc, restaurant tradițional Bucovina, mâncare Câmpulung Moldovenesc, restaurant Calea Bucovinei" />
 
-    <!-- Hreflang Tags for Multilingual SEO -->
-    <link rel="alternate" hreflang="ro" href="https://popasuldrumetuluibucovina.ro/" />
-    <link rel="alternate" hreflang="en" href="https://popasuldrumetuluibucovina.ro/" />
-    <link rel="alternate" hreflang="fr" href="https://popasuldrumetuluibucovina.ro/" />
-    <link rel="alternate" hreflang="pl" href="https://popasuldrumetuluibucovina.ro/" />
-    <link rel="alternate" hreflang="uk" href="https://popasuldrumetuluibucovina.ro/" />
-    <link rel="alternate" hreflang="x-default" href="https://popasuldrumetuluibucovina.ro/" />
+    <meta name="theme-color" content="#1a1a1a" />
+    <!-- Preload LCP hero image -->
+    <link rel="preload" as="image" href="images/heroBanner.jpg" fetchpriority="high" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -133,7 +133,84 @@
       ],
       "servesCuisine": "Romanian",
       "acceptsReservations": true,
+      "paymentAccepted": "Cash, Credit Card, Debit Card, Contactless",
+      "sameAs": [
+        "https://www.facebook.com/p/Popasul-Drumetului-Campulung-Moldovenesc-61556556680444/",
+        "https://www.tiktok.com/@popasul.drumetului"
+      ],
       "menu": "https://popasuldrumetuluibucovina.ro/#menu",
+      "hasMenu": {
+        "@type": "Menu",
+        "name": "Meniu Popasul Drumețului",
+        "url": "https://popasuldrumetuluibucovina.ro/#menu",
+        "inLanguage": "ro",
+        "hasMenuSection": [
+          {
+            "@type": "MenuSection",
+            "name": "Mic Dejun",
+            "hasMenuItem": [
+              { "@type": "MenuItem", "name": "Dejunul Bunicii", "description": "Două ochiuri, pastramă, cartofi prăjiți, telemea, roșii 350g", "offers": { "@type": "Offer", "price": "26", "priceCurrency": "RON" } },
+              { "@type": "MenuItem", "name": "Cașcaval Pane", "description": "150g", "offers": { "@type": "Offer", "price": "19", "priceCurrency": "RON" } },
+              { "@type": "MenuItem", "name": "Omletă cu șuncă și cașcaval", "description": "200g", "offers": { "@type": "Offer", "price": "18", "priceCurrency": "RON" } },
+              { "@type": "MenuItem", "name": "Omletă cu cașcaval", "description": "150g", "offers": { "@type": "Offer", "price": "15", "priceCurrency": "RON" } }
+            ]
+          },
+          {
+            "@type": "MenuSection",
+            "name": "Ciorbe",
+            "hasMenuItem": [
+              { "@type": "MenuItem", "name": "Ciorbă Rădăuțeană", "description": "70g/430ml", "offers": { "@type": "Offer", "price": "20", "priceCurrency": "RON" } },
+              { "@type": "MenuItem", "name": "Ciorbă de Burtă", "description": "70g/430ml", "offers": { "@type": "Offer", "price": "20", "priceCurrency": "RON" } },
+              { "@type": "MenuItem", "name": "Ciorbă de Văcuță", "description": "40g/460g", "offers": { "@type": "Offer", "price": "22", "priceCurrency": "RON" } },
+              { "@type": "MenuItem", "name": "Ciorbă de Găină cu tăiței", "description": "60g/430ml", "offers": { "@type": "Offer", "price": "19", "priceCurrency": "RON" } },
+              { "@type": "MenuItem", "name": "Ciorbă de Perișoare", "description": "60g/430ml", "offers": { "@type": "Offer", "price": "19", "priceCurrency": "RON" } },
+              { "@type": "MenuItem", "name": "Ciorbă de Fasole cu afumătură", "description": "80g/420ml", "offers": { "@type": "Offer", "price": "20", "priceCurrency": "RON" } },
+              { "@type": "MenuItem", "name": "Soleanca - ciorbă moldovenească", "description": "100g/400ml", "offers": { "@type": "Offer", "price": "20", "priceCurrency": "RON" } },
+              { "@type": "MenuItem", "name": "Dresală de cartofi cu hribi", "description": "40g/460ml", "offers": { "@type": "Offer", "price": "22", "priceCurrency": "RON" } }
+            ]
+          },
+          {
+            "@type": "MenuSection",
+            "name": "Grătar",
+            "hasMenuItem": [
+              { "@type": "MenuItem", "name": "Păstrăv la grătar", "description": "100g", "offers": { "@type": "Offer", "price": "15", "priceCurrency": "RON" } },
+              { "@type": "MenuItem", "name": "Cârnați de casă", "description": "150g", "offers": { "@type": "Offer", "price": "18", "priceCurrency": "RON" } },
+              { "@type": "MenuItem", "name": "Ceafă de porc", "description": "200g", "offers": { "@type": "Offer", "price": "28", "priceCurrency": "RON" } },
+              { "@type": "MenuItem", "name": "Piept de pui la grătar", "description": "200g", "offers": { "@type": "Offer", "price": "24", "priceCurrency": "RON" } },
+              { "@type": "MenuItem", "name": "Mici", "description": "50g/buc", "offers": { "@type": "Offer", "price": "6", "priceCurrency": "RON" } }
+            ]
+          },
+          {
+            "@type": "MenuSection",
+            "name": "Tradițional Bucovinean",
+            "hasMenuItem": [
+              { "@type": "MenuItem", "name": "Platoul Câmpulungean", "description": "Ciolan de porc, cârnăciori, coaste de porc, mici, telemea, brânză de burduf, cartofi aurii, murături, sfeclă cu hrean, sos usturoi — 2 persoane", "offers": { "@type": "Offer", "price": "120", "priceCurrency": "RON" } },
+              { "@type": "MenuItem", "name": "Platoul Drumețului", "description": "Cârnăciori la grătar, ceafă, piept de pui, mici, brânză telemea, scrijele, murături, sos usturoi 550g", "offers": { "@type": "Offer", "price": "46", "priceCurrency": "RON" } },
+              { "@type": "MenuItem", "name": "Platoul Bucovinean", "description": "Cârnați de casă, coaste, kaizer, scrijele, brânză de burduf, murături, sos de usturoi 550g", "offers": { "@type": "Offer", "price": "46", "priceCurrency": "RON" } },
+              { "@type": "MenuItem", "name": "Platoul Bucovinean Vegetarian", "description": "Fasole bătută, zacuscă, șnițel vegetarian, chiftea, murături, pâine prăjită 500g", "offers": { "@type": "Offer", "price": "30", "priceCurrency": "RON" } },
+              { "@type": "MenuItem", "name": "Tochitura Casei", "description": "Pulpă de porc afumată, cârnați, kaizer, brânză de burduf, ou, mămăligă, murături 500g", "offers": { "@type": "Offer", "price": "49", "priceCurrency": "RON" } },
+              { "@type": "MenuItem", "name": "Tochitură Bucovineană de Pui", "description": "Pulpă de pui dezosată, ficăței de pui, brânză de burduf, ou, mămăligă 500g", "offers": { "@type": "Offer", "price": "45", "priceCurrency": "RON" } },
+              { "@type": "MenuItem", "name": "Bulz Bucovinean", "description": "300g", "offers": { "@type": "Offer", "price": "39", "priceCurrency": "RON" } },
+              { "@type": "MenuItem", "name": "Ciolan de porc cu mămăliguță", "description": "700g", "offers": { "@type": "Offer", "price": "56", "priceCurrency": "RON" } },
+              { "@type": "MenuItem", "name": "Ciulama de pui cu ciuperci și mămăliguță", "description": "350g", "offers": { "@type": "Offer", "price": "35", "priceCurrency": "RON" } },
+              { "@type": "MenuItem", "name": "Coaste de porc la ceaun", "description": "300g", "offers": { "@type": "Offer", "price": "36", "priceCurrency": "RON" } },
+              { "@type": "MenuItem", "name": "Hribi sote cu smântână", "description": "350g", "offers": { "@type": "Offer", "price": "50", "priceCurrency": "RON" } },
+              { "@type": "MenuItem", "name": "Mămăligă cu brânză și smântână", "description": "400g", "offers": { "@type": "Offer", "price": "20", "priceCurrency": "RON" } }
+            ]
+          },
+          {
+            "@type": "MenuSection",
+            "name": "Desert",
+            "hasMenuItem": [
+              { "@type": "MenuItem", "name": "Papanași cu smântână și dulceață", "description": "200g", "offers": { "@type": "Offer", "price": "32", "priceCurrency": "RON" } },
+              { "@type": "MenuItem", "name": "Clătite cu brânză și smântână", "description": "200g", "offers": { "@type": "Offer", "price": "26", "priceCurrency": "RON" } },
+              { "@type": "MenuItem", "name": "Chiroște cu brânză dulce", "description": "200g", "offers": { "@type": "Offer", "price": "23", "priceCurrency": "RON" } },
+              { "@type": "MenuItem", "name": "Găluște cu prune", "description": "200g", "offers": { "@type": "Offer", "price": "20", "priceCurrency": "RON" } },
+              { "@type": "MenuItem", "name": "Tocinei cu smântână", "description": "200g", "offers": { "@type": "Offer", "price": "25", "priceCurrency": "RON" } }
+            ]
+          }
+        ]
+      },
       "email": "euroconceptsrl@yahoo.com",
       "description": "Popasul Drumețului - Restaurant tradițional românesc în Câmpulung Moldovenesc, Bucovina. Oferim mâncare tradițională românească, bucătărie bucovineană autentică, preparate la cuptor pe lemne. Restaurant local cu tradiție în inima Bucovinei, Suceava. Descoperă tradiția culinară românească într-un ambient modern, unde lemnul și ospitalitatea se întâlnesc.",
       "areaServed": {
@@ -146,6 +223,63 @@
       },
       "keywords": "restaurant Câmpulung Moldovenesc, restaurant Bucovina, restaurant Suceava, mâncare tradițională românească, bucătărie bucovineană, popas turistic Bucovina, cuptor pe lemne, restaurant local, gastronomie românească",
       "hasMap": "https://www.google.com/maps/place/Popasul+Drume%C8%99ului/@47.5133203,25.6263568,17z"
+    }
+    </script>
+    <!-- FAQ schema for rich results -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Unde se află restaurantul Popasul Drumețului?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Restaurantul se află pe Calea Bucovinei Nr 335C, în Câmpulung Moldovenesc, județul Suceava — pe drumul principal DN17 (E58) care traversează Bucovina, ușor accesibil pentru turiștii aflați în drum spre mănăstirile din Bucovina sau Vatra Dornei."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Care este programul restaurantului Popasul Drumețului?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Suntem deschiși zilnic între 07:30 și 00:30, inclusiv în weekend și de sărbători. Servim mic dejun, prânz și cină."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Cum pot rezerva o masă?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Rezervările se fac telefonic la +40 754 358 065. Recomandăm rezervare în weekend și în sezonul turistic."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Ce mâncare tradițională românească găsesc în meniu?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Meniul include preparate tradiționale bucovinene: ciorbă rădăuțeană, tochitură bucovineană, bulz bucovinean, ciolan de porc cu mămăliguță, platouri tradiționale, hribi sote, papanași cu smântână și dulceață, plus preparate la cuptor pe lemne."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Aveți opțiuni vegetariene?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Da. Oferim Platoul Bucovinean Vegetarian, hribi sote, mămăligă cu brânză și smântână și o gamă variată de salate."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Pot plăti cu cardul la Popasul Drumețului?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Da, acceptăm plata cu cardul (Visa, Mastercard, contactless) și numerar."
+          }
+        }
+      ]
     }
     </script>
     <!-- WebSite schema for sitelinks and search engines -->
@@ -166,7 +300,7 @@
     <header class="header">
         <nav class="nav container">
             <div class="logo">
-                <img class="logo-img" src="images/logo.jpg"
+                <img class="logo-img" src="images/logo.jpg" width="960" height="958"
                     alt="Popasul Drumețului - Restaurant tradițional românesc Câmpulung Moldovenesc Bucovina">
                 <span class="logo-text">Popasul <span>Drumețului</span></span>
             </div>
@@ -174,6 +308,7 @@
                 <li><a href="#about" data-i18n="nav.about">Despre Noi</a></li>
                 <li><a href="#menu" data-i18n="nav.menu">Meniu</a></li>
                 <li><a href="#gallery" data-i18n="nav.gallery">Galerie</a></li>
+                <li><a href="#faq" data-i18n="nav.faq">Întrebări</a></li>
                 <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
             </ul>
             <div class="header-actions">
@@ -213,7 +348,7 @@
                 <div class="about-img">
                     <img src="images/exterior.jpeg"
                         alt="Popasul Drumețului - Restaurant tradițional românesc în Câmpulung Moldovenesc, Bucovina"
-                        class="floating" fetchpriority="high" width="600" height="400">
+                        class="floating" loading="lazy" decoding="async" width="969" height="1200">
                 </div>
                 <div class="about-text">
                     <span class="section-tag" data-i18n="about.tag">Povestea Noastră</span>
@@ -302,27 +437,37 @@
                     <h2 class="section-title" data-i18n="gallery.title">Momente de <span>Neuitat</span></h2>
                 </div>
                 <div class="gallery-grid">
-                    <div class="gallery-item"><img src="images/mese4.jpeg"
+                    <div class="gallery-item"><img src="images/mese4.jpeg" loading="lazy" decoding="async"
+                            width="1000" height="623"
                             alt="Popasul Drumețului Câmpulung Moldovenesc - Recepție și intrare restaurant tradițional">
                     </div>
-                    <div class="gallery-item"><img src="images/interior-2.jpg"
+                    <div class="gallery-item"><img src="images/interior-2.jpg" loading="lazy" decoding="async"
+                            width="1000" height="667"
                             alt="Bar restaurant Bucovina - Meniu băuturi tradiționale românești"></div>
-                    <div class="gallery-item large"><img src="images/bar.jpeg"
+                    <div class="gallery-item large"><img src="images/bar.jpeg" loading="lazy" decoding="async"
+                            width="769" height="1000"
                             alt="Sală restaurant Câmpulung Moldovenesc - Mese comunale pentru grupuri"></div>
-                    <div class="gallery-item"><img src="images/bar1.jpeg"
+                    <div class="gallery-item"><img src="images/bar1.jpeg" loading="lazy" decoding="async"
+                            width="1000" height="677"
                             alt="Restaurant tradițional Bucovina - Mese rotunde lângă fereastră"></div>
-                    <div class="gallery-item"><img src="images/mese1.jpeg"
+                    <div class="gallery-item"><img src="images/mese1.jpeg" loading="lazy" decoding="async"
+                            width="788" height="1000"
                             alt="Popasul Drumețului - Sală principală cu măsuțe pentru două persoane"></div>
-                    <div class="gallery-item large"><img src="images/mese2.jpeg"
+                    <div class="gallery-item large"><img src="images/mese2.jpeg" loading="lazy" decoding="async"
+                            width="667" height="1000"
                             alt="Restaurant local Câmpulung Moldovenesc - Detalii interioare din lemn"></div>
-                    <div class="gallery-item"><img src="images/mese3.jpeg"
+                    <div class="gallery-item"><img src="images/mese3.jpeg" loading="lazy" decoding="async"
+                            width="1000" height="667"
                             alt="Restaurant Bucovina - Fereastră panoramică cu vedere la natură">
                     </div>
-                    <div class="gallery-item"><img src="images/papanasi.jpg"
+                    <div class="gallery-item"><img src="images/papanasi.jpg" loading="lazy" decoding="async"
+                            width="750" height="1000"
                             alt="Mâncare tradițională românească - Papanași și preparate tradiționale bucovinene"></div>
-                    <div class="gallery-item"><img src="images/micdejun.jpg"
+                    <div class="gallery-item"><img src="images/micdejun.jpg" loading="lazy" decoding="async"
+                            width="750" height="1000"
                             alt="Mic dejun tradițional românesc - Brânzeturi și preparate locale"></div>
-                    <div class="gallery-item"><img src="images/canapele.jpeg"
+                    <div class="gallery-item"><img src="images/canapele.jpeg" loading="lazy" decoding="async"
+                            width="1000" height="681"
                             alt="Bucătărie bucovineană - Canapele și preparate tradiționale"></div>
                 </div>
             </div>
@@ -368,6 +513,49 @@
         </section>
 
 
+        <section id="faq" class="faq">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag" data-i18n="faq.tag">Întrebări Frecvente</span>
+                    <h2 class="section-title" data-i18n="faq.title">Bine de <span>Știut</span></h2>
+                </div>
+                <div class="faq-list">
+                    <details class="faq-item">
+                        <summary data-i18n="faq.q1">Unde se află restaurantul Popasul Drumețului?</summary>
+                        <p data-i18n="faq.a1">Pe Calea Bucovinei Nr 335C, în Câmpulung Moldovenesc, județul Suceava —
+                            pe drumul principal DN17 (E58) care traversează Bucovina, ușor accesibil în drum spre
+                            mănăstirile din Bucovina sau Vatra Dornei.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary data-i18n="faq.q2">Care este programul restaurantului?</summary>
+                        <p data-i18n="faq.a2">Suntem deschiși zilnic între 07:30 și 00:30, inclusiv în weekend și de
+                            sărbători. Servim mic dejun, prânz și cină.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary data-i18n="faq.q3">Cum pot rezerva o masă?</summary>
+                        <p data-i18n="faq.a3">Rezervările se fac telefonic la <a href="tel:+40754358065">+40 754 358
+                                065</a>. Recomandăm rezervare în weekend și în sezonul turistic.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary data-i18n="faq.q4">Ce mâncare tradițională românească găsesc în meniu?</summary>
+                        <p data-i18n="faq.a4">Preparate tradiționale bucovinene: ciorbă rădăuțeană, tochitură
+                            bucovineană, bulz bucovinean, ciolan de porc cu mămăliguță, platouri tradiționale, hribi
+                            sote, papanași cu smântână și dulceață, plus preparate la cuptor pe lemne.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary data-i18n="faq.q5">Aveți opțiuni vegetariene?</summary>
+                        <p data-i18n="faq.a5">Da. Oferim Platoul Bucovinean Vegetarian, hribi sote, mămăligă cu brânză
+                            și smântână și o gamă variată de salate.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary data-i18n="faq.q6">Pot plăti cu cardul?</summary>
+                        <p data-i18n="faq.a6">Da, acceptăm plata cu cardul (Visa, Mastercard, contactless) și
+                            numerar.</p>
+                    </details>
+                </div>
+            </div>
+        </section>
+
         <section id="contact" class="contact">
             <div class="container grid">
                 <div class="contact-info">
@@ -403,7 +591,7 @@
         <div class="container footer-container">
             <div class="footer-main">
                 <div class="footer-brand">
-                    <img class="footer-logo" src="images/logo.jpg"
+                    <img class="footer-logo" src="images/logo.jpg" width="960" height="958" loading="lazy" decoding="async"
                         alt="Popasul Drumețului - Restaurant tradițional românesc Câmpulung Moldovenesc Bucovina">
                     <span class="footer-name">Popasul Drumețului</span>
                     <p class="footer-tagline" data-i18n="footer.tagline">Tradiție și gust în inima Bucovinei</p>

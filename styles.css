@@ -280,10 +280,17 @@ section.reveal {
   position: relative;
   background:
     linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("images/heroBanner.png") no-repeat;
+    url("images/heroBanner.jpg") no-repeat;
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
+}
+
+/* iOS Safari nu suportă background-attachment: fixed — evită jank pe mobil */
+@media (max-width: 768px) {
+  .hero {
+    background-attachment: scroll;
+  }
 }
 
 .hero-overlay {
@@ -396,6 +403,9 @@ section.reveal {
 
 .about-img img {
   width: 100%;
+  aspect-ratio: 3 / 2;
+  height: auto;
+  object-fit: cover;
   border-radius: 12px;
   border: 2px solid rgba(212, 175, 55, 0.2);
   box-shadow: 16px 16px 0 var(--gold), 0 8px 24px rgba(0, 0, 0, 0.2);
@@ -879,6 +889,58 @@ section.reveal {
 }
 
 /* Contact Section */
+/* FAQ Section */
+.faq {
+  background: var(--wood-dark);
+}
+
+.faq-list {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  border-bottom: 1px solid rgba(212, 175, 55, 0.25);
+}
+
+.faq-item summary {
+  cursor: pointer;
+  padding: 1.25rem 2rem 1.25rem 0;
+  font-weight: 600;
+  color: var(--cream);
+  list-style: none;
+  position: relative;
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item summary::after {
+  content: "+";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--gold);
+  font-size: 1.4rem;
+  transition: transform 0.3s ease;
+}
+
+.faq-item[open] summary::after {
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.faq-item p {
+  padding: 0 0 1.25rem;
+  color: rgba(255, 245, 225, 0.85);
+  line-height: 1.7;
+}
+
+.faq-item p a {
+  color: var(--gold);
+}
+
 .contact {
   background: var(--wood-medium);
 }

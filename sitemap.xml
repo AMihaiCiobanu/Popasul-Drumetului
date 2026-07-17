@@ -5,16 +5,9 @@
     <!-- Homepage -->
     <url>
         <loc>https://popasuldrumetuluibucovina.ro/</loc>
-        <lastmod>2026-02-19</lastmod>
+        <lastmod>2026-07-17</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
-        <!-- Multi-language alternates -->
-        <xhtml:link rel="alternate" hreflang="ro" href="https://popasuldrumetuluibucovina.ro/" />
-        <xhtml:link rel="alternate" hreflang="en" href="https://popasuldrumetuluibucovina.ro/" />
-        <xhtml:link rel="alternate" hreflang="fr" href="https://popasuldrumetuluibucovina.ro/" />
-        <xhtml:link rel="alternate" hreflang="pl" href="https://popasuldrumetuluibucovina.ro/" />
-        <xhtml:link rel="alternate" hreflang="uk" href="https://popasuldrumetuluibucovina.ro/" />
-        <xhtml:link rel="alternate" hreflang="x-default" href="https://popasuldrumetuluibucovina.ro/" />
     </url>
     
     <!-- Terms and Conditions -->
