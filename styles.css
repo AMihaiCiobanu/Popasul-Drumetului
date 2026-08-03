@@ -1965,3 +1965,367 @@ section.reveal {
     gap: 0.75rem;
   }
 }
+
+/* ============================================
+   MASCOT - Ospatarul Bucovinean
+   Mobile-first. Everything is prefixed so it stays
+   self-contained and trivial to remove.
+   ============================================ */
+
+.mascot {
+  /* Costume colours that are not in the site palette. Declared locally so the
+     shared :root block stays untouched. */
+  --m-skin: #e8b892;
+  --m-linen: #efe0c4;
+  --m-red: #a4262c;
+
+  --m-h: 62px; /* sprite height */
+  --m-hit: 44px; /* tap target width - minimum comfortable touch size */
+  --m-pad: 8px;
+  --m-cycle: 30s; /* full there-and-back walk */
+
+  position: fixed;
+  left: var(--m-pad);
+  /* left+right instead of width:100vw - 100vw includes the scrollbar and would
+     walk him past the visible edge on desktop. */
+  right: var(--m-pad);
+  bottom: calc(var(--m-pad) + env(safe-area-inset-bottom, 0px));
+  z-index: 900; /* under .header (1000), .lightbox (2000), cookies (10000) */
+
+  /* The host spans the whole viewport width. Without this it would swallow every
+     click on the footer and on the cookie buttons. */
+  pointer-events: none;
+
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease, visibility 0s 0.5s;
+}
+
+/* Set by initMascot() once the cookie banner is out of the way. */
+.mascot.is-ready {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.5s ease, visibility 0s 0s;
+}
+
+/* The lightbox covers the mascot anyway - hide it so it cannot flicker through. */
+body.mascot-hidden .mascot {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* Three motions, three elements: one transform per element. */
+.mascot-walk {
+  display: block;
+  position: relative;
+  width: 100%;
+  animation: mascot-walk var(--m-cycle) linear infinite;
+}
+
+.mascot-flip {
+  display: block;
+  animation: mascot-face var(--m-cycle) linear infinite;
+}
+
+.mascot-bob {
+  display: block;
+  animation: mascot-bob 0.5s ease-in-out infinite;
+}
+
+.mascot-btn {
+  display: grid;
+  place-items: center;
+  width: var(--m-hit);
+  min-height: 44px;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  appearance: none;
+  pointer-events: auto;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.mascot-btn:focus-visible {
+  outline: 3px solid var(--gold-vibrant);
+  outline-offset: 3px;
+  border-radius: 10px;
+}
+
+.mascot-svg {
+  display: block;
+  height: var(--m-h);
+  width: auto;
+  /* One shadow beats stroking thirty shapes; he sits over photos. */
+  filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.45));
+}
+
+/* Costume ------------------------------------------------- */
+.m-shadow {
+  fill: rgba(0, 0, 0, 0.22);
+}
+.m-shirt,
+.m-sleeve {
+  fill: var(--cream);
+}
+.m-emb {
+  fill: var(--gold);
+}
+.m-emb-red {
+  fill: var(--m-red);
+}
+.m-vest,
+.m-opinca,
+.m-hat,
+.m-eye {
+  fill: var(--wood-dark);
+}
+.m-fur,
+.m-feather {
+  fill: var(--text-light);
+}
+.m-brau {
+  fill: var(--m-red);
+}
+.m-buckle,
+.m-hatband,
+.m-tray {
+  fill: var(--gold);
+}
+.m-trouser {
+  fill: var(--m-linen);
+}
+.m-skin,
+.m-tray-stem {
+  fill: var(--m-skin);
+}
+.m-smile {
+  fill: none;
+  stroke: var(--wood-dark);
+  stroke-width: 1.1;
+  stroke-linecap: round;
+}
+.m-hair {
+  fill: var(--wood-medium);
+}
+.m-cup {
+  fill: var(--cream);
+}
+.m-lace {
+  fill: none;
+  stroke: var(--wood-light);
+  stroke-width: 1;
+}
+.m-tray-rim {
+  fill: none;
+  stroke: var(--gold-vibrant);
+  stroke-width: 1.4;
+}
+
+/* fill-box is required - without it the origin resolves against the whole SVG
+   viewport and the legs pinwheel around the top-left corner. */
+.m-leg {
+  transform-box: fill-box;
+  transform-origin: 50% 0;
+}
+.m-leg-back {
+  animation: mascot-step-a 0.5s ease-in-out infinite;
+}
+.m-leg-front {
+  animation: mascot-step-b 0.5s ease-in-out infinite;
+}
+
+/* Speech bubble ------------------------------------------- */
+/* Sibling of the flipped sprite, never a child of it - inside .mascot-flip the
+   parent scaleX passes through 0 during the turn and collapses the bubble. */
+.mascot-bubble {
+  position: absolute;
+  bottom: calc(var(--m-h) + 14px);
+  left: calc(var(--m-hit) / 2);
+  width: max-content;
+  max-width: min(78vw, 250px);
+  padding: 0.6rem 0.9rem;
+  background: var(--wood-dark);
+  border: 1px solid var(--gold);
+  border-radius: 14px;
+  color: var(--cream);
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  line-height: 1.35;
+  text-align: center;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
+  transform-origin: bottom center;
+  cursor: pointer;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.16s ease, visibility 0s 0.16s;
+}
+
+/* Tail. --m-tail is written by placeBubble() so it keeps pointing at his head
+   even when the bubble is clamped against a viewport edge. */
+.mascot-bubble::after {
+  content: "";
+  position: absolute;
+  bottom: -7px;
+  left: var(--m-tail, 50%);
+  width: 13px;
+  height: 13px;
+  margin-left: -6.5px;
+  background: var(--wood-dark);
+  border-right: 1px solid var(--gold);
+  border-bottom: 1px solid var(--gold);
+  border-bottom-right-radius: 3px;
+  transform: rotate(45deg);
+}
+
+.mascot-bubble.is-visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition: opacity 0.2s ease;
+  animation: mascot-bubble-pop 0.22s cubic-bezier(0.2, 1.3, 0.4, 1);
+}
+
+/* He stops to greet you, and never walks while focused. */
+.mascot:is(.is-talking, .is-offscreen, :focus-within)
+  :is(.mascot-walk, .mascot-flip, .mascot-bob, .m-leg) {
+  animation-play-state: paused;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .mascot:hover :is(.mascot-walk, .mascot-flip, .mascot-bob, .m-leg) {
+    animation-play-state: paused;
+  }
+}
+
+.mascot-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Keyframes ----------------------------------------------- */
+/* 100% resolves against .mascot-walk's own width (= the full strip), so the
+   sprite lands exactly on the right edge. Percentages re-resolve on resize, so
+   rotation and the mobile URL bar need no JS. */
+@keyframes mascot-walk {
+  0% {
+    transform: translateX(0);
+  }
+  46%,
+  50% {
+    transform: translateX(calc(100% - var(--m-hit)));
+  }
+  96%,
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* Interpolated, not stepped: scaleX passes through 0 during the dwell, which
+   reads as a turn in place. */
+@keyframes mascot-face {
+  0%,
+  46.5% {
+    transform: scaleX(1);
+  }
+  49.5%,
+  96.5% {
+    transform: scaleX(-1);
+  }
+  99.5%,
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes mascot-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2.5px);
+  }
+}
+
+@keyframes mascot-step-a {
+  0%,
+  100% {
+    transform: rotate(13deg);
+  }
+  50% {
+    transform: rotate(-13deg);
+  }
+}
+
+@keyframes mascot-step-b {
+  0%,
+  100% {
+    transform: rotate(-13deg);
+  }
+  50% {
+    transform: rotate(13deg);
+  }
+}
+
+@keyframes mascot-bubble-pop {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (min-width: 769px) {
+  .mascot {
+    --m-h: 76px;
+    --m-hit: 54px;
+    --m-pad: 14px;
+    --m-cycle: 44s;
+  }
+
+  .mascot-bubble {
+    max-width: 300px;
+    font-size: 1.05rem;
+  }
+}
+
+/* First reduced-motion block on the site - deliberately scoped to the mascot so
+   it cannot touch the hero, the cookie banner or the section reveals. He parks
+   bottom-right, fully visible and still clickable. */
+@media (prefers-reduced-motion: reduce) {
+  .mascot-walk {
+    animation: none;
+    transform: translateX(calc(100% - var(--m-hit)));
+  }
+
+  .mascot-flip,
+  .mascot-bob,
+  .m-leg {
+    animation: none;
+  }
+
+  .mascot,
+  .mascot-bubble {
+    transition: none;
+  }
+
+  .mascot-bubble.is-visible {
+    animation: none;
+  }
+}

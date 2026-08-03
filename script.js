@@ -132,7 +132,9 @@ const translations = {
         "faq.q5": "Aveți opțiuni vegetariene?",
         "faq.a5": "Da. Oferim Platoul Bucovinean Vegetarian, hribi sote, mămăligă cu brânză și smântână și o gamă variată de salate.",
         "faq.q6": "Pot plăti cu cardul?",
-        "faq.a6": "Da, acceptăm plata cu cardul (Visa, Mastercard, contactless) și numerar."
+        "faq.a6": "Da, acceptăm plata cu cardul (Visa, Mastercard, contactless) și numerar.",
+        "mascot.greeting": "Bun venit în Bucovina!",
+        "mascot.aria": "Ospătarul Popasului — apasă pentru un salut"
     },
     en: {
         "nav.home": "Home",
@@ -226,7 +228,9 @@ const translations = {
         "faq.q5": "Do you have vegetarian options?",
         "faq.a5": "Yes. We offer the Vegetarian Bucovina Platter, sautéed porcini mushrooms, polenta with cheese and sour cream, and a wide range of salads.",
         "faq.q6": "Can I pay by card?",
-        "faq.a6": "Yes, we accept card payments (Visa, Mastercard, contactless) and cash."
+        "faq.a6": "Yes, we accept card payments (Visa, Mastercard, contactless) and cash.",
+        "mascot.greeting": "Welcome to Bucovina!",
+        "mascot.aria": "The inn's waiter — tap for a greeting"
     },
     fr: {
         "nav.home": "Accueil",
@@ -320,7 +324,9 @@ const translations = {
         "faq.q5": "Avez-vous des options végétariennes ?",
         "faq.a5": "Oui. Nous proposons le Plateau Végétarien de Bucovine, des cèpes sautés, de la polenta au fromage et à la crème, et un large choix de salades.",
         "faq.q6": "Puis-je payer par carte ?",
-        "faq.a6": "Oui, nous acceptons les paiements par carte (Visa, Mastercard, sans contact) et en espèces."
+        "faq.a6": "Oui, nous acceptons les paiements par carte (Visa, Mastercard, sans contact) et en espèces.",
+        "mascot.greeting": "Bienvenue en Bucovine !",
+        "mascot.aria": "Le serveur de l'auberge — cliquez pour un salut"
     },
     pl: {
         "nav.home": "Dom",
@@ -414,7 +420,9 @@ const translations = {
         "faq.q5": "Czy są opcje wegetariańskie?",
         "faq.a5": "Tak. Oferujemy Wegetariański Półmisek Bukowiński, smażone borowiki, mamałygę z serem i śmietaną oraz szeroki wybór sałatek.",
         "faq.q6": "Czy mogę zapłacić kartą?",
-        "faq.a6": "Tak, akceptujemy płatności kartą (Visa, Mastercard, zbliżeniowo) oraz gotówką."
+        "faq.a6": "Tak, akceptujemy płatności kartą (Visa, Mastercard, zbliżeniowo) oraz gotówką.",
+        "mascot.greeting": "Witamy na Bukowinie!",
+        "mascot.aria": "Kelner zajazdu — kliknij, by przywitać"
     },
     ua: {
         "nav.home": "Головна",
@@ -508,7 +516,9 @@ const translations = {
         "faq.q5": "Чи є вегетаріанські страви?",
         "faq.a5": "Так. Пропонуємо Вегетаріанський Буковинський Таріль, смажені білі гриби, мамалигу з сиром і сметаною та великий вибір салатів.",
         "faq.q6": "Чи можна розрахуватися карткою?",
-        "faq.a6": "Так, приймаємо оплату карткою (Visa, Mastercard, безконтактно) та готівкою."
+        "faq.a6": "Так, приймаємо оплату карткою (Visa, Mastercard, безконтактно) та готівкою.",
+        "mascot.greeting": "Ласкаво просимо на Буковину!",
+        "mascot.aria": "Офіціант заїжджого двору — натисніть для привітання"
     }
 };
 
@@ -570,7 +580,8 @@ function getRomanianAnalyticsLabel(label) {
         '30_seconds': '30 Secunde',
         'contact_section_visible': 'Secțiune Contact Vizibilă',
         'cookies_accepted': 'Cookies Acceptate',
-        'cookies_declined': 'Cookies Refuzate'
+        'cookies_declined': 'Cookies Refuzate',
+        'mascot_greeting': 'Salut Ospătar Mascotă'
     };
     
     // Check language codes first
@@ -1799,11 +1810,13 @@ function openLightbox(imageSrc) {
     if (imageSrc) {
         lightboxImage.src = imageSrc;
         lightbox.classList.add('active');
+        document.body.classList.add('mascot-hidden');
     }
 }
 
 function closeLightbox() {
     lightbox.classList.remove('active');
+    document.body.classList.remove('mascot-hidden');
 }
 
 lightboxClose.addEventListener('click', closeLightbox);
@@ -2482,6 +2495,7 @@ function initializeGATracking() {
 // Check cookie consent status on page load
 document.addEventListener('DOMContentLoaded', function () {
     initCookieConsent();
+    initMascot();
 });
 
 function initCookieConsent() {
@@ -2773,4 +2787,148 @@ if (typeof translations !== 'undefined') {
         "cookies.analytics_desc": "Допомагають нам зрозуміти, як відвідувачі взаємодіють з нашим сайтом (Google Analytics).",
         "cookies.save": "Зберегти налаштування"
     });
+}
+
+// ==========================================
+// MASCOT - Ospatarul Bucovinean
+// ==========================================
+// Small waiter in traditional Bucovina dress who walks along the bottom of the
+// screen. Tapping him opens a speech bubble above his head with a greeting in
+// the currently selected language.
+//
+// The bubble text is a normal [data-i18n] element, so changeLanguage() keeps it
+// in sync for free - there is no translation logic in here on purpose.
+function initMascot() {
+    const host = document.getElementById('mascot');
+    if (!host) return;
+
+    const walk = host.querySelector('.mascot-walk');
+    const btn = host.querySelector('.mascot-btn');
+    const bubble = host.querySelector('.mascot-bubble');
+    const bubbleText = host.querySelector('.mascot-bubble-text');
+    const live = document.getElementById('mascotLive');
+    const banner = document.getElementById('cookieConsent');
+
+    if (!walk || !btn || !bubble) return;
+
+    const BUBBLE_DURATION = 5000;
+    const EDGE_MARGIN = 8;
+    const TAIL_MARGIN = 16;
+
+    let hideTimer = null;
+    let mascotTracked = false;
+
+    // The bubble is a sibling of the flipped sprite, so it never gets mirrored.
+    // It lives inside .mascot-walk (which carries the horizontal transform), so
+    // its offset is measured against that element's *transformed* position.
+    function placeBubble() {
+        const walkRect = walk.getBoundingClientRect();
+        const btnRect = btn.getBoundingClientRect();
+        const width = bubble.offsetWidth;
+        const half = width / 2;
+        const mascotCenter = btnRect.left + btnRect.width / 2;
+
+        // Keep the bubble inside the viewport even when he is at an edge.
+        const center = Math.min(
+            Math.max(mascotCenter, half + EDGE_MARGIN),
+            window.innerWidth - half - EDGE_MARGIN
+        );
+        bubble.style.left = (center - walkRect.left - half) + 'px';
+
+        // The tail keeps pointing at his head after the bubble has been clamped.
+        const tail = Math.min(
+            Math.max(mascotCenter - (center - half), TAIL_MARGIN),
+            width - TAIL_MARGIN
+        );
+        bubble.style.setProperty('--m-tail', tail + 'px');
+    }
+
+    function showBubble() {
+        host.classList.add('is-talking');
+        bubble.classList.add('is-visible');
+        placeBubble();
+
+        // Announce to screen readers. Copied from the [data-i18n] node so it is
+        // always in the language the visitor selected.
+        if (live && bubbleText) live.textContent = bubbleText.textContent;
+
+        clearTimeout(hideTimer);
+        hideTimer = setTimeout(hideBubble, BUBBLE_DURATION);
+
+        // Once per page view - a mashed mascot would otherwise skew engagement.
+        if (!mascotTracked && typeof gtag !== 'undefined') {
+            mascotTracked = true;
+            gtag('event', 'mascot_click', {
+                'event_category': 'engagement',
+                'event_label': getRomanianAnalyticsLabel('mascot_greeting'),
+                'language': currentLang
+            });
+        }
+    }
+
+    function hideBubble() {
+        clearTimeout(hideTimer);
+        bubble.classList.remove('is-visible');
+        host.classList.remove('is-talking');
+        if (live) live.textContent = '';
+    }
+
+    btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        if (bubble.classList.contains('is-visible')) {
+            hideBubble();
+        } else {
+            showBubble();
+        }
+    });
+
+    bubble.addEventListener('click', hideBubble);
+
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') hideBubble();
+    });
+
+    window.addEventListener('resize', function () {
+        if (bubble.classList.contains('is-visible')) placeBubble();
+    });
+
+    // Stop the animation while the tab is in the background.
+    document.addEventListener('visibilitychange', function () {
+        host.classList.toggle('is-offscreen', document.hidden);
+    });
+
+    // The lightbox (z-index 2000) covers the mascot - dismiss the bubble so no
+    // stale announcement is left hanging in the live region.
+    new MutationObserver(function () {
+        if (document.body.classList.contains('mascot-hidden')) hideBubble();
+    }).observe(document.body, { attributes: true, attributeFilter: ['class'] });
+
+    // The mascot stays out of the way until the cookie banner is gone - on
+    // mobile that banner takes up a quarter of the screen.
+    function revealMascot() {
+        host.classList.add('is-ready');
+    }
+
+    if (!banner || getCookieConsent() !== null) {
+        // No banner will ever be shown for this visitor.
+        revealMascot();
+        return;
+    }
+
+    // initCookieConsent() shows the banner after 1s and hides it again from
+    // three separate handlers, always through the inline style attribute. That
+    // attribute is the only hook available, so watch it.
+    let bannerWasShown = false;
+    const bannerObserver = new MutationObserver(function () {
+        // getComputedStyle, not offsetParent - the banner is position:fixed and a
+        // fixed element always reports a null offsetParent.
+        const visible = window.getComputedStyle(banner).display !== 'none';
+        if (visible) {
+            bannerWasShown = true;
+        } else if (bannerWasShown) {
+            bannerObserver.disconnect();
+            revealMascot();
+        }
+    });
+    bannerObserver.observe(banner, { attributes: true, attributeFilter: ['style'] });
 }
