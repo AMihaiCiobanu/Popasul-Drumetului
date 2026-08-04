@@ -19,6 +19,9 @@
 
   /* Transitions */
   --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Layout */
+  --header-h: 104px; /* .header padding 2×1.5rem + .logo-img 56px */
 }
 
 * {
@@ -274,9 +277,14 @@ section.reveal {
 
 /* Hero Section */
 .hero {
-  height: 100vh;
+  /* min-height, nu height: dacă textul nu încape (ecrane scunde), hero crește
+     în loc să lase conținutul să iasă sub headerul fixed */
+  min-height: 100vh;
+  min-height: 100svh; /* svh evită saltul barei de adrese pe iOS/Android */
   display: flex;
   align-items: center;
+  /* rezervă spațiul headerului fixed */
+  padding: calc(var(--header-h) + 1rem) 0 2.5rem;
   position: relative;
   background:
     linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
@@ -288,6 +296,9 @@ section.reveal {
 
 /* iOS Safari nu suportă background-attachment: fixed — evită jank pe mobil */
 @media (max-width: 768px) {
+  :root {
+    --header-h: 92px; /* .logo-img scade la 44px sub 768px */
+  }
   .hero {
     background-attachment: scroll;
   }
@@ -1306,6 +1317,14 @@ section.reveal {
 }
 
 @media (max-width: 768px) {
+  /* Titlul hero scalează fluid pe mobil; clamp-ul de bază are floor 3rem
+     și rămâne prea mare sub 768px. */
+  .hero-title {
+    font-size: clamp(2.25rem, 8.5vw, 3rem);
+  }
+  .hero-desc {
+    font-size: 1rem;
+  }
   .logo-img {
     width: 44px;
     height: 44px;
@@ -1454,6 +1473,24 @@ section.reveal {
 }
 
 @media (max-width: 480px) {
+  /* Hero: clamp-ul de pe .hero-title are floor 3rem, deci nu coboară singur.
+     Scalare explicită ca tot blocul să încapă pe ecrane scunde (iPhone SE). */
+  .hero-subtitle {
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    margin-bottom: 0.6rem;
+  }
+  .hero-title {
+    margin-bottom: 1rem;
+  }
+  .hero-desc {
+    font-size: 0.95rem;
+    margin-bottom: 1.75rem;
+  }
+  .hero-btns .btn {
+    padding: 0.8rem 1.6rem;
+    font-size: 0.9rem;
+  }
   .menu-tabs {
     justify-content: flex-start;
     gap: 0.35rem;
