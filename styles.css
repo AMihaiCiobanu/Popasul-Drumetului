@@ -842,61 +842,388 @@ section.reveal {
   background: var(--wood-dark);
 }
 
-.reviews-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  margin-bottom: 3rem;
-}
-
-.review-card {
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
-  padding: 2.5rem;
-  border-radius: 12px;
-  transition: var(--transition);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.review-card:hover {
-  transform: translateY(-10px);
-  background: rgba(255, 245, 225, 0.25);
-  border-color: var(--gold);
-}
-
-.review-stars {
-  color: var(--gold-vibrant);
-  font-size: 1.2rem;
-  margin-bottom: 1.5rem;
-}
-
-.review-text {
-  font-style: italic;
-  font-size: 1.05rem;
-  line-height: 1.6;
-  margin-bottom: 2rem;
-  color: var(--cream);
-}
-
-.review-author {
-  font-family: var(--font-serif);
-  color: var(--gold);
-  font-size: 1.2rem;
-  margin-bottom: 0.3rem;
-}
-
-.review-source {
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  opacity: 0.6;
-}
-
 .reviews-cta {
   text-align: center;
   margin-top: 2rem;
+}
+
+/* Guest book — reviews you leaf through page by page (ported from silviaskinstudio) */
+.guestbook {
+  --gb-paper: #fbf1da;
+  --gb-ink: var(--text-dark);
+  --gb-muted: #7a6556;
+  --gb-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --gb-gold-dark: #9c7a1f;
+}
+
+.guestbook .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.guestbook .rule-ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.guestbook .rule-ornament::before,
+.guestbook .rule-ornament::after {
+  content: "";
+  height: 1px;
+  width: 3rem;
+  background: rgba(212, 175, 55, 0.4);
+}
+
+.guestbook .rule-ornament > span {
+  width: 4px;
+  height: 4px;
+  transform: rotate(45deg);
+  background: var(--gold);
+}
+
+.guestbook .book-stage {
+  --pw: min(86vw, 360px);
+  --ph: calc(var(--pw) * 1.36);
+  display: flex;
+  justify-content: center;
+  perspective: 2400px;
+  padding-top: 10px;
+  overflow-x: clip;
+}
+
+.guestbook .book {
+  position: relative;
+  width: var(--pw);
+  height: var(--ph);
+  outline: none;
+  transform-style: preserve-3d;
+  transition: transform 0.9s var(--gb-ease);
+  touch-action: pan-y;
+  will-change: transform;
+}
+
+.guestbook .book:focus-visible {
+  outline: 1px solid var(--gold);
+  outline-offset: 16px;
+}
+
+.guestbook .leaf {
+  position: absolute;
+  inset: 0;
+  transform-origin: left center;
+  transform-style: preserve-3d;
+  transform: translateZ(var(--z, 0));
+  transition: transform 0.9s var(--gb-ease), visibility 0s linear 0s;
+  cursor: pointer;
+  /* Stay composited between turns, or Safari re-rasterises the text when a turn ends */
+  will-change: transform;
+}
+
+.guestbook .leaf.turned {
+  transform: translateZ(var(--z, 0)) rotateY(-180deg);
+}
+
+.guestbook .face {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  background: var(--gb-paper);
+  color: var(--gb-ink);
+  border-radius: 2px 6px 6px 2px;
+  box-shadow: inset 14px 0 24px -14px rgba(0, 0, 0, 0.28);
+}
+
+/* Page curl shading that follows the turn */
+.guestbook .face::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.08), transparent 18%, transparent 86%, rgba(0, 0, 0, 0.05));
+}
+
+.guestbook .face.back {
+  transform: rotateY(180deg);
+  border-radius: 6px 2px 2px 6px;
+  box-shadow: inset -14px 0 24px -14px rgba(0, 0, 0, 0.28);
+}
+
+.guestbook .leaf.on-top .face {
+  box-shadow: inset 14px 0 24px -14px rgba(0, 0, 0, 0.28), 0 18px 40px rgba(0, 0, 0, 0.35);
+}
+
+.guestbook .leaf.on-top .face.back {
+  box-shadow: inset -14px 0 24px -14px rgba(0, 0, 0, 0.28), 0 18px 40px rgba(0, 0, 0, 0.35);
+}
+
+.guestbook .face.back::after {
+  background: linear-gradient(270deg, rgba(0, 0, 0, 0.08), transparent 18%, transparent 86%, rgba(0, 0, 0, 0.05));
+}
+
+.guestbook .pg {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 34px 30px 26px;
+}
+
+.guestbook .pg-plain {
+  background: repeating-linear-gradient(0deg, transparent 0 31px, rgba(141, 110, 99, 0.12) 31px 32px);
+}
+
+.guestbook .pg-folio {
+  margin-top: auto;
+  text-align: center;
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: var(--gb-muted);
+  font-size: 0.95rem;
+}
+
+.guestbook .pg-cover {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: var(--gold);
+  background:
+    radial-gradient(120% 90% at 30% 20%, rgba(255, 255, 255, 0.08), transparent 60%),
+    repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.02) 0 2px, transparent 2px 6px),
+    #5d4037;
+}
+
+.guestbook .pg-cover::before,
+.guestbook .pg-cover::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+.guestbook .pg-cover::before {
+  inset: 16px;
+  border: 1px solid rgba(212, 175, 55, 0.55);
+}
+
+.guestbook .pg-cover::after {
+  inset: 22px;
+  border: 1px solid rgba(212, 175, 55, 0.25);
+}
+
+.guestbook .cover-kicker {
+  font-size: 0.66rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.guestbook .cover-title {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: 2.6rem;
+  line-height: 1.05;
+  background: linear-gradient(120deg, #b8932c, #ffe9a3 45%, #b8932c 70%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.guestbook .cover-sub {
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: rgba(255, 233, 163, 0.75);
+  margin-top: 14px;
+}
+
+.guestbook .cover-hint {
+  position: absolute;
+  bottom: 34px;
+  left: 0;
+  right: 0;
+  font-size: 0.62rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(255, 233, 163, 0.6);
+  animation: gb-hint 2.4s ease-in-out infinite;
+}
+
+/* An animated child gets its own layer, which Safari can show through the turned cover. */
+.guestbook .book:not(.is-closed) .cover-hint {
+  animation: none;
+  opacity: 0;
+}
+
+@keyframes gb-hint {
+  50% {
+    opacity: 0.35;
+  }
+}
+
+.guestbook .pg-intro {
+  justify-content: center;
+  text-align: center;
+}
+
+.guestbook .pg-intro h3 {
+  font-family: var(--font-serif);
+  font-size: 1.9rem;
+  font-weight: 400;
+  line-height: 1.1;
+  color: var(--gb-ink);
+}
+
+.guestbook .pg-intro .rule-ornament {
+  margin: 18px 0;
+}
+
+.guestbook .pg-intro p {
+  color: var(--gb-muted);
+  font-size: 0.95rem;
+}
+
+.guestbook .pg-review .stars {
+  color: var(--gb-gold-dark);
+  letter-spacing: 4px;
+  font-size: 0.9rem;
+}
+
+.guestbook .pg-review .dropq {
+  font-family: var(--font-serif);
+  font-size: 5rem;
+  line-height: 0.6;
+  color: rgba(212, 175, 55, 0.6);
+  height: 34px;
+  margin-top: 14px;
+}
+
+.guestbook .pg-review blockquote {
+  margin-top: 6px;
+  font-family: var(--font-serif);
+  font-size: clamp(1.2rem, 4.6vw, 1.5rem);
+  line-height: 1.35;
+}
+
+.guestbook .pg-review blockquote.is-medium {
+  font-size: clamp(1.05rem, 4vw, 1.25rem);
+}
+
+.guestbook .pg-review blockquote.is-long {
+  font-size: clamp(0.95rem, 3.6vw, 1.1rem);
+  line-height: 1.4;
+}
+
+.guestbook .pg-review .by {
+  margin-top: 18px;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gb-gold-dark);
+}
+
+.guestbook .pg-back .cover-title {
+  font-size: 2.4rem;
+}
+
+.guestbook .pg-back .rule-ornament {
+  margin: 26px 0 22px;
+}
+
+.guestbook .pg-back .cover-kicker {
+  margin: 14px 0 0;
+}
+
+.guestbook .book-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 34px;
+}
+
+.guestbook .round {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid rgba(212, 175, 55, 0.5);
+  background: transparent;
+  color: var(--gold);
+  cursor: pointer;
+  transition: background 0.4s var(--gb-ease), color 0.4s var(--gb-ease);
+}
+
+.guestbook .round:hover:not(:disabled) {
+  background: var(--gold);
+  color: var(--text-dark);
+}
+
+.guestbook .round:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.guestbook .book-count {
+  min-width: 140px;
+  text-align: center;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.1rem;
+  color: rgba(255, 245, 225, 0.7);
+}
+
+/* Phone: one page at a time, turned pages leave to the left */
+@media (max-width: 759px) {
+  .guestbook .leaf.turned {
+    visibility: hidden;
+    transition: transform 0.9s var(--gb-ease), visibility 0s linear 0.9s;
+  }
+}
+
+/* Desktop: tighten the gap between the section title and the book */
+@media (min-width: 768px) {
+  .reviews .section-title {
+    margin-bottom: 22px;
+  }
+}
+
+/* Wide: an open spread; the book slides so a closed cover sits centred */
+@media (min-width: 760px) {
+  .guestbook .book-stage {
+    --pw: min(40vw, 380px);
+    padding-top: 20px;
+  }
+  .guestbook .book {
+    width: calc(var(--pw) * 2);
+  }
+  .guestbook .leaf {
+    left: 50%;
+    width: 50%;
+  }
+  .guestbook .book.is-closed {
+    transform: translateX(-25%);
+  }
+  .guestbook .book.is-done {
+    transform: translateX(25%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .guestbook .cover-hint {
+    animation: none;
+  }
+  .guestbook .book,
+  .guestbook .leaf {
+    transition-duration: 0.01s;
+  }
 }
 
 /* Contact Section */
@@ -1399,32 +1726,6 @@ section.reveal {
   .cookie-table td {
     padding: 0.5rem;
   }
-  /* Optimize review cards for mobile */
-  .reviews-grid {
-    grid-template-columns: 1fr;
-    gap: 1.25rem;
-    margin-bottom: 2rem;
-  }
-  .review-card {
-    padding: 1.5rem;
-    border-radius: 10px;
-  }
-  .review-stars {
-    font-size: 1rem;
-    margin-bottom: 1rem;
-  }
-  .review-text {
-    font-size: 0.95rem;
-    line-height: 1.5;
-    margin-bottom: 1.25rem;
-  }
-  .review-author {
-    font-size: 1rem;
-    margin-bottom: 0.25rem;
-  }
-  .review-source {
-    font-size: 0.75rem;
-  }
   .reviews-cta {
     margin-top: 1.5rem;
   }
@@ -1506,31 +1807,6 @@ section.reveal {
   }
   .subcategory-title {
     font-size: 1rem;
-  }
-  /* Further optimize review cards for small mobile */
-  .reviews-grid {
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-  }
-  .review-card {
-    padding: 1.25rem;
-    border-radius: 8px;
-  }
-  .review-stars {
-    font-size: 0.9rem;
-    margin-bottom: 0.75rem;
-  }
-  .review-text {
-    font-size: 0.9rem;
-    line-height: 1.4;
-    margin-bottom: 1rem;
-  }
-  .review-author {
-    font-size: 0.95rem;
-    margin-bottom: 0.2rem;
-  }
-  .review-source {
-    font-size: 0.7rem;
   }
   /* Further optimize payment cards for small mobile */
   .payment-grid {

@@ -74,6 +74,45 @@ const translations = {
         "reviews.r2_author": "Alina P.",
         "reviews.r3_text": '"Restaurantul este spațios, servirea promptă, mâncare diversificată și preturi decente. Recomand!"',
         "reviews.r3_author": "Ionut C.",
+        "reviews.r4_text": "\"Servire impecabilă și mâncare de cea mai înaltă calitate! Preparatele sunt delicioase, proaspete și prezentate cu mult bun gust. Personalul este amabil, atent și profesionist, iar atmosfera este plăcută și primitoare. Recomand cu toată încrederea și voi reveni cu mare drag!\"",
+        "reviews.r4_author": "Olivia P.",
+        "reviews.r5_text": "\"Foarte bine situat, parcare bună, o gamă foarte variată de mâncăruri de o calitate deosebită. Platoul drumețului, tochitura de casă, platou bucovinean, bere de casă, prețuri bune și personal de nota 10.\"",
+        "reviews.r5_author": "Silviu T.",
+        "reviews.r6_text": "\"O experiență minunată la Popasul Drumețului! Atmosfera este foarte primitoare, mâncarea extrem de gustoasă, iar servirea impecabilă. Preparatele au fost proaspete, bine gătite și porțiile generoase. Cu siguranță vom reveni cu mare drag!\"",
+        "reviews.r6_author": "Daniel D.",
+        "reviews.r7_text": "\"Ciorbele au nevoie de mai multă atenție, au fost prea dulci și apoase. În schimb, tochitura a fost pe măsură, o porție sănătoasă pentru oameni sănătoși. Brânza și smântâna au un gust deosebit, se simte că sunt naturale. Prețurile sunt foarte bune. Recomand!\"",
+        "reviews.r7_author": "Lilian M.",
+        "reviews.r8_text": "\"Totul a fost foarte bun și delicios! Mâncarea excelentă, gustoasă și bine pregătită. Ne-am oprit aici în timpul călătoriei și am rămas foarte mulțumiți. Personal amabil și atmosferă plăcută. Recomand cu drag!\"",
+        "reviews.r8_author": "Claudio P.",
+        "reviews.r9_text": "\"Mâncare fantastică, porții generoase la prețuri incredibile, curățenie și personal amabil, amplasare frumoasă. În total, un local care merită fiecare bănuț.\"",
+        "reviews.r9_author": "Alex",
+        "reviews.r10_text": "\"Ieftin, multă mâncare extrem de bună, un personal deosebit de amabil! Recomand!\"",
+        "reviews.r10_author": "Costel A.",
+        "reviews.r11_text": "\"Mâncarea este foarte gustoasă, cu porții pe măsură la un preț destul de mic. Recomand cu căldură!\"",
+        "reviews.r11_author": "Andrei C.",
+        "reviews.r12_text": "\"Mâncare delicioasă, porții generoase, servire promptă, personal amabil!\"",
+        "reviews.r12_author": "Simona C.",
+        "reviews.r13_text": "\"O experiență foarte plăcută! Mâncarea a fost gustoasă, preparată proaspăt și servită rapid. Personalul a fost amabil și atent, iar atmosfera relaxantă și primitoare. Raportul calitate-preț este foarte bun.\"",
+        "reviews.r13_author": "Oleg B.",
+        "reviews.r14_text": "\"Mâncarea este extraordinară, cea mai bună pe care am mâncat-o! Bună la gust și accesibilă la preț, servirea rapidă și personal foarte atent. Vă recomand cu încredere.\"",
+        "reviews.r14_author": "Ionut D.",
+        "reviews.r15_text": "\"Mâncarea este impecabilă, cantitativă și foarte accesibilă la preț. Revenim!\"",
+        "reviews.r15_author": "Diana V.",
+        "reviews.cover_title": "Cartea de oaspeți",
+        "reviews.cover_sub": "cuvinte frumoase de la clienții noștri",
+        "reviews.cover_hint": "Atinge pentru a deschide",
+        "reviews.intro_title": "Scris de clienții noștri",
+        "reviews.intro_text": "Câteva cuvinte lăsate după masă, câte o pagină fiecare.",
+        "reviews.back_title": "Mulțumim",
+        "reviews.back_sub": "că faceți parte din povestea noastră",
+        "reviews.count_cover": "Copertă",
+        "reviews.count_back": "Ultima copertă",
+        "reviews.count_intro": "Introducere",
+        "reviews.count_page": "Pagina {a} din {n}",
+        "reviews.count_pages": "Paginile {a}–{b} din {n}",
+        "reviews.prev": "Pagina anterioară",
+        "reviews.next": "Pagina următoare",
+        "reviews.label": "Cartea de oaspeți cu recenzii",
         "menu.tab_breakfast": "Mic Dejun",
         "menu.tab_soup": "Ciorbe",
         "menu.tab_fastfood": "Fast Food",
@@ -170,6 +209,45 @@ const translations = {
         "reviews.r2_author": "Alina P.",
         "reviews.r3_text": '"The restaurant is spacious, the service prompt, diversified food and decent prices. I recommend!"',
         "reviews.r3_author": "Ionut C.",
+        "reviews.r4_text": "\"Impeccable service and top-quality food! The dishes are delicious, fresh and beautifully presented. The staff is friendly, attentive and professional, and the atmosphere is pleasant and welcoming. I recommend it with full confidence and will gladly come back!\"",
+        "reviews.r4_author": "Olivia P.",
+        "reviews.r5_text": "\"Very well located, good parking, a very varied range of dishes of outstanding quality. The Wayfarer's platter, house tochitură, Bucovina platter, home-brewed beer, good prices and top-notch staff.\"",
+        "reviews.r5_author": "Silviu T.",
+        "reviews.r6_text": "\"A wonderful experience at Popasul Drumețului! The atmosphere is very welcoming, the food extremely tasty and the service impeccable. The dishes were fresh, well cooked and the portions generous. We will definitely be back!\"",
+        "reviews.r6_author": "Daniel D.",
+        "reviews.r7_text": "\"The soups need more care, they were too sweet and watery. The tochitură, however, was just right, a healthy portion for healthy people. The cheese and sour cream have a special taste, you can tell they are natural. Prices are very good. Recommended!\"",
+        "reviews.r7_author": "Lilian M.",
+        "reviews.r8_text": "\"Everything was very good and delicious! Excellent, tasty and well-prepared food. We stopped here during our trip and were very satisfied. Friendly staff and pleasant atmosphere. Highly recommended!\"",
+        "reviews.r8_author": "Claudio P.",
+        "reviews.r9_text": "\"Fantastic food, generous portions at incredible prices, clean and friendly staff, lovely location. Overall, a place worth every penny.\"",
+        "reviews.r9_author": "Alex",
+        "reviews.r10_text": "\"Cheap, lots of extremely good food, exceptionally friendly staff! Recommended!\"",
+        "reviews.r10_author": "Costel A.",
+        "reviews.r11_text": "\"The food is very tasty, with generous portions at a fairly low price. Warmly recommended!\"",
+        "reviews.r11_author": "Andrei C.",
+        "reviews.r12_text": "\"Delicious food, generous portions, prompt service, friendly staff!\"",
+        "reviews.r12_author": "Simona C.",
+        "reviews.r13_text": "\"A very pleasant experience! The food was tasty, freshly prepared and served quickly. The staff was friendly and attentive, and the atmosphere relaxing and welcoming. Great value for money.\"",
+        "reviews.r13_author": "Oleg B.",
+        "reviews.r14_text": "\"The food is extraordinary, the best I have ever eaten! Tasty and affordable, quick service and very attentive staff. I recommend it with confidence.\"",
+        "reviews.r14_author": "Ionut D.",
+        "reviews.r15_text": "\"The food is impeccable, filling and very affordable. We will be back!\"",
+        "reviews.r15_author": "Diana V.",
+        "reviews.cover_title": "Guest book",
+        "reviews.cover_sub": "kind words from our guests",
+        "reviews.cover_hint": "Tap to open",
+        "reviews.intro_title": "Written by our guests",
+        "reviews.intro_text": "A few words left after their meals, one page each.",
+        "reviews.back_title": "Thank you",
+        "reviews.back_sub": "for being part of our story",
+        "reviews.count_cover": "Cover",
+        "reviews.count_back": "Back cover",
+        "reviews.count_intro": "Introduction",
+        "reviews.count_page": "Page {a} of {n}",
+        "reviews.count_pages": "Pages {a}–{b} of {n}",
+        "reviews.prev": "Previous page",
+        "reviews.next": "Next page",
+        "reviews.label": "Guest book of customer reviews",
         "menu.tab_breakfast": "Breakfast",
         "menu.tab_soup": "Soups",
         "menu.tab_fastfood": "Fast Food",
@@ -266,6 +344,45 @@ const translations = {
         "reviews.r2_author": "Alina P.",
         "reviews.r3_text": '"Le restaurant est spacieux, le service réactif, la nourriture variée et les prix raisonnables. Je recommande !"',
         "reviews.r3_author": "Ionut C.",
+        "reviews.r4_text": "\"Service impeccable et nourriture de très grande qualité ! Les plats sont délicieux, frais et joliment présentés. Le personnel est aimable, attentif et professionnel, et l'ambiance est agréable et chaleureuse. Je recommande en toute confiance et je reviendrai avec plaisir !\"",
+        "reviews.r4_author": "Olivia P.",
+        "reviews.r5_text": "\"Très bien situé, bon parking, une gamme de plats très variée et d'une qualité exceptionnelle. Le plateau du randonneur, la tochitură maison, le plateau de Bucovine, la bière maison, de bons prix et un personnel au top.\"",
+        "reviews.r5_author": "Silviu T.",
+        "reviews.r6_text": "\"Une expérience merveilleuse au Popasul Drumețului ! L'ambiance est très chaleureuse, la cuisine extrêmement savoureuse et le service impeccable. Les plats étaient frais, bien cuisinés et les portions généreuses. Nous reviendrons sans aucun doute !\"",
+        "reviews.r6_author": "Daniel D.",
+        "reviews.r7_text": "\"Les soupes méritent plus d'attention, elles étaient trop sucrées et aqueuses. En revanche, la tochitură était à la hauteur, une portion saine pour des gens en bonne santé. Le fromage et la crème aigre ont un goût particulier, on sent qu'ils sont naturels. Les prix sont très bons. Je recommande !\"",
+        "reviews.r7_author": "Lilian M.",
+        "reviews.r8_text": "\"Tout était très bon et délicieux ! Cuisine excellente, savoureuse et bien préparée. Nous nous sommes arrêtés ici pendant notre voyage et nous avons été très satisfaits. Personnel aimable et ambiance agréable. Je recommande vivement !\"",
+        "reviews.r8_author": "Claudio P.",
+        "reviews.r9_text": "\"Cuisine fantastique, portions généreuses à des prix incroyables, propreté et personnel aimable, bel emplacement. Dans l'ensemble, un endroit qui vaut chaque centime.\"",
+        "reviews.r9_author": "Alex",
+        "reviews.r10_text": "\"Pas cher, beaucoup de nourriture extrêmement bonne, un personnel particulièrement aimable ! Je recommande !\"",
+        "reviews.r10_author": "Costel A.",
+        "reviews.r11_text": "\"La cuisine est très savoureuse, avec des portions généreuses à un prix assez bas. Je recommande chaleureusement !\"",
+        "reviews.r11_author": "Andrei C.",
+        "reviews.r12_text": "\"Cuisine délicieuse, portions généreuses, service rapide, personnel aimable !\"",
+        "reviews.r12_author": "Simona C.",
+        "reviews.r13_text": "\"Une expérience très agréable ! La cuisine était savoureuse, préparée à la minute et servie rapidement. Le personnel était aimable et attentif, et l'ambiance détendue et chaleureuse. Excellent rapport qualité-prix.\"",
+        "reviews.r13_author": "Oleg B.",
+        "reviews.r14_text": "\"La cuisine est extraordinaire, la meilleure que j'aie mangée ! Savoureuse et abordable, service rapide et personnel très attentif. Je recommande en toute confiance.\"",
+        "reviews.r14_author": "Ionut D.",
+        "reviews.r15_text": "\"La cuisine est impeccable, copieuse et très abordable. Nous reviendrons !\"",
+        "reviews.r15_author": "Diana V.",
+        "reviews.cover_title": "Livre d'or",
+        "reviews.cover_sub": "les mots doux de nos clients",
+        "reviews.cover_hint": "Touchez pour ouvrir",
+        "reviews.intro_title": "Écrit par nos clients",
+        "reviews.intro_text": "Quelques mots laissés après le repas, une page chacun.",
+        "reviews.back_title": "Merci",
+        "reviews.back_sub": "de faire partie de notre histoire",
+        "reviews.count_cover": "Couverture",
+        "reviews.count_back": "Dos du livre",
+        "reviews.count_intro": "Introduction",
+        "reviews.count_page": "Page {a} sur {n}",
+        "reviews.count_pages": "Pages {a}–{b} sur {n}",
+        "reviews.prev": "Page précédente",
+        "reviews.next": "Page suivante",
+        "reviews.label": "Livre d'or des avis clients",
         "menu.tab_breakfast": "Petit Déjeuner",
         "menu.tab_soup": "Soupes",
         "menu.tab_fastfood": "Fast Food",
@@ -371,6 +488,45 @@ const translations = {
         "reviews.r2_author": "Alina P.",
         "reviews.r3_text": '"Restauracja jest przestronna, obsługa sprawna, jedzenie urozmaicone i przystępne ceny. Polecam!"',
         "reviews.r3_author": "Ionut C.",
+        "reviews.r4_text": "\"Bezbłędna obsługa i jedzenie najwyższej jakości! Dania są pyszne, świeże i pięknie podane. Personel jest miły, uważny i profesjonalny, a atmosfera przyjemna i gościnna. Polecam z pełnym przekonaniem i chętnie wrócę!\"",
+        "reviews.r4_author": "Olivia P.",
+        "reviews.r5_text": "\"Świetna lokalizacja, dobry parking, bardzo szeroki wybór dań wyjątkowej jakości. Półmisek wędrowca, domowa tochitura, półmisek bukowiński, domowe piwo, dobre ceny i personel na szóstkę.\"",
+        "reviews.r5_author": "Silviu T.",
+        "reviews.r6_text": "\"Wspaniałe doświadczenie w Popasul Drumețului! Atmosfera jest bardzo gościnna, jedzenie niezwykle smaczne, a obsługa bez zarzutu. Dania były świeże, dobrze przygotowane, a porcje obfite. Na pewno wrócimy!\"",
+        "reviews.r6_author": "Daniel D.",
+        "reviews.r7_text": "\"Zupy wymagają więcej uwagi, były zbyt słodkie i wodniste. Za to tochitura była w sam raz, zdrowa porcja dla zdrowych ludzi. Ser i śmietana mają wyjątkowy smak, czuć, że są naturalne. Ceny są bardzo dobre. Polecam!\"",
+        "reviews.r7_author": "Lilian M.",
+        "reviews.r8_text": "\"Wszystko było bardzo dobre i pyszne! Doskonałe, smaczne i dobrze przygotowane jedzenie. Zatrzymaliśmy się tu w trakcie podróży i byliśmy bardzo zadowoleni. Miły personel i przyjemna atmosfera. Serdecznie polecam!\"",
+        "reviews.r8_author": "Claudio P.",
+        "reviews.r9_text": "\"Fantastyczne jedzenie, obfite porcje w niesamowitych cenach, czysto, miły personel, piękna lokalizacja. Ogólnie miejsce warte każdej złotówki.\"",
+        "reviews.r9_author": "Alex",
+        "reviews.r10_text": "\"Tanio, dużo wyjątkowo dobrego jedzenia, wyjątkowo miły personel! Polecam!\"",
+        "reviews.r10_author": "Costel A.",
+        "reviews.r11_text": "\"Jedzenie jest bardzo smaczne, z obfitymi porcjami w dość niskiej cenie. Gorąco polecam!\"",
+        "reviews.r11_author": "Andrei C.",
+        "reviews.r12_text": "\"Pyszne jedzenie, obfite porcje, szybka obsługa, miły personel!\"",
+        "reviews.r12_author": "Simona C.",
+        "reviews.r13_text": "\"Bardzo przyjemne doświadczenie! Jedzenie było smaczne, świeżo przygotowane i szybko podane. Personel był miły i uważny, a atmosfera relaksująca i gościnna. Doskonały stosunek jakości do ceny.\"",
+        "reviews.r13_author": "Oleg B.",
+        "reviews.r14_text": "\"Jedzenie jest nadzwyczajne, najlepsze, jakie jadłem! Smaczne i w przystępnej cenie, szybka obsługa i bardzo uważny personel. Polecam z pełnym przekonaniem.\"",
+        "reviews.r14_author": "Ionut D.",
+        "reviews.r15_text": "\"Jedzenie jest bezbłędne, sycące i bardzo przystępne cenowo. Wrócimy!\"",
+        "reviews.r15_author": "Diana V.",
+        "reviews.cover_title": "Księga gości",
+        "reviews.cover_sub": "miłe słowa od naszych gości",
+        "reviews.cover_hint": "Dotknij, aby otworzyć",
+        "reviews.intro_title": "Napisane przez naszych gości",
+        "reviews.intro_text": "Kilka słów zostawionych po posiłku, po jednej stronie.",
+        "reviews.back_title": "Dziękujemy",
+        "reviews.back_sub": "że jesteście częścią naszej historii",
+        "reviews.count_cover": "Okładka",
+        "reviews.count_back": "Tylna okładka",
+        "reviews.count_intro": "Wstęp",
+        "reviews.count_page": "Strona {a} z {n}",
+        "reviews.count_pages": "Strony {a}–{b} z {n}",
+        "reviews.prev": "Poprzednia strona",
+        "reviews.next": "Następna strona",
+        "reviews.label": "Księga gości z opiniami klientów",
         "gallery.tag": "Galeria",
         "gallery.title": "Niezapomniane <span>chwile</span>",
         "contact.address_label": "Adres:",
@@ -467,6 +623,45 @@ const translations = {
         "reviews.r2_author": "Alina P.",
         "reviews.r3_text": '"Ресторан просторий, обслуговування оперативне, їжа різноманітна, а ціни нормальні. Рекомендую!"',
         "reviews.r3_author": "Ionut C.",
+        "reviews.r4_text": "\"Бездоганне обслуговування та їжа найвищої якості! Страви смачні, свіжі та гарно подані. Персонал привітний, уважний і професійний, а атмосфера приємна та гостинна. Рекомендую з повною впевненістю і з радістю повернуся!\"",
+        "reviews.r4_author": "Olivia P.",
+        "reviews.r5_text": "\"Дуже зручне розташування, гарна парковка, дуже різноманітний вибір страв чудової якості. Тарілка мандрівника, домашня тохітура, буковинська тарілка, домашнє пиво, добрі ціни та персонал на відмінно.\"",
+        "reviews.r5_author": "Silviu T.",
+        "reviews.r6_text": "\"Чудовий досвід у Popasul Drumețului! Атмосфера дуже гостинна, їжа надзвичайно смачна, а обслуговування бездоганне. Страви були свіжі, добре приготовані, а порції щедрі. Обов'язково повернемося!\"",
+        "reviews.r6_author": "Daniel D.",
+        "reviews.r7_text": "\"Борщам і супам бракує уваги, вони були надто солодкими та водянистими. Зате тохітура була на висоті, здорова порція для здорових людей. Бринза та сметана мають особливий смак, відчувається, що вони натуральні. Ціни дуже добрі. Рекомендую!\"",
+        "reviews.r7_author": "Lilian M.",
+        "reviews.r8_text": "\"Усе було дуже добре та смачно! Чудова, смачна й добре приготована їжа. Ми зупинилися тут під час подорожі й залишилися дуже задоволені. Привітний персонал і приємна атмосфера. Щиро рекомендую!\"",
+        "reviews.r8_author": "Claudio P.",
+        "reviews.r9_text": "\"Фантастична їжа, щедрі порції за неймовірними цінами, чистота та привітний персонал, гарне розташування. Загалом заклад, що вартий кожної копійки.\"",
+        "reviews.r9_author": "Alex",
+        "reviews.r10_text": "\"Недорого, багато надзвичайно смачної їжі, особливо привітний персонал! Рекомендую!\"",
+        "reviews.r10_author": "Costel A.",
+        "reviews.r11_text": "\"Їжа дуже смачна, зі щедрими порціями за досить низькою ціною. Щиро рекомендую!\"",
+        "reviews.r11_author": "Andrei C.",
+        "reviews.r12_text": "\"Смачна їжа, щедрі порції, швидке обслуговування, привітний персонал!\"",
+        "reviews.r12_author": "Simona C.",
+        "reviews.r13_text": "\"Дуже приємний досвід! Їжа була смачна, свіжоприготована та швидко подана. Персонал був привітним і уважним, а атмосфера розслабляюча та гостинна. Дуже хороше співвідношення ціни та якості.\"",
+        "reviews.r13_author": "Oleg B.",
+        "reviews.r14_text": "\"Їжа надзвичайна, найкраща, яку я їв! Смачна та доступна за ціною, швидке обслуговування та дуже уважний персонал. Рекомендую з упевненістю.\"",
+        "reviews.r14_author": "Ionut D.",
+        "reviews.r15_text": "\"Їжа бездоганна, ситна та дуже доступна за ціною. Повернемося!\"",
+        "reviews.r15_author": "Diana V.",
+        "reviews.cover_title": "Книга відгуків",
+        "reviews.cover_sub": "теплі слова від наших гостей",
+        "reviews.cover_hint": "Торкніться, щоб відкрити",
+        "reviews.intro_title": "Написано нашими гостями",
+        "reviews.intro_text": "Кілька слів, залишених після обіду, по одній сторінці.",
+        "reviews.back_title": "Дякуємо",
+        "reviews.back_sub": "що ви частина нашої історії",
+        "reviews.count_cover": "Обкладинка",
+        "reviews.count_back": "Остання обкладинка",
+        "reviews.count_intro": "Вступ",
+        "reviews.count_page": "Сторінка {a} з {n}",
+        "reviews.count_pages": "Сторінки {a}–{b} з {n}",
+        "reviews.prev": "Попередня сторінка",
+        "reviews.next": "Наступна сторінка",
+        "reviews.label": "Книга відгуків клієнтів",
         "gallery.tag": "Галерея",
         "gallery.title": "Незабутні <span>моменти</span>",
         "contact.address_label": "Адреса:",
@@ -656,6 +851,8 @@ function changeLanguage(lang) {
         mainBtn.textContent = lang.toUpperCase();
         mainBtn.setAttribute('data-lang', lang);
     }
+
+    refreshGuestbook();
 
     // Re-render menu with current language
     const activeTab = document.querySelector('.tab-btn.active');
@@ -2040,32 +2237,6 @@ function createSocialLink(platform, url, label, ariaLabel = '') {
 }
 
 /**
- * Creates a review card HTML element
- * @param {Object} review - Review data object
- * @param {string} review.textKey - Translation key for review text (data-i18n)
- * @param {string} review.text - Default review text
- * @param {string} review.authorKey - Translation key for author (data-i18n)
- * @param {string} review.author - Default author name
- * @param {string} review.source - Review source (e.g., "Google Maps")
- * @param {number} review.stars - Number of stars (default: 5)
- * @returns {string} HTML string for the review card
- */
-function createReviewCard(review) {
-    const stars = '★'.repeat(review.stars || 5);
-    const textAttr = review.textKey ? ` data-i18n="${review.textKey}"` : '';
-    const authorAttr = review.authorKey ? ` data-i18n="${review.authorKey}"` : '';
-
-    return `
-        <div class="review-card">
-            <div class="review-stars">${stars}</div>
-            <p class="review-text"${textAttr}>${review.text}</p>
-            <h4 class="review-author"${authorAttr}>${review.author}</h4>
-            <span class="review-source">${review.source}</span>
-        </div>
-    `;
-}
-
-/**
  * Creates a feature item HTML element (for services or payments)
  * @param {Object} item - Feature item data
  * @param {string} item.icon - Icon emoji or text
@@ -2137,40 +2308,213 @@ function initializeSocialLinks() {
 }
 
 /**
- * Initialize review cards dynamically
+ * Guest book: reviews you leaf through page by page (ported from silviaskinstudio).
+ * Wide screens show an open spread (two pages per leaf); phones show one page at a time.
+ * All visible text goes through data-i18n, so changeLanguage() keeps it translated;
+ * refreshGuestbook() handles the strings changeLanguage() can't reach (page counter, aria).
  */
+const GUESTBOOK_REVIEWS = [
+    { id: 1, stars: 5 }, { id: 2, stars: 5 }, { id: 3, stars: 5 },
+    { id: 4, stars: 5 }, { id: 5, stars: 5 }, { id: 6, stars: 5 },
+    { id: 7, stars: 4 }, { id: 8, stars: 5 }, { id: 9, stars: 4 },
+    { id: 10, stars: 5 }, { id: 11, stars: 5 }, { id: 12, stars: 5 },
+    { id: 13, stars: 5 }, { id: 14, stars: 5 }, { id: 15, stars: 5 }
+];
+const GUESTBOOK_WIDE_QUERY = '(min-width: 760px)';
+const GUESTBOOK_TURN_MS = 900;
+let refreshGuestbook = () => {};
+
 function initializeReviewCards() {
-    const reviewsData = [
-        {
-            textKey: 'reviews.r1_text',
-            text: '"Foarte bună mâncarea la popasul drumețului 🫶🏼 Fetele foarte amabile și drăguțe ! ❤️"',
-            authorKey: 'reviews.r1_author',
-            author: 'Georgiana G.',
-            source: 'Google Maps',
-            stars: 5
-        },
-        {
-            textKey: 'reviews.r2_text',
-            text: '"O experiență foarte plăcută! Am mâncat o ciorbă gustoasă, bine condimentată, și un crispy excelent. Servirea a fost rapidă."',
-            authorKey: 'reviews.r2_author',
-            author: 'Alina P.',
-            source: 'Google Maps',
-            stars: 5
-        },
-        {
-            textKey: 'reviews.r3_text',
-            text: '"Restaurantul este spațios, servirea promptă, mâncare diversificată și preturi decente. Recomand!"',
-            authorKey: 'reviews.r3_author',
-            author: 'Ionut C.',
-            source: 'Google Maps',
-            stars: 5
-        }
+    const root = document.querySelector('.guestbook');
+    if (!root) return;
+
+    const tr = (key) => (translations[currentLang] && translations[currentLang][key]) || translations.ro[key] || '';
+    const i18n = (tag, cls, key) => `<${tag} class="${cls}" data-i18n="${key}">${tr(key)}</${tag}>`;
+    // Long reviews get a smaller face so they still fit on one page.
+    const quoteSize = (len) => (len > 300 ? 'is-long' : len > 180 ? 'is-medium' : '');
+    const ornament = '<div class="rule-ornament"><span></span></div>';
+
+    const coverPage = () => `
+        <div class="pg pg-cover">
+            <p class="cover-kicker">Popasul Drumețului</p>
+            ${i18n('p', 'cover-title', 'reviews.cover_title')}
+            ${i18n('p', 'cover-sub', 'reviews.cover_sub')}
+            ${i18n('p', 'cover-hint', 'reviews.cover_hint')}
+        </div>`;
+    const introPage = () => `
+        <div class="pg pg-intro pg-plain">
+            ${i18n('h3', '', 'reviews.intro_title').replace(' class=""', '')}
+            ${ornament}
+            ${i18n('p', '', 'reviews.intro_text').replace(' class=""', '')}
+        </div>`;
+    const reviewPage = (review, folio) => {
+        const textKey = `reviews.r${review.id}_text`;
+        const filled = '★'.repeat(review.stars) + '☆'.repeat(5 - review.stars);
+        return `
+        <div class="pg pg-review">
+            <span class="stars" aria-hidden="true">${filled}</span>
+            <span class="dropq" aria-hidden="true">“</span>
+            <blockquote class="${quoteSize(translations.ro[textKey].length)}" data-i18n="${textKey}">${tr(textKey)}</blockquote>
+            <p class="by" data-i18n="reviews.r${review.id}_author">${tr(`reviews.r${review.id}_author`)}</p>
+            <span class="pg-folio">— ${folio} —</span>
+        </div>`;
+    };
+    const backCover = () => `
+        <div class="pg pg-cover pg-back">
+            ${i18n('p', 'cover-title', 'reviews.back_title')}
+            ${ornament}
+            ${i18n('p', 'cover-sub', 'reviews.back_sub')}
+            <p class="cover-kicker">Popasul Drumețului</p>
+        </div>`;
+    const blankPage = () => '<div class="pg pg-plain"></div>';
+
+    const pages = [
+        coverPage(),
+        introPage(),
+        ...GUESTBOOK_REVIEWS.map((review, i) => reviewPage(review, i + 1))
     ];
 
-    const reviewsGrid = document.querySelector('.reviews-grid');
-    if (reviewsGrid) {
-        reviewsGrid.innerHTML = reviewsData.map(review => createReviewCard(review)).join('');
+    root.innerHTML = `
+        <div class="book-stage"><div class="book" tabindex="0" role="group" aria-roledescription="book"></div></div>
+        <div class="book-controls">
+            <button type="button" class="round" data-step="-1">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6" /></svg>
+            </button>
+            <p class="book-count" aria-live="polite"></p>
+            <button type="button" class="round" data-step="1">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6" /></svg>
+            </button>
+        </div>
+        <ol class="sr-only"></ol>`;
+
+    const book = root.querySelector('.book');
+    const prevBtn = root.querySelector('[data-step="-1"]');
+    const nextBtn = root.querySelector('[data-step="1"]');
+    const countEl = root.querySelector('.book-count');
+    const srList = root.querySelector('.sr-only');
+
+    const mql = window.matchMedia(GUESTBOOK_WIDE_QUERY);
+    let wide = mql.matches;
+    let turned = 0;
+    let lastTurn = 0;
+    let moving = null;
+    let settle = null;
+    let opened = false;
+    let swipe = { startX: null, swiped: false };
+
+    function build() {
+        // Spread: the back cover is the outside of the last leaf, so it shows once the book is
+        // turned all the way. Phone: it is the last page and cannot be turned past.
+        const leaves = [];
+        if (wide) {
+            const inner = pages.length % 2 ? pages : [...pages, blankPage()];
+            for (let i = 0; i < inner.length; i += 2) leaves.push([inner[i], inner[i + 1] || backCover()]);
+        } else {
+            for (const p of [...pages, backCover()]) leaves.push([p, blankPage()]);
+        }
+        lastTurn = wide ? leaves.length : leaves.length - 1;
+        book.innerHTML = leaves.map(([front, back]) => `
+            <div class="leaf" aria-hidden="true">
+                <div class="face front">${front}</div>
+                <div class="face back">${back}</div>
+            </div>`).join('');
+        book._leaves = [...book.querySelectorAll('.leaf')];
+        paint();
     }
+
+    function paint() {
+        const n = book._leaves.length;
+        book.classList.toggle('is-closed', turned === 0);
+        book.classList.toggle('is-done', turned === lastTurn);
+        book._leaves.forEach((leaf, i) => {
+            const isTurned = i < turned;
+            const z = i === moving ? n + 1 : isTurned ? i + 1 : n - i;
+            // Only the top leaf of each stack casts a shadow, or they add up into a halo.
+            leaf.classList.toggle('turned', isTurned);
+            leaf.classList.toggle('on-top', i === turned || i === turned - 1 || i === moving);
+            leaf.style.zIndex = z;
+            // Safari sorts preserve-3d layers by depth, not z-index: lift each leaf a hair so
+            // leaves are never coplanar. Stack order only, so depth stops changing after a turn.
+            leaf.style.setProperty('--z', `${(isTurned ? i + 1 : n - i) * 0.5}px`);
+        });
+        prevBtn.disabled = turned === 0;
+        nextBtn.disabled = turned === lastTurn;
+        updateText();
+    }
+
+    // Count in review numbers, so it matches the folio printed on each page. Page k of the
+    // book (cover = 0, intro = 1) holds review k - 1.
+    function updateText() {
+        const total = GUESTBOOK_REVIEWS.length;
+        const folioAt = (k) => (k >= 2 && k < 2 + total ? k - 1 : null);
+        const folios = (wide ? [turned * 2 - 1, turned * 2] : [turned]).map(folioAt).filter(Boolean);
+        let text;
+        if (turned === 0) text = tr('reviews.count_cover');
+        else if (turned === lastTurn) text = tr('reviews.count_back');
+        else if (folios.length === 0) text = tr('reviews.count_intro');
+        else if (folios.length === 1) text = tr('reviews.count_page').replace('{a}', folios[0]).replace('{n}', total);
+        else text = tr('reviews.count_pages').replace('{a}', folios[0]).replace('{b}', folios[1]).replace('{n}', total);
+        countEl.textContent = text;
+        prevBtn.setAttribute('aria-label', tr('reviews.prev'));
+        nextBtn.setAttribute('aria-label', tr('reviews.next'));
+        book.setAttribute('aria-label', tr('reviews.label'));
+        srList.innerHTML = GUESTBOOK_REVIEWS.map(r =>
+            `<li>${tr(`reviews.r${r.id}_text`)} ${tr(`reviews.r${r.id}_author`)}, ${r.stars}/5</li>`).join('');
+    }
+
+    function go(step) {
+        const next = Math.max(0, Math.min(lastTurn, turned + step));
+        if (next === turned) return;
+        // The leaf in motion stays on top until it lands.
+        moving = step > 0 ? turned : next;
+        turned = next;
+        paint();
+        clearTimeout(settle);
+        settle = setTimeout(() => { moving = null; paint(); }, GUESTBOOK_TURN_MS);
+        if (!opened && typeof gtag !== 'undefined') {
+            opened = true;
+            gtag('event', 'guestbook_open', {
+                'event_category': 'engagement',
+                'event_label': 'Carte de oaspeți'
+            });
+        }
+    }
+
+    prevBtn.addEventListener('click', () => go(-1));
+    nextBtn.addEventListener('click', () => go(1));
+
+    book.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight') { e.preventDefault(); go(1); }
+        if (e.key === 'ArrowLeft') { e.preventDefault(); go(-1); }
+    });
+
+    // Swipe: a horizontal drag turns a page; the click that follows is swallowed.
+    book.addEventListener('pointerdown', (e) => { swipe = { startX: e.clientX, swiped: false }; });
+    book.addEventListener('pointerup', (e) => {
+        if (swipe.startX == null) return;
+        const dx = e.clientX - swipe.startX;
+        swipe.startX = null;
+        if (Math.abs(dx) > 40) {
+            swipe.swiped = true;
+            go(dx < 0 ? 1 : -1);
+        }
+    });
+    book.addEventListener('click', (e) => {
+        if (swipe.swiped) { swipe.swiped = false; return; }
+        const leaf = e.target.closest('.leaf');
+        if (leaf) go(leaf.classList.contains('turned') ? -1 : 1);
+    });
+
+    // Switching between spread and single page rebuilds the book, so start from the cover.
+    mql.addEventListener('change', () => {
+        wide = mql.matches;
+        turned = 0;
+        moving = null;
+        build();
+    });
+
+    refreshGuestbook = updateText;
+    build();
 }
 
 /**
