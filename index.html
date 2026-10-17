@@ -39,12 +39,15 @@
 
     <meta name="theme-color" content="#1a1a1a" />
     <!-- Preload LCP hero image -->
-    <link rel="preload" as="image" href="images/heroBanner.jpg" fetchpriority="high" />
+    <link rel="preload" as="image" href="images/heroBanner-portrait.jpg" fetchpriority="high"
+        media="(max-aspect-ratio: 3/4)" />
+    <link rel="preload" as="image" href="images/heroBanner.jpg" fetchpriority="high"
+        media="not all and (max-aspect-ratio: 3/4)" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
-        rel="stylesheet">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+        onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"></noscript>
     <link rel="stylesheet" href="styles.css">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -300,7 +303,7 @@
     <header class="header">
         <nav class="nav container">
             <div class="logo">
-                <img class="logo-img" src="images/logo.jpg" width="960" height="958"
+                <img class="logo-img" src="images/logo-160.jpg" width="160" height="159"
                     alt="Popasul Drumețului - Restaurant tradițional românesc Câmpulung Moldovenesc Bucovina">
                 <span class="logo-text">Popasul <span>Drumețului</span></span>
             </div>
@@ -347,6 +350,8 @@
             <div class="container grid">
                 <div class="about-img">
                     <img src="images/exterior.jpeg"
+                        srcset="images/exterior-720.jpeg 720w, images/exterior.jpeg 969w"
+                        sizes="(max-width: 992px) 100vw, 50vw"
                         alt="Popasul Drumețului - Restaurant tradițional românesc în Câmpulung Moldovenesc, Bucovina"
                         class="floating" loading="lazy" decoding="async" width="969" height="1200">
                 </div>
@@ -437,36 +442,46 @@
                     <h2 class="section-title" data-i18n="gallery.title">Momente de <span>Neuitat</span></h2>
                 </div>
                 <div class="gallery-grid">
-                    <div class="gallery-item"><img src="images/mese4.jpeg" loading="lazy" decoding="async"
+                    <div class="gallery-item"><img src="images/mese4.jpeg" srcset="images/mese4-600.jpeg 600w, images/mese4.jpeg 1000w"
+                            sizes="(max-width: 768px) 50vw, 25vw" loading="lazy" decoding="async"
                             width="1000" height="623"
                             alt="Popasul Drumețului Câmpulung Moldovenesc - Recepție și intrare restaurant tradițional">
                     </div>
-                    <div class="gallery-item"><img src="images/interior-2.jpg" loading="lazy" decoding="async"
+                    <div class="gallery-item"><img src="images/interior-2.jpg" srcset="images/interior-2-600.jpg 600w, images/interior-2.jpg 1000w"
+                            sizes="(max-width: 768px) 50vw, 25vw" loading="lazy" decoding="async"
                             width="1000" height="667"
                             alt="Bar restaurant Bucovina - Meniu băuturi tradiționale românești"></div>
-                    <div class="gallery-item large"><img src="images/bar.jpeg" loading="lazy" decoding="async"
+                    <div class="gallery-item large"><img src="images/bar.jpeg" srcset="images/bar-600.jpeg 600w, images/bar.jpeg 769w"
+                            sizes="(max-width: 768px) 50vw, 25vw" loading="lazy" decoding="async"
                             width="769" height="1000"
                             alt="Sală restaurant Câmpulung Moldovenesc - Mese comunale pentru grupuri"></div>
-                    <div class="gallery-item"><img src="images/bar1.jpeg" loading="lazy" decoding="async"
+                    <div class="gallery-item"><img src="images/bar1.jpeg" srcset="images/bar1-600.jpeg 600w, images/bar1.jpeg 1000w"
+                            sizes="(max-width: 768px) 50vw, 25vw" loading="lazy" decoding="async"
                             width="1000" height="677"
                             alt="Restaurant tradițional Bucovina - Mese rotunde lângă fereastră"></div>
-                    <div class="gallery-item"><img src="images/mese1.jpeg" loading="lazy" decoding="async"
+                    <div class="gallery-item"><img src="images/mese1.jpeg" srcset="images/mese1-600.jpeg 600w, images/mese1.jpeg 788w"
+                            sizes="(max-width: 768px) 50vw, 25vw" loading="lazy" decoding="async"
                             width="788" height="1000"
                             alt="Popasul Drumețului - Sală principală cu măsuțe pentru două persoane"></div>
-                    <div class="gallery-item large"><img src="images/mese2.jpeg" loading="lazy" decoding="async"
+                    <div class="gallery-item large"><img src="images/mese2.jpeg" srcset="images/mese2-600.jpeg 600w, images/mese2.jpeg 667w"
+                            sizes="(max-width: 768px) 50vw, 25vw" loading="lazy" decoding="async"
                             width="667" height="1000"
                             alt="Restaurant local Câmpulung Moldovenesc - Detalii interioare din lemn"></div>
-                    <div class="gallery-item"><img src="images/mese3.jpeg" loading="lazy" decoding="async"
+                    <div class="gallery-item"><img src="images/mese3.jpeg" srcset="images/mese3-600.jpeg 600w, images/mese3.jpeg 1000w"
+                            sizes="(max-width: 768px) 50vw, 25vw" loading="lazy" decoding="async"
                             width="1000" height="667"
                             alt="Restaurant Bucovina - Fereastră panoramică cu vedere la natură">
                     </div>
-                    <div class="gallery-item"><img src="images/papanasi.jpg" loading="lazy" decoding="async"
+                    <div class="gallery-item"><img src="images/papanasi.jpg" srcset="images/papanasi-600.jpg 600w, images/papanasi.jpg 750w"
+                            sizes="(max-width: 768px) 50vw, 25vw" loading="lazy" decoding="async"
                             width="750" height="1000"
                             alt="Mâncare tradițională românească - Papanași și preparate tradiționale bucovinene"></div>
-                    <div class="gallery-item"><img src="images/micdejun.jpg" loading="lazy" decoding="async"
+                    <div class="gallery-item"><img src="images/micdejun.jpg" srcset="images/micdejun-600.jpg 600w, images/micdejun.jpg 750w"
+                            sizes="(max-width: 768px) 50vw, 25vw" loading="lazy" decoding="async"
                             width="750" height="1000"
                             alt="Mic dejun tradițional românesc - Brânzeturi și preparate locale"></div>
-                    <div class="gallery-item"><img src="images/canapele.jpeg" loading="lazy" decoding="async"
+                    <div class="gallery-item"><img src="images/canapele.jpeg" srcset="images/canapele-600.jpeg 600w, images/canapele.jpeg 1000w"
+                            sizes="(max-width: 768px) 50vw, 25vw" loading="lazy" decoding="async"
                             width="1000" height="681"
                             alt="Bucătărie bucovineană - Canapele și preparate tradiționale"></div>
                 </div>
@@ -591,7 +606,7 @@
         <div class="container footer-container">
             <div class="footer-main">
                 <div class="footer-brand">
-                    <img class="footer-logo" src="images/logo.jpg" width="960" height="958" loading="lazy" decoding="async"
+                    <img class="footer-logo" src="images/logo-160.jpg" width="160" height="159" loading="lazy" decoding="async"
                         alt="Popasul Drumețului - Restaurant tradițional românesc Câmpulung Moldovenesc Bucovina">
                     <span class="footer-name">Popasul Drumețului</span>
                     <p class="footer-tagline" data-i18n="footer.tagline">Tradiție și gust în inima Bucovinei</p>
@@ -806,7 +821,7 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 </body>
 
 </html>

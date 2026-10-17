@@ -1995,7 +1995,7 @@ lightbox.className = 'lightbox';
 lightbox.innerHTML = `
     <div class="lightbox-content">
         <button class="lightbox-close">&times;</button>
-        <img class="lightbox-image" src="" alt="Menu item">
+        <img class="lightbox-image" src="" alt="Menu item" width="800" height="600">
     </div>
 `;
 document.body.appendChild(lightbox);
@@ -2104,7 +2104,7 @@ function createMenuItemHTML(item, roName) {
     const nameHtml = showBoth
         ? `<h3>${translatedName} <span class="menu-name-ro">(${roName})</span></h3>`
         : `<h3>${roName}</h3>`;
-    const imageHtml = item.image ? `<img src="${item.image}" alt="${item.name || roName}" class="menu-item-image">` : '';
+    const imageHtml = item.image ? `<img src="${item.image}" alt="${item.name || roName}" class="menu-item-image" width="78" height="78">` : '';
 
     return `
         <div class="menu-item">
@@ -2848,7 +2848,8 @@ function initCookieConsent() {
     // If no consent decision has been made, show the banner
     if (consentStatus === null) {
         setTimeout(() => {
-            document.getElementById('cookieConsent').style.display = 'block';
+            const banner = document.getElementById('cookieConsent');
+            if (banner) banner.style.display = 'block';
         }, 1000); // Show after 1 second
     } else if (consentStatus === true) {
         // User has accepted cookies, grant consent

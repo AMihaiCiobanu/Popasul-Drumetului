@@ -1,3 +1,23 @@
+/* Metric-matched local fallbacks: Google Fonts load async (display=swap),
+   so the swap must not move text (CLS). */
+@font-face {
+  font-family: "Playfair Display Fallback";
+  src: local("Times New Roman"), local("Times");
+  ascent-override: 97.25%;
+  descent-override: 22.56%;
+  line-gap-override: 0%;
+  size-adjust: 111.18%;
+}
+
+@font-face {
+  font-family: "Montserrat Fallback";
+  src: local("Arial"), local("Helvetica");
+  ascent-override: 85.79%;
+  descent-override: 22.25%;
+  line-gap-override: 0%;
+  size-adjust: 112.83%;
+}
+
 /** @format */
 
 :root {
@@ -14,8 +34,8 @@
   --glass-border: rgba(255, 255, 255, 0.2);
 
   /* Fonts */
-  --font-serif: "Playfair Display", serif;
-  --font-sans: "Montserrat", sans-serif;
+  --font-serif: "Playfair Display", "Playfair Display Fallback", serif;
+  --font-sans: "Montserrat", "Montserrat Fallback", sans-serif;
 
   /* Transitions */
   --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -294,6 +314,22 @@ section.reveal {
   background-attachment: fixed;
 }
 
+/* Hero is above the fold: never hide it behind the scroll-reveal fade
+   (it is the LCP element). */
+section.hero {
+  opacity: 1;
+  transform: none;
+}
+
+/* Portrait screens only show the centre of the banner: serve a centre crop */
+@media (max-aspect-ratio: 3/4) {
+  .hero {
+    background-image:
+      linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+      url("images/heroBanner-portrait.jpg");
+  }
+}
+
 /* iOS Safari nu suportă background-attachment: fixed — evită jank pe mobil */
 @media (max-width: 768px) {
   :root {
@@ -340,7 +376,7 @@ section.reveal {
   line-height: 1.1;
   margin-bottom: 1.5rem;
   color: var(--cream);
-  animation: heroFadeUp 0.8s ease-out 0.35s both;
+  animation: heroSlideUp 0.8s ease-out 0.35s both;
 }
 
 .hero-title span {
@@ -352,7 +388,7 @@ section.reveal {
   font-size: 1.1rem;
   margin-bottom: 2.5rem;
   color: rgba(255, 245, 225, 0.8);
-  animation: heroFadeUp 0.8s ease-out 0.5s both;
+  animation: heroSlideUp 0.8s ease-out 0.5s both;
 }
 
 .hero-btns {
@@ -366,6 +402,17 @@ section.reveal {
   }
   to {
     opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Title and description are the LCP candidates: they slide in but stay
+   visible from the first paint (an opacity fade delays LCP by ~1s). */
+@keyframes heroSlideUp {
+  from {
+    transform: translateY(24px);
+  }
+  to {
     transform: translateY(0);
   }
 }
@@ -1445,7 +1492,7 @@ section.reveal {
 }
 
 .footer-copyright {
-  color: rgba(255, 245, 225, 0.5);
+  color: rgba(255, 245, 225, 0.6);
   font-size: 0.9rem;
   margin: 0;
 }
@@ -1509,6 +1556,8 @@ section.reveal {
 
 /* Legal Pages Styling */
 .legal-page {
+  /* slightly lighter gold: #d4af37 on wood-medium is 4.43:1, below WCAG AA */
+  --gold: #dab53c;
   background: var(--wood-medium);
   min-height: 100vh;
   /* Always visible on load (avoids IntersectionObserver threshold issue on mobile) */
@@ -1575,6 +1624,7 @@ section.reveal {
   color: var(--gold);
   text-decoration: underline;
   transition: var(--transition);
+  overflow-wrap: anywhere; /* long URLs used as link text */
 }
 
 .legal-content a:hover {
@@ -1721,6 +1771,9 @@ section.reveal {
   }
   .cookie-table {
     font-size: 0.85rem;
+    /* 4 columns do not fit a phone: scroll the table, not the page */
+    display: block;
+    overflow-x: auto;
   }
   .cookie-table th,
   .cookie-table td {
@@ -2014,7 +2067,7 @@ section.reveal {
 
 .cookie-consent-buttons .btn-primary {
   background: var(--gold);
-  color: var(--dark);
+  color: var(--wood-dark);
   font-weight: 600;
 }
 
