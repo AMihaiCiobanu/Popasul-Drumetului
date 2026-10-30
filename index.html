@@ -3,6 +3,72 @@
 
 <head>
     <meta charset="UTF-8">
+    <!-- Google tag (gtag.js): off until the visitor accepts analytics cookies.
+         Keep this first in <head>. Cloudflare injects its own copy of the tag right after <head>,
+         ahead of the consent default below; only ga-disable keeps that copy silent. -->
+    <script>
+        // Initialize dataLayer before anything else
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+
+        window['ga-disable-G-FP0PSW68HZ'] = true;
+
+        // Default consent mode (GDPR compliant - wait for user consent)
+        gtag('consent', 'default', {
+            'analytics_storage': 'denied',
+            'ad_storage': 'denied',
+            'wait_for_update': 500
+        });
+
+        var analyticsStarted = false;
+
+        // Called once consent exists: here for returning visitors, from grantConsent() on Accept
+        function enableAnalytics() {
+            if (analyticsStarted) return;
+            analyticsStarted = true;
+
+            window['ga-disable-G-FP0PSW68HZ'] = false;
+            gtag('consent', 'update', {
+                'analytics_storage': 'granted',
+                'ad_storage': 'denied' // Keep ad storage denied
+            });
+
+            gtag('js', new Date());
+
+            // Enhanced GA4 Configuration
+            gtag('config', 'G-FP0PSW68HZ', {
+                'cookie_flags': 'SameSite=None;Secure',
+                'anonymize_ip': true,
+                'allow_google_signals': false,
+                'allow_ad_personalization_signals': false,
+                'page_title': document.title,
+                'page_location': window.location.href,
+                'send_page_view': true,
+                'cookie_expires': 63072000, // 2 years in seconds
+                'cookie_domain': 'auto',
+                'custom_map': {
+                    'dimension1': 'user_language',
+                    'dimension2': 'page_section'
+                }
+            });
+
+            gtag('set', 'user_properties', {
+                'preferred_language': document.documentElement.lang || 'ro'
+            });
+
+            var tag = document.createElement('script');
+            tag.async = true;
+            tag.src = 'https://www.googletagmanager.com/gtag/js?id=G-FP0PSW68HZ';
+            document.head.appendChild(tag);
+        }
+
+        try {
+            if (localStorage.getItem('cookieConsent') === 'accepted' &&
+                new Date(localStorage.getItem('cookieConsentExpiration')) > new Date()) {
+                enableAnalytics();
+            }
+        } catch (e) { /* storage blocked: analytics stays off */ }
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Primary Meta Tags -->
     <title>Popasul Drumețului | Tradiție și Gust în Câmpulung Moldovenesc</title>
@@ -53,46 +119,6 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
-    <!-- Google tag (gtag.js) - Enhanced Configuration -->
-    <script>
-        // Initialize dataLayer before anything else
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-
-        // Default consent mode (GDPR compliant - wait for user consent)
-        gtag('consent', 'default', {
-            'analytics_storage': 'denied',
-            'ad_storage': 'denied',
-            'wait_for_update': 500
-        });
-
-        gtag('js', new Date());
-
-        // Enhanced GA4 Configuration
-        gtag('config', 'G-FP0PSW68HZ', {
-            'cookie_flags': 'SameSite=None;Secure',
-            'anonymize_ip': true,
-            'allow_google_signals': false, // Disable until user consents
-            'allow_ad_personalization_signals': false,
-            'page_title': document.title,
-            'page_location': window.location.href,
-            'send_page_view': true,
-            'cookie_expires': 63072000, // 2 years in seconds
-            'cookie_domain': 'auto',
-            'cookie_prefix': '_ga',
-            'custom_map': {
-                'dimension1': 'user_language',
-                'dimension2': 'page_section'
-            }
-        });
-
-        // Set user properties (visitor_type will be set after consent)
-        gtag('set', 'user_properties', {
-            'preferred_language': document.documentElement.lang || 'ro',
-            'visitor_type': 'unknown' // Will be updated after consent
-        });
-    </script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FP0PSW68HZ"></script>
 
     <!-- Structured Data (JSON-LD) for Local Business/Restaurant -->
     <script type="application/ld+json">
@@ -357,10 +383,10 @@
                 </div>
                 <div class="about-text">
                     <span class="section-tag" data-i18n="about.tag">Povestea Noastră</span>
-                    <h2 class="section-title" data-i18n="about.title">La Popas în Inima <span>Bucovinei</span></h2>
+                    <h2 class="section-title" data-i18n="about.title">Un Popas în Inima <span>Bucovinei</span></h2>
                     <p data-i18n="about.p1">La Popasul Drumețului, tradiția se împletește cu rafinamentul contemporan.
                         Situat într-un cadru
-                        natural spectacol, restaurantul nostru oferă o evadare culinară autentică.</p>
+                        natural spectaculos, restaurantul nostru oferă o evadare culinară autentică.</p>
                     <p data-i18n="about.p2">Fiecare preparat este gătit cu ingrediente proaspete, locale, după rețete
                         transmise din generație
                         în generație, dar prezentate într-o formă modernă care să încânte toate simțurile.</p>
@@ -765,10 +791,10 @@
             <div class="cookie-consent-text">
                 <h3 data-i18n="cookies.title">🍪 Acest site folosește cookies</h3>
                 <p data-i18n="cookies.message">
-                    Folosim cookies pentru a îmbunătăți experiența ta pe site și pentru a analiza traficul.
-                    Continuând să navighezi, ești de acord cu utilizarea cookies.
+                    Folosim cookies esențiale pentru funcționarea site-ului.
+                    Cookies de analiză (Google Analytics) pornesc doar dacă apeși Accept. Dacă refuzi, rămân oprite.
                     <a href="politica-cookies.html" target="_blank" rel="noopener noreferrer"
-                        data-i18n="cookies.learn_more">Aflați mai multe</a>
+                        data-i18n="cookies.learn_more">Află mai multe</a>
                 </p>
             </div>
             <div class="cookie-consent-buttons">
@@ -808,7 +834,7 @@
                         </label>
                         <div>
                             <h4 data-i18n="cookies.analytics_title">Cookies Analitice</h4>
-                            <p data-i18n="cookies.analytics_desc">Ne ajută să înțelegem cum vizitatorii interactionează
+                            <p data-i18n="cookies.analytics_desc">Ne ajută să înțelegem cum vizitatorii interacționează
                                 cu site-ul nostru (Google Analytics).</p>
                         </div>
                     </div>

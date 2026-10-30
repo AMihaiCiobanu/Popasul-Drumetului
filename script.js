@@ -54,8 +54,8 @@ const translations = {
         "hero.btn_menu": "Vezi Meniul",
         "hero.btn_gallery": "Explorează Localul",
         "about.tag": "Povestea Noastră",
-        "about.title": "O Popas în Inima <span>Bucovinei</span>",
-        "about.p1": "La Popasul Drumețului, tradiția se împletește cu rafinamentul contemporan. Situat într-un cadru natural spectacol, restaurantul nostru oferă o evadare culinară autentică.",
+        "about.title": "Un Popas în Inima <span>Bucovinei</span>",
+        "about.p1": "La Popasul Drumețului, tradiția se împletește cu rafinamentul contemporan. Situat într-un cadru natural spectaculos, restaurantul nostru oferă o evadare culinară autentică.",
         "about.p2": "Fiecare preparat este gătit cu ingrediente proaspete, locale, după rețete transmise din generație în generație, dar prezentate într-o formă modernă care să încânte toate simțurile.",
         "about.p3": "Situat în inima Bucovinei, la Câmpulung Moldovenesc, Popasul Drumețului este un restaurant local care oferă mâncare tradițională românească și bucătărie bucovineană autentică. Dacă căutați un restaurant în Câmpulung Moldovenesc sau un popas turistic în Bucovina, vă așteptăm la Calea Bucovinei Nr 335C pentru a descoperi aromele autentice ale gastronomiei românești.",
         "about.f1": "Tradițional Românesc",
@@ -141,7 +141,7 @@ const translations = {
         "footer.anpc": "ANPC - Protecția Consumatorului",
         "footer.sol": "SOL - Soluționare Online Litigii",
         "services.title": "Serviciile <span>Noastre</span>",
-        "services.s1_title": "Accessible",
+        "services.s1_title": "Accesibil",
         "services.s1_desc": "Spațiu adaptat pentru persoane cu mobilitate redusă",
         "services.s2_title": "Aer condiționat",
         "services.s2_desc": "Temperatura ideală în toate anotimpurile",
@@ -202,7 +202,7 @@ const translations = {
         "reviews.title": "What Our <span>Customers</span> Say",
         "reviews.cta": "Leave Us a Review",
         "contact.tag": "Contact",
-        "contact.title": "We Are <span>Waiting</span> For You",
+        "contact.title": "We look forward to <span>seeing you</span>",
         "reviews.r1_text": '"The food is very good at Popasul Drumețului 🫶🏼 The girls are very kind and sweet! ❤️"',
         "reviews.r1_author": "Georgiana G.",
         "reviews.r2_text": '"A very pleasant experience! I ate a tasty, well-seasoned soup, and an excellent crispy. The service was fast."',
@@ -260,7 +260,7 @@ const translations = {
         "gallery.tag": "Gallery",
         "gallery.title": "Unforgettable <span>Moments</span>",
         "contact.address_label": "Address:",
-        "contact.address": "335C Bucovina Way, Câmpulung Moldovenesc, Romania",
+        "contact.address": "Calea Bucovinei 335C, Câmpulung Moldovenesc, Romania",
         "contact.phone_label": "Phone:",
         "contact.program_label": "Opening Hours:",
         "contact.program": "Daily: 07:30 - 00:30",
@@ -280,15 +280,15 @@ const translations = {
         "services.s1_desc": "Space adapted for people with reduced mobility",
         "services.s2_title": "Air conditioning",
         "services.s2_desc": "Ideal temperature in all seasons",
-        "services.s3_title": "Self parking",
-        "services.s3_desc": "Own parking for customers",
+        "services.s3_title": "Parking",
+        "services.s3_desc": "Private parking for guests",
         "services.s4_title": "Free WiFi",
         "services.s4_desc": "Fast and secure internet connection",
         "payment.title": "Payment <span>Options</span>",
         "payment.p1_title": "Contactless payment",
         "payment.p1_desc": "Secure contactless payment",
         "payment.p2_title": "Mastercard",
-        "payment.p2_desc": "Accept Mastercard cards",
+        "payment.p2_desc": "Mastercard accepted",
         "payment.p3_title": "VISA",
         "payment.p3_desc": "Accept VISA cards",
         "payment.p4_title": "Debit Card",
@@ -2525,7 +2525,7 @@ function initializeFeatureItems() {
         {
             icon: '♿',
             titleKey: 'services.s1_title',
-            title: 'Accessible',
+            title: 'Accesibil',
             descKey: 'services.s1_desc',
             desc: 'Spațiu adaptat pentru persoane cu mobilitate redusă',
             className: 'service-item'
@@ -2907,11 +2907,14 @@ function clearCookieConsent() {
 }
 
 function grantConsent() {
-    if (typeof gtag !== 'undefined') {
-        gtag('consent', 'update', {
-            'analytics_storage': 'granted',
-            'ad_storage': 'denied' // Keep ad storage denied
-        });
+    if (typeof enableAnalytics !== 'undefined') {
+        const acceptedOnThisPage = !analyticsStarted;
+        enableAnalytics();
+
+        // The Cloudflare-injected tag already ran and dropped its page_view under ga-disable
+        if (acceptedOnThisPage && window.google_tags_first_party) {
+            gtag('event', 'page_view');
+        }
 
         // Track consent acceptance
         gtag('event', 'cookie_consent', {
@@ -3052,8 +3055,8 @@ if (typeof translations !== 'undefined') {
     translations.ro = translations.ro || {};
     Object.assign(translations.ro, {
         "cookies.title": "🍪 Acest site folosește cookies",
-        "cookies.message": "Folosim cookies pentru a îmbunătăți experiența ta pe site și pentru a analiza traficul. Continuând să navighezi, ești de acord cu utilizarea cookies.",
-        "cookies.learn_more": "Aflați mai multe",
+        "cookies.message": "Folosim cookies esențiale pentru funcționarea site-ului. Cookies de analiză (Google Analytics) pornesc doar dacă apeși Accept. Dacă refuzi, rămân oprite.",
+        "cookies.learn_more": "Află mai multe",
         "cookies.accept": "Accept",
         "cookies.decline": "Refuz",
         "cookies.settings": "Setări",
@@ -3061,7 +3064,7 @@ if (typeof translations !== 'undefined') {
         "cookies.essential_title": "Cookies Esențiale",
         "cookies.essential_desc": "Necesare pentru funcționarea corectă a site-ului. Nu pot fi dezactivate.",
         "cookies.analytics_title": "Cookies Analitice",
-        "cookies.analytics_desc": "Ne ajută să înțelegem cum vizitatorii interactionează cu site-ul nostru (Google Analytics).",
+        "cookies.analytics_desc": "Ne ajută să înțelegem cum vizitatorii interacționează cu site-ul nostru (Google Analytics).",
         "cookies.save": "Salvează Preferințele"
     });
 
@@ -3069,7 +3072,7 @@ if (typeof translations !== 'undefined') {
     translations.en = translations.en || {};
     Object.assign(translations.en, {
         "cookies.title": "🍪 This site uses cookies",
-        "cookies.message": "We use cookies to improve your experience and analyze traffic. By continuing to browse, you agree to the use of cookies.",
+        "cookies.message": "We use essential cookies to run the site. Analytics cookies (Google Analytics) start only if you click Accept. If you decline, they stay off.",
         "cookies.learn_more": "Learn more",
         "cookies.accept": "Accept",
         "cookies.decline": "Decline",
@@ -3086,7 +3089,7 @@ if (typeof translations !== 'undefined') {
     translations.fr = translations.fr || {};
     Object.assign(translations.fr, {
         "cookies.title": "🍪 Ce site utilise des cookies",
-        "cookies.message": "Nous utilisons des cookies pour améliorer votre expérience et analyser le trafic. En continuant à naviguer, vous acceptez l'utilisation de cookies.",
+        "cookies.message": "Nous utilisons des cookies essentiels au fonctionnement du site. Les cookies d'analyse (Google Analytics) s'activent uniquement si vous cliquez sur Accepter. Si vous refusez, ils restent désactivés.",
         "cookies.learn_more": "En savoir plus",
         "cookies.accept": "Accepter",
         "cookies.decline": "Refuser",
@@ -3103,7 +3106,7 @@ if (typeof translations !== 'undefined') {
     translations.pl = translations.pl || {};
     Object.assign(translations.pl, {
         "cookies.title": "🍪 Ta strona używa plików cookie",
-        "cookies.message": "Używamy plików cookie, aby poprawić Twoje wrażenia i analizować ruch. Kontynuując przeglądanie, zgadzasz się na użycie plików cookie.",
+        "cookies.message": "Używamy niezbędnych plików cookie, aby strona działała. Pliki cookie analityczne (Google Analytics) włączają się tylko po kliknięciu „Akceptuj”. Jeśli odmówisz, pozostaną wyłączone.",
         "cookies.learn_more": "Dowiedz się więcej",
         "cookies.accept": "Akceptuj",
         "cookies.decline": "Odrzuć",
@@ -3120,7 +3123,7 @@ if (typeof translations !== 'undefined') {
     translations.ua = translations.ua || {};
     Object.assign(translations.ua, {
         "cookies.title": "🍪 Цей сайт використовує cookies",
-        "cookies.message": "Ми використовуємо файли cookie для покращення вашого досвіду та аналізу трафіку. Продовжуючи перегляд, ви погоджуєтеся на використання файлів cookie.",
+        "cookies.message": "Ми використовуємо необхідні файли cookie для роботи сайту. Аналітичні файли cookie (Google Analytics) вмикаються лише після натискання «Прийняти». Якщо ви відмовитеся, вони залишаться вимкненими.",
         "cookies.learn_more": "Дізнатися більше",
         "cookies.accept": "Прийняти",
         "cookies.decline": "Відхилити",
