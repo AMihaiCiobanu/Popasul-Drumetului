@@ -24,14 +24,14 @@
 
         // Called once consent exists: here for returning visitors, from grantConsent() on Accept
         function enableAnalytics() {
-            if (analyticsStarted) return;
-            analyticsStarted = true;
-
             window['ga-disable-G-FP0PSW68HZ'] = false;
             gtag('consent', 'update', {
                 'analytics_storage': 'granted',
                 'ad_storage': 'denied' // Keep ad storage denied
             });
+
+            if (analyticsStarted) return;
+            analyticsStarted = true;
 
             gtag('js', new Date());
 
@@ -660,6 +660,8 @@
                         <li><a href="politica-confidentialitate.html" data-i18n="footer.privacy">Politica de
                                 Confidențialitate</a></li>
                         <li><a href="politica-cookies.html" data-i18n="footer.cookies">Politica de Cookies</a></li>
+                        <li><button type="button" id="openCookieSettings" class="footer-link-button"
+                                data-i18n="cookies.footer_link">Setări cookies</button></li>
                         <li><a href="https://www.anpc.ro" target="_blank" rel="noopener noreferrer"
                                 data-i18n="footer.anpc">ANPC -
                                 Protecția Consumatorului</a></li>
@@ -790,9 +792,9 @@
         <div class="cookie-consent-content">
             <div class="cookie-consent-text">
                 <h3 data-i18n="cookies.title">🍪 Acest site folosește cookies</h3>
-                <p data-i18n="cookies.message">
-                    Folosim cookies esențiale pentru funcționarea site-ului.
-                    Cookies de analiză (Google Analytics) pornesc doar dacă apeși Accept. Dacă refuzi, rămân oprite.
+                <p>
+                    <span data-i18n="cookies.message">Folosim cookies esențiale pentru funcționarea site-ului.
+                    Cookies de analiză (Google Analytics) pornesc doar dacă apeși Accept. Dacă refuzi, rămân oprite.</span>
                     <a href="politica-cookies.html" target="_blank" rel="noopener noreferrer"
                         data-i18n="cookies.learn_more">Află mai multe</a>
                 </p>

@@ -2939,6 +2939,27 @@ function revokeConsent() {
             'analytics_storage': 'denied',
             'ad_storage': 'denied'
         });
+
+        // Withdrawn consent also stops the tag and removes what it stored
+        window['ga-disable-G-FP0PSW68HZ'] = true;
+        document.cookie.split('; ').forEach(cookie => {
+            const name = cookie.split('=')[0];
+            if (name.startsWith('_ga')) {
+                document.cookie = `${name}=; Max-Age=0; path=/; domain=.${location.hostname}`;
+            }
+        });
+    }
+}
+
+function openCookieSettings() {
+    document.getElementById('cookieConsent').style.display = 'none';
+    document.getElementById('cookieSettingsModal').style.display = 'flex';
+
+    // Set current preferences
+    const analyticsCheckbox = document.getElementById('analyticsCookies');
+    if (analyticsCheckbox) {
+        analyticsCheckbox.checked = getCookieConsent() === true;
+        analyticsCheckbox.focus();
     }
 }
 
@@ -2971,17 +2992,13 @@ function setupCookieEventListeners() {
     // Settings button
     const settingsBtn = document.getElementById('cookieSettings');
     if (settingsBtn) {
-        settingsBtn.addEventListener('click', function () {
-            document.getElementById('cookieConsent').style.display = 'none';
-            document.getElementById('cookieSettingsModal').style.display = 'flex';
+        settingsBtn.addEventListener('click', openCookieSettings);
+    }
 
-            // Set current preferences
-            const consent = getCookieConsent();
-            const analyticsCheckbox = document.getElementById('analyticsCookies');
-            if (analyticsCheckbox) {
-                analyticsCheckbox.checked = consent === true;
-            }
-        });
+    // Footer link, so the choice can be changed after the banner is gone
+    const footerSettingsBtn = document.getElementById('openCookieSettings');
+    if (footerSettingsBtn) {
+        footerSettingsBtn.addEventListener('click', openCookieSettings);
     }
 
     // Close settings modal
@@ -3065,7 +3082,8 @@ if (typeof translations !== 'undefined') {
         "cookies.essential_desc": "Necesare pentru funcționarea corectă a site-ului. Nu pot fi dezactivate.",
         "cookies.analytics_title": "Cookies Analitice",
         "cookies.analytics_desc": "Ne ajută să înțelegem cum vizitatorii interacționează cu site-ul nostru (Google Analytics).",
-        "cookies.save": "Salvează Preferințele"
+        "cookies.save": "Salvează Preferințele",
+        "cookies.footer_link": "Setări cookies"
     });
 
     // English
@@ -3082,7 +3100,8 @@ if (typeof translations !== 'undefined') {
         "cookies.essential_desc": "Required for proper site functionality. Cannot be disabled.",
         "cookies.analytics_title": "Analytics Cookies",
         "cookies.analytics_desc": "Help us understand how visitors interact with our website (Google Analytics).",
-        "cookies.save": "Save Preferences"
+        "cookies.save": "Save Preferences",
+        "cookies.footer_link": "Cookie settings"
     });
 
     // French
@@ -3099,7 +3118,8 @@ if (typeof translations !== 'undefined') {
         "cookies.essential_desc": "Nécessaires au bon fonctionnement du site. Ne peuvent pas être désactivés.",
         "cookies.analytics_title": "Cookies Analytiques",
         "cookies.analytics_desc": "Nous aident à comprendre comment les visiteurs interagissent avec notre site (Google Analytics).",
-        "cookies.save": "Enregistrer les Préférences"
+        "cookies.save": "Enregistrer les Préférences",
+        "cookies.footer_link": "Paramètres des cookies"
     });
 
     // Polish
@@ -3116,7 +3136,8 @@ if (typeof translations !== 'undefined') {
         "cookies.essential_desc": "Wymagane do prawidłowego działania witryny. Nie można ich wyłączyć.",
         "cookies.analytics_title": "Pliki cookie analityczne",
         "cookies.analytics_desc": "Pomagają nam zrozumieć, jak odwiedzający wchodzą w interakcję z naszą witryną (Google Analytics).",
-        "cookies.save": "Zapisz preferencje"
+        "cookies.save": "Zapisz preferencje",
+        "cookies.footer_link": "Ustawienia cookie"
     });
 
     // Ukrainian
@@ -3133,7 +3154,8 @@ if (typeof translations !== 'undefined') {
         "cookies.essential_desc": "Необхідні для правильної роботи сайту. Не можуть бути вимкнені.",
         "cookies.analytics_title": "Аналітичні файли cookie",
         "cookies.analytics_desc": "Допомагають нам зрозуміти, як відвідувачі взаємодіють з нашим сайтом (Google Analytics).",
-        "cookies.save": "Зберегти налаштування"
+        "cookies.save": "Зберегти налаштування",
+        "cookies.footer_link": "Налаштування cookie"
     });
 }
 
