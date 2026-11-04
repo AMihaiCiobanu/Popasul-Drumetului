@@ -2706,3 +2706,59 @@ body.mascot-hidden .mascot {
     animation: none;
   }
 }
+
+/* Short landscape phones: slim header and a one-row cookie banner, so the
+   fixed bars leave room for the page */
+@media (orientation: landscape) and (max-height: 500px) {
+  :root {
+    --header-h: 56px; /* .header padding 2×0.5rem + .logo-img 40px */
+  }
+
+  .header,
+  .header.scrolled {
+    padding: 0.5rem 0;
+  }
+
+  .logo-img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .logo-text {
+    font-size: 20px;
+  }
+
+  .cookie-consent {
+    padding: 0.5rem 1rem;
+  }
+
+  .cookie-consent-content {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .cookie-consent-text h3 {
+    font-size: 0.9rem;
+    margin-bottom: 0.15rem;
+  }
+
+  .cookie-consent-text p {
+    font-size: 0.75rem;
+    line-height: 1.35;
+  }
+
+  .cookie-consent-buttons {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+    gap: 0.5rem;
+  }
+
+  .cookie-consent-buttons .btn {
+    width: auto;
+    padding: 0.5rem 0.9rem;
+    font-size: 0.8rem;
+  }
+}
