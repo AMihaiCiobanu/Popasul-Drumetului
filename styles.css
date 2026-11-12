@@ -1449,6 +1449,17 @@ section.hero {
   padding-left: 5px;
 }
 
+.footer-anpc-sal {
+  display: inline-block;
+  margin-top: 1rem;
+}
+
+.footer-anpc-sal img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
 .footer-company-info {
   margin-top: 1rem;
   padding-top: 1rem;

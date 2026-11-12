@@ -139,7 +139,6 @@ const translations = {
         "footer.privacy": "Politica de Confidențialitate",
         "footer.cookies": "Politica de Cookies",
         "footer.anpc": "ANPC - Protecția Consumatorului",
-        "footer.sol": "SOL - Soluționare Online Litigii",
         "services.title": "Serviciile <span>Noastre</span>",
         "services.s1_title": "Accesibil",
         "services.s1_desc": "Spațiu adaptat pentru persoane cu mobilitate redusă",
@@ -274,7 +273,6 @@ const translations = {
         "footer.privacy": "Privacy Policy",
         "footer.cookies": "Cookie Policy",
         "footer.anpc": "ANPC - Consumer Protection",
-        "footer.sol": "ODR - Online Dispute Resolution",
         "services.title": "Our <span>Services</span>",
         "services.s1_title": "Accessible",
         "services.s1_desc": "Space adapted for people with reduced mobility",
@@ -407,7 +405,6 @@ const translations = {
         "footer.company": "Opérateur:",
         "footer.terms": "Conditions Générales",
         "footer.anpc": "ANPC - Protection des Consommateurs",
-        "footer.sol": "RLL - Règlement en Ligne des Litiges",
         "footer.privacy": "Politique de Confidentialité",
         "footer.cookies": "Politique des Cookies",
         "services.title": "Nos <span>Services</span>",
@@ -542,7 +539,6 @@ const translations = {
         "footer.company": "Operator:",
         "footer.terms": "Regulamin",
         "footer.anpc": "ANPC - Ochrona Konsumentów",
-        "footer.sol": "SOL - Rozstrzyganie Sporów Online",
         "footer.privacy": "Polityka Prywatności",
         "footer.cookies": "Polityka Cookies",
         "services.title": "Nasze <span>Usługi</span>",
@@ -677,7 +673,6 @@ const translations = {
         "footer.company": "Оператор:",
         "footer.terms": "Умови використання",
         "footer.anpc": "ANPC - Захист Прав Споживачів",
-        "footer.sol": "SOL - Онлайн Вирішення Спорів",
         "footer.privacy": "Політика Конфіденційності",
         "footer.cookies": "Політика Cookies",
         "services.title": "Наші <span>Послуги</span>",
@@ -812,7 +807,6 @@ function getRomanianAnalyticsLabel(label) {
     // before "politica" so "Politica de Cookies" maps correctly, not to Confidențialitate).
     const linkTextMap = [
         ['anpc', 'ANPC - Protecția Consumatorului'],
-        ['sol', 'SOL - Soluționare Online Litigii'],
         ['termeni', 'Termeni și Condiții'],
         ['cookies', 'Politica de Cookies'],
         ['politica', 'Politica de Confidențialitate']
@@ -2709,7 +2703,7 @@ function initializeGATracking() {
         }
     });
 
-    // Track External Links (ANPC, SOL, etc.)
+    // Track External Links (ANPC, etc.)
     document.querySelectorAll('a[target="_blank"][rel*="noopener"]').forEach(link => {
         link.addEventListener('click', function () {
             const linkText = this.textContent.trim();
