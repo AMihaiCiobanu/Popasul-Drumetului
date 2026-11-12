@@ -129,6 +129,9 @@ const translations = {
         "contact.phone_label": "Telefon:",
         "contact.program_label": "Program:",
         "contact.program": "Zilnic: 07:30 - 00:30",
+        "contact.map_load": "Arată harta interactivă",
+        "menu.price_note": "Prețurile sunt în lei și includ TVA. Pentru informații despre alergeni, întrebați personalul.",
+        "reviews.source": "Recenzii ale clienților noștri, preluate de pe Google Maps.",
         "footer.rights": "&copy; 2026 Popasul Drumețului. Toate drepturile rezervate.",
         "footer.tagline": "Tradiție și gust în inima Bucovinei",
         "footer.links_title": "Link-uri Utile",
@@ -263,6 +266,9 @@ const translations = {
         "contact.phone_label": "Phone:",
         "contact.program_label": "Opening Hours:",
         "contact.program": "Daily: 07:30 - 00:30",
+        "contact.map_load": "Show the interactive map",
+        "menu.price_note": "Prices are in lei (RON) and include VAT. For allergen information, please ask our staff.",
+        "reviews.source": "Reviews from our guests, taken from Google Maps.",
         "footer.rights": "&copy; 2026 Popasul Drumețului. All rights reserved.",
         "footer.tagline": "Tradition and taste in the heart of Bucovina",
         "footer.links_title": "Useful Links",
@@ -397,6 +403,9 @@ const translations = {
         "contact.phone_label": "Téléphone:",
         "contact.program_label": "Horaires:",
         "contact.program": "Tous les jours : 07:30 - 00:30",
+        "contact.map_load": "Afficher la carte interactive",
+        "menu.price_note": "Les prix sont en lei (RON), TVA comprise. Pour les informations sur les allergènes, adressez-vous au personnel.",
+        "reviews.source": "Avis de nos clients, issus de Google Maps.",
         "footer.rights": "&copy; 2026 Popasul Drumețului. Tous droits réservés.",
         "footer.tagline": "Tradition et goût au cœur de Bucovine",
         "footer.links_title": "Liens Utiles",
@@ -531,6 +540,9 @@ const translations = {
         "contact.phone_label": "Telefon:",
         "contact.program_label": "Godziny otwarcia:",
         "contact.program": "Codziennie: 07:30 - 00:30",
+        "contact.map_load": "Pokaż interaktywną mapę",
+        "menu.price_note": "Ceny podane są w lejach (RON) i zawierają VAT. Informacje o alergenach uzyskasz od obsługi.",
+        "reviews.source": "Opinie naszych gości z Map Google.",
         "footer.rights": "&copy; 2026 Popasul Drumețului. Wszelkie prawa zastrzeżone.",
         "footer.tagline": "Tradycja i smak w sercu Bukowiny",
         "footer.links_title": "Przydatne Linki",
@@ -665,6 +677,9 @@ const translations = {
         "contact.phone_label": "Телефон:",
         "contact.program_label": "Графік роботи:",
         "contact.program": "Щодня: 07:30 - 00:30",
+        "contact.map_load": "Показати інтерактивну карту",
+        "menu.price_note": "Ціни вказано в леях (RON), з ПДВ. Інформацію про алергени запитуйте в персоналу.",
+        "reviews.source": "Відгуки наших гостей з Google Maps.",
         "footer.rights": "&copy; 2026 Popasul Drumețului. Усі права захищені.",
         "footer.tagline": "Традиція і смак у серці Буковини",
         "footer.links_title": "Корисні Посилання",
@@ -2900,7 +2915,30 @@ function clearCookieConsent() {
     localStorage.removeItem('returning_visitor'); // GDPR: Clear visitor tracking
 }
 
+// Google Maps: a drawn map until the visitor accepts cookies or presses "Arată harta interactivă".
+function loadMap() {
+    const box = document.querySelector('.map-consent[data-map-src]');
+    if (!box) return;
+    const frame = document.createElement('iframe');
+    frame.src = box.dataset.mapSrc;
+    frame.title = box.dataset.mapTitle || 'Google Maps';
+    frame.allowFullscreen = true;
+    frame.referrerPolicy = 'no-referrer-when-downgrade';
+    box.removeAttribute('data-map-src');
+    box.replaceChildren(frame);
+    if (typeof gtag === 'function') gtag('event', 'map_load', { 'event_category': 'engagement' });
+}
+
+document.addEventListener('click', function (e) {
+    if (e.target.closest('[data-map-load]')) loadMap();
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    if (getCookieConsent() === true) loadMap();
+});
+
 function grantConsent() {
+    loadMap();
     if (typeof enableAnalytics !== 'undefined') {
         const acceptedOnThisPage = !analyticsStarted;
         enableAnalytics();
@@ -3066,7 +3104,7 @@ if (typeof translations !== 'undefined') {
     translations.ro = translations.ro || {};
     Object.assign(translations.ro, {
         "cookies.title": "🍪 Acest site folosește cookies",
-        "cookies.message": "Folosim cookies esențiale pentru funcționarea site-ului. Cookies de analiză (Google Analytics) pornesc doar dacă apeși Accept. Dacă refuzi, rămân oprite.",
+        "cookies.message": "Folosim cookies esențiale pentru funcționarea site-ului. Cookies de analiză (Google Analytics) și harta Google Maps pornesc doar dacă apeși Accept. Dacă refuzi, rămân oprite.",
         "cookies.learn_more": "Află mai multe",
         "cookies.accept": "Accept",
         "cookies.decline": "Refuz",
@@ -3075,7 +3113,7 @@ if (typeof translations !== 'undefined') {
         "cookies.essential_title": "Cookies Esențiale",
         "cookies.essential_desc": "Necesare pentru funcționarea corectă a site-ului. Nu pot fi dezactivate.",
         "cookies.analytics_title": "Cookies Analitice",
-        "cookies.analytics_desc": "Ne ajută să înțelegem cum vizitatorii interacționează cu site-ul nostru (Google Analytics).",
+        "cookies.analytics_desc": "Ne ajută să înțelegem cum vizitatorii interacționează cu site-ul nostru (Google Analytics). Pornește și harta Google Maps din secțiunea Contact.",
         "cookies.save": "Salvează Preferințele",
         "cookies.footer_link": "Setări cookies"
     });
@@ -3084,7 +3122,7 @@ if (typeof translations !== 'undefined') {
     translations.en = translations.en || {};
     Object.assign(translations.en, {
         "cookies.title": "🍪 This site uses cookies",
-        "cookies.message": "We use essential cookies to run the site. Analytics cookies (Google Analytics) start only if you click Accept. If you decline, they stay off.",
+        "cookies.message": "We use essential cookies to run the site. Analytics cookies (Google Analytics) and the Google Maps map start only if you click Accept. If you decline, they stay off.",
         "cookies.learn_more": "Learn more",
         "cookies.accept": "Accept",
         "cookies.decline": "Decline",
@@ -3093,7 +3131,7 @@ if (typeof translations !== 'undefined') {
         "cookies.essential_title": "Essential Cookies",
         "cookies.essential_desc": "Required for proper site functionality. Cannot be disabled.",
         "cookies.analytics_title": "Analytics Cookies",
-        "cookies.analytics_desc": "Help us understand how visitors interact with our website (Google Analytics).",
+        "cookies.analytics_desc": "Help us understand how visitors interact with our website (Google Analytics). Also turns on the Google Maps map in the Contact section.",
         "cookies.save": "Save Preferences",
         "cookies.footer_link": "Cookie settings"
     });
@@ -3102,7 +3140,7 @@ if (typeof translations !== 'undefined') {
     translations.fr = translations.fr || {};
     Object.assign(translations.fr, {
         "cookies.title": "🍪 Ce site utilise des cookies",
-        "cookies.message": "Nous utilisons des cookies essentiels au fonctionnement du site. Les cookies d'analyse (Google Analytics) s'activent uniquement si vous cliquez sur Accepter. Si vous refusez, ils restent désactivés.",
+        "cookies.message": "Nous utilisons des cookies essentiels au fonctionnement du site. Les cookies d'analyse (Google Analytics) et la carte Google Maps s'activent uniquement si vous cliquez sur Accepter. Si vous refusez, ils restent désactivés.",
         "cookies.learn_more": "En savoir plus",
         "cookies.accept": "Accepter",
         "cookies.decline": "Refuser",
@@ -3111,7 +3149,7 @@ if (typeof translations !== 'undefined') {
         "cookies.essential_title": "Cookies Essentiels",
         "cookies.essential_desc": "Nécessaires au bon fonctionnement du site. Ne peuvent pas être désactivés.",
         "cookies.analytics_title": "Cookies Analytiques",
-        "cookies.analytics_desc": "Nous aident à comprendre comment les visiteurs interagissent avec notre site (Google Analytics).",
+        "cookies.analytics_desc": "Nous aident à comprendre comment les visiteurs interagissent avec notre site (Google Analytics). Active aussi la carte Google Maps de la section Contact.",
         "cookies.save": "Enregistrer les Préférences",
         "cookies.footer_link": "Paramètres des cookies"
     });
@@ -3120,7 +3158,7 @@ if (typeof translations !== 'undefined') {
     translations.pl = translations.pl || {};
     Object.assign(translations.pl, {
         "cookies.title": "🍪 Ta strona używa plików cookie",
-        "cookies.message": "Używamy niezbędnych plików cookie, aby strona działała. Pliki cookie analityczne (Google Analytics) włączają się tylko po kliknięciu „Akceptuj”. Jeśli odmówisz, pozostaną wyłączone.",
+        "cookies.message": "Używamy niezbędnych plików cookie, aby strona działała. Pliki cookie analityczne (Google Analytics) i mapa Google włączają się tylko po kliknięciu „Akceptuj”. Jeśli odmówisz, pozostaną wyłączone.",
         "cookies.learn_more": "Dowiedz się więcej",
         "cookies.accept": "Akceptuj",
         "cookies.decline": "Odrzuć",
@@ -3129,7 +3167,7 @@ if (typeof translations !== 'undefined') {
         "cookies.essential_title": "Niezbędne pliki cookie",
         "cookies.essential_desc": "Wymagane do prawidłowego działania witryny. Nie można ich wyłączyć.",
         "cookies.analytics_title": "Pliki cookie analityczne",
-        "cookies.analytics_desc": "Pomagają nam zrozumieć, jak odwiedzający wchodzą w interakcję z naszą witryną (Google Analytics).",
+        "cookies.analytics_desc": "Pomagają nam zrozumieć, jak odwiedzający wchodzą w interakcję z naszą witryną (Google Analytics). Włącza też mapę Google w sekcji Kontakt.",
         "cookies.save": "Zapisz preferencje",
         "cookies.footer_link": "Ustawienia cookie"
     });
@@ -3138,7 +3176,7 @@ if (typeof translations !== 'undefined') {
     translations.ua = translations.ua || {};
     Object.assign(translations.ua, {
         "cookies.title": "🍪 Цей сайт використовує cookies",
-        "cookies.message": "Ми використовуємо необхідні файли cookie для роботи сайту. Аналітичні файли cookie (Google Analytics) вмикаються лише після натискання «Прийняти». Якщо ви відмовитеся, вони залишаться вимкненими.",
+        "cookies.message": "Ми використовуємо необхідні файли cookie для роботи сайту. Аналітичні файли cookie (Google Analytics) і карта Google Maps вмикаються лише після натискання «Прийняти». Якщо ви відмовитеся, вони залишаться вимкненими.",
         "cookies.learn_more": "Дізнатися більше",
         "cookies.accept": "Прийняти",
         "cookies.decline": "Відхилити",
@@ -3147,7 +3185,7 @@ if (typeof translations !== 'undefined') {
         "cookies.essential_title": "Основні файли cookie",
         "cookies.essential_desc": "Необхідні для правильної роботи сайту. Не можуть бути вимкнені.",
         "cookies.analytics_title": "Аналітичні файли cookie",
-        "cookies.analytics_desc": "Допомагають нам зрозуміти, як відвідувачі взаємодіють з нашим сайтом (Google Analytics).",
+        "cookies.analytics_desc": "Допомагають нам зрозуміти, як відвідувачі взаємодіють з нашим сайтом (Google Analytics). Також вмикає карту Google Maps у розділі «Контакти».",
         "cookies.save": "Зберегти налаштування",
         "cookies.footer_link": "Налаштування cookie"
     });
